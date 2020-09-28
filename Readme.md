@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
-* Студент: [Pavel Kovalenko](https://up.htmlacademy.ru/react/5/user/194424).
-* Наставник: `Неизвестно`.
+- Студент: [Pavel Kovalenko](https://up.htmlacademy.ru/react/5/user/194424).
+- Наставник: [Сергей Вохмянин](https://htmlacademy.ru/profile/id530823).
 
 ---
 
