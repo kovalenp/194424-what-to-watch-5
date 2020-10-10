@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Main from "../Main/main";
@@ -8,6 +7,7 @@ import SignIn from "../SignIn/sign-in";
 import MyList from "../MyList/my-list";
 import AddReview from "../AddReview/add-review";
 import Player from "../Player/player";
+import { moviesProps } from "../../validation/propTypes";
 
 const App = (props) => {
   return (
@@ -23,7 +23,9 @@ const App = (props) => {
         <Route
           path="/films/:id"
           exact
-          render={(match) => <Film {...match} movies={props.movies} />}
+          render={(match) => (
+            <Film {...match} movies={props.movies} reviews={props.reviews} />
+          )}
         />
         <Route path="/films/:id/review" exact component={AddReview} />
         <Route path="/player/:id" exact component={Player} />
@@ -32,14 +34,6 @@ const App = (props) => {
   );
 };
 
-App.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      genre: PropTypes.string.isRequired,
-      year: PropTypes.number.isRequired,
-    })
-  ).isRequired,
-};
+App.propTypes = moviesProps;
 
 export default App;

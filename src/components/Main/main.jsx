@@ -1,9 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import Header from "../Header/header";
 import Footer from "../Footer/footer";
 import MoviesList from "../MoviesList/movies-list";
+import { moviesProps } from "../../validation/propTypes";
 
 const Main = ({ movies }) => {
   return (
@@ -135,14 +135,6 @@ const Main = ({ movies }) => {
   );
 };
 
-Main.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      genre: PropTypes.string.isRequired,
-      year: PropTypes.number.isRequired,
-    })
-  ).isRequired,
-};
+Main.propTypes = moviesProps;
 
 export default Main;

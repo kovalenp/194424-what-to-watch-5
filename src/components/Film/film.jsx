@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Header from "../Header/header";
 import Footer from "../Footer/footer";
 import MoviesList from "../MoviesList/movies-list";
-import moviesProps from "../../validation/movies-props";
+import { moviesProps } from "../../validation/propTypes";
 
 const Film = ({ match, movies }) => (
   <>
@@ -147,7 +147,7 @@ const Film = ({ match, movies }) => (
 
 Film.propTypes = {
   match: PropTypes.any,
-  movies: PropTypes.arrayOf(moviesProps),
+  movies: moviesProps,
 };
 
 export default Film;
