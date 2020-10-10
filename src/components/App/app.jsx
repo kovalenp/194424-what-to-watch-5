@@ -17,8 +17,14 @@ const App = (props) => {
           <Main movies={props.movies} />
         </Route>
         <Route path="/login" exact component={SignIn} />
-        <Route path="/mylist" exact component={MyList} />
-        <Route path="/films/:id" exact component={Film} />
+        <Route path="/mylist" exact>
+          <MyList movies={props.movies} />
+        </Route>
+        <Route
+          path="/films/:id"
+          exact
+          render={(match) => <Film {...match} movies={props.movies} />}
+        />
         <Route path="/films/:id/review" exact component={AddReview} />
         <Route path="/player/:id" exact component={Player} />
       </Switch>

@@ -1,9 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import Header from "../Header/header";
 import Footer from "../Footer/footer";
+import MoviesList from "../MoviesList/movies-list";
 
-const Film = () => (
+const Film = ({ match, movies }) => (
   <>
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
@@ -45,9 +48,12 @@ const Film = () => (
                 </svg>
                 <span>My list</span>
               </button>
-              <a href="add-review.html" className="btn movie-card__button">
+              <Link
+                to={`${match.params.id}/review`}
+                className="btn movie-card__button"
+              >
                 Add review
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -130,76 +136,17 @@ const Film = () => (
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
 
-        <div className="catalog__movies-list">
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img
-                src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                alt="Fantastic Beasts: The Crimes of Grindelwald"
-                width="280"
-                height="175"
-              />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">
-                Fantastic Beasts: The Crimes of Grindelwald
-              </a>
-            </h3>
-          </article>
-
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img
-                src="img/bohemian-rhapsody.jpg"
-                alt="Bohemian Rhapsody"
-                width="280"
-                height="175"
-              />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">
-                Bohemian Rhapsody
-              </a>
-            </h3>
-          </article>
-
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img
-                src="img/macbeth.jpg"
-                alt="Macbeth"
-                width="280"
-                height="175"
-              />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">
-                Macbeth
-              </a>
-            </h3>
-          </article>
-
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img
-                src="img/aviator.jpg"
-                alt="Aviator"
-                width="280"
-                height="175"
-              />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">
-                Aviator
-              </a>
-            </h3>
-          </article>
-        </div>
+        <MoviesList movies={movies} />
       </section>
 
       <Footer />
     </div>
   </>
 );
+
+Film.propTypes = {
+  match: PropTypes.any,
+  movies: PropTypes.arrayOf(PropTypes.any),
+};
 
 export default Film;
