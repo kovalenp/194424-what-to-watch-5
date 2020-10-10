@@ -20,7 +20,7 @@ function SmallMovieCard({
         <img src={img.tile} alt={title} width="280" height="175" />
       </div>
       <h3 className="small-movie-card__title">
-        <Link className="small-movie-card__link" to={`films/${id}`}>
+        <Link className="small-movie-card__link" to={`/films/${id}`}>
           {title}
         </Link>
       </h3>

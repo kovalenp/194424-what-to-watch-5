@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Header from "../Header/header";
 import Footer from "../Footer/footer";
 import MoviesList from "../MoviesList/movies-list";
+import moviesProps from "../../validation/movies-props";
 
 const Film = ({ match, movies }) => (
   <>
@@ -49,7 +50,7 @@ const Film = ({ match, movies }) => (
                 <span>My list</span>
               </button>
               <Link
-                to={`${match.params.id}/review`}
+                to={`/films/${match.params.id}/review`}
                 className="btn movie-card__button"
               >
                 Add review
@@ -146,7 +147,7 @@ const Film = ({ match, movies }) => (
 
 Film.propTypes = {
   match: PropTypes.any,
-  movies: PropTypes.arrayOf(PropTypes.any),
+  movies: PropTypes.arrayOf(moviesProps),
 };
 
 export default Film;
