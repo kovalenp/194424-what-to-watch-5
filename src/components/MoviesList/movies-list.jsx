@@ -4,8 +4,8 @@ import SmallMovieCard from "../SmallMovieCard/small-movie-card";
 import { moviesProps } from "../../validation/propTypes";
 
 class MoviesList extends PureComponent {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       activeMovieCard: null,

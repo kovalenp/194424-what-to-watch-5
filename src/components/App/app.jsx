@@ -23,8 +23,8 @@ const App = (props) => {
         <Route
           path="/films/:id"
           exact
-          render={(match) => (
-            <Film {...match} movies={props.movies} reviews={props.reviews} />
+          render={(p) => (
+            <Film {...p} movies={props.movies} reviews={props.reviews} />
           )}
         />
         <Route path="/films/:id/review" exact component={AddReview} />

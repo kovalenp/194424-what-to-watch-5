@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
 
 class AddNewComment extends PureComponent {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       rating: `3`,
