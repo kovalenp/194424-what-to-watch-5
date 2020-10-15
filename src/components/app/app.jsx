@@ -24,7 +24,10 @@ const App = (props) => {
           path="/films/:id"
           exact
           render={({match}) => (
-            <Film movies={props.movies} movie={props.movies.find((movie) => movie.id.toString() === match.params.id)} reviews={props.reviews} />
+            <Film
+              movies={props.movies}
+              movie={props.movies.find((movie) => movie.id.toString() === match.params.id)}
+              reviews={props.reviews.find((review) => review.movie.toString() === match.params.id).reviews} />
           )}
         />
         <Route path="/films/:id/review" exact component={AddReview} />

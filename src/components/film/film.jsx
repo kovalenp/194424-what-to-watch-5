@@ -8,10 +8,12 @@ import MoviesList from "../movies-list/movies-list";
 import Tabs from "../tabs/tabs";
 import Overview from "../overview/overview";
 import Details from "../details/details";
+import Reviews from "../reviews/reviews";
+
 
 import { moviesProps } from "../../validation/propTypes";
 
-const Film = ({ movie, review, movies }) => (
+const Film = ({ movie, reviews, movies }) => (
   <>
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
@@ -78,7 +80,8 @@ const Film = ({ movie, review, movies }) => (
           <div className="movie-card__desc">
             <Tabs>
               <Overview label="Overview" movie={movie}/>
-              <Details label="Details" movie={movie}/>
+              <Details label="Details" movie={movie} />
+              <Reviews label="Reviews" reviews={reviews} />
             </Tabs>
           </div>
         </div>

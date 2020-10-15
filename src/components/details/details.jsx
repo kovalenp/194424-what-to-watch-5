@@ -1,5 +1,7 @@
 import React from "react";
 
+import { getMovieCastJsx } from "../../utils/utils";
+
 const Details = (props) => {
 
   const { movie } = props;
@@ -15,7 +17,7 @@ const Details = (props) => {
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Starring</strong>
             <span className="movie-card__details-value">
-              Jeff Goldblum
+              {getMovieCastJsx(movie.cast)}
             </span>
           </p>
         </div>
