@@ -2,26 +2,31 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+import VideoPlayer from "../VideoPlayer/video-player";
+import { movieProps } from "../../validation/propTypes";
+
+
 function SmallMovieCard({
-  id,
-  title,
-  img,
+  movie,
+  isPlaying,
   onMouseEnterHandler,
   onMouseLeaveHandler,
 }) {
+
   return (
     <article className="small-movie-card catalog__movies-card">
       <div
         className="small-movie-card__image"
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}
-        id={id}
+        id={movie.id}
       >
-        <img src={img.tile} alt={title} width="280" height="175" />
+        <VideoPlayer isMuted={true} isPlaying={isPlaying} video={movie.video} poster={movie.img.tile}/>
+        {/* <img src={img.tile} alt={title} width="280" height="175" /> */}
       </div>
       <h3 className="small-movie-card__title">
-        <Link className="small-movie-card__link" to={`/films/${id}`}>
-          {title}
+        <Link className="small-movie-card__link" to={`/films/${movie.id}`}>
+          {movie.title}
         </Link>
       </h3>
     </article>
@@ -29,14 +34,10 @@ function SmallMovieCard({
 }
 
 SmallMovieCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  img: PropTypes.shape({
-    poster: PropTypes.string,
-    tile: PropTypes.string.isRequired,
-  }),
+  movie: movieProps,
+  isPlaying: PropTypes.bool.isRequired,
   onMouseEnterHandler: PropTypes.func.isRequired,
   onMouseLeaveHandler: PropTypes.func.isRequired,
-  id: PropTypes.number,
 };
 
 export default SmallMovieCard;

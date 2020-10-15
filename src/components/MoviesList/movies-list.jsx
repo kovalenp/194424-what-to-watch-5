@@ -8,7 +8,7 @@ class MoviesList extends PureComponent {
     super();
 
     this.state = {
-      activeMovieCard: null,
+      activeMovie: null,
     };
 
     this.handleMovieCardMouseEnter = this.handleMovieCardMouseEnter.bind(this);
@@ -17,11 +17,13 @@ class MoviesList extends PureComponent {
 
   handleMovieCardMouseEnter(e) {
     e.preventDefault();
-    this.setState({ activeMovieCard: e.target.id });
+    e.persist();
+    this._timeout = setTimeout(() => this.setState({ activeMovie: e.target.id }), 1000);
   }
 
   handleMovieCardMouseLeave() {
-    this.setState({ activeMovieCard: null });
+    clearTimeout(this._timeout);
+    this.setState({ activeMovie: null });
   }
 
   render() {
@@ -30,9 +32,8 @@ class MoviesList extends PureComponent {
         {this.props.movies.map((movie) => (
           <SmallMovieCard
             key={movie.id}
-            id={movie.id}
-            title={movie.title}
-            img={movie.img}
+            movie={movie}
+            isPlaying={movie.id.toString() === this.state.activeMovie}
             onMouseEnterHandler={this.handleMovieCardMouseEnter}
             onMouseLeaveHandler={this.handleMovieCardMouseLeave}
           />
