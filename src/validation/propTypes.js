@@ -13,16 +13,19 @@ export const movieProps = PropTypes.shape({
   rating: PropTypes.number.isRequired,
 });
 
+
 export const reviewProps = PropTypes.shape({
-  movie: PropTypes.number.isRequired,
-  reviews: PropTypes.shape({
-    author: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    text: PropTypes.string,
-    date: PropTypes.string.isRequired,
-  }),
+  author: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  text: PropTypes.string,
+  date: PropTypes.string.isRequired,
 });
 
-export const moviesProps = {
+export const reviewsProps = PropTypes.arrayOf(PropTypes.shape({
+  movie: PropTypes.number.isRequired,
+  reviews: PropTypes.arrayOf(reviewProps),
+}));
+
+export const moviesProps = PropTypes.shape({
   movies: PropTypes.arrayOf(movieProps).isRequired,
-};
+});

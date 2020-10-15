@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import Footer from "../footer/footer";
 import MoviesList from "../movies-list/movies-list.jsx";
-import { moviesProps } from "../../validation/propTypes";
+import { movieProps } from "../../validation/propTypes";
 
 const MyList = ({ movies }) => (
   <>
@@ -41,6 +42,8 @@ const MyList = ({ movies }) => (
   </>
 );
 
-MyList.propTypes = moviesProps;
+MyList.propTypes = {
+  movies: PropTypes.arrayOf(movieProps)
+};
 
 export default MyList;

@@ -1,6 +1,7 @@
 import React from "react";
-
 import { getMovieCastJsx } from "../../utils/utils";
+
+import { movieProps } from "../../validation/propTypes";
 
 const Details = (props) => {
 
@@ -40,6 +41,10 @@ const Details = (props) => {
     </>
   );
 
+};
+
+Details.propTypes = {
+  movie: movieProps
 };
 
 export default Details;

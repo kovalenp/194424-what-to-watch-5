@@ -5,8 +5,6 @@ class Tabs extends Component {
   constructor(props) {
     super();
 
-    console.log(props);
-
     this.state = {
       activeTab: props.children[0].type.name,
     };
@@ -53,5 +51,9 @@ class Tabs extends Component {
     );
   }
 }
+
+Tabs.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.any),
+};
 
 export default Tabs;

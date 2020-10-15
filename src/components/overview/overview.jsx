@@ -1,6 +1,8 @@
 import React from "react";
 import { getMovieCastString } from "../../utils/utils";
 
+import { movieProps } from "../../validation/propTypes";
+
 const Overview = (props) => {
 
   const { movie } = props;
@@ -23,6 +25,10 @@ const Overview = (props) => {
     </>
   );
 
+};
+
+Overview.propTypes = {
+  movie: movieProps
 };
 
 export default Overview;

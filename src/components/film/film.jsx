@@ -11,7 +11,7 @@ import Details from "../details/details";
 import Reviews from "../reviews/reviews";
 
 
-import { moviesProps } from "../../validation/propTypes";
+import { movieProps, reviewsProps } from "../../validation/propTypes";
 
 const Film = ({ movie, reviews, movies }) => (
   <>
@@ -101,8 +101,9 @@ const Film = ({ movie, reviews, movies }) => (
 );
 
 Film.propTypes = {
-  match: PropTypes.any,
-  movies: moviesProps,
+  movies: PropTypes.arrayOf(movieProps),
+  movie: movieProps,
+  reviews: reviewsProps,
 };
 
 export default Film;

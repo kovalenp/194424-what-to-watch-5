@@ -14,8 +14,8 @@ export const getMovieCastString = (actors) => {
   return result;
 };
 
-export const getMovieCastJsx = (actors) => (
+export const getMovieCastJsx = (actors, i) => (
   <>
-    {actors.map((actor) => <>{actor}<br /></>)}
+    {actors.map((actor) => <>{actor}<br key={i}/></>)}
   </>
 );
