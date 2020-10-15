@@ -1,5 +1,5 @@
 import React from "react";
-import AddNewComment from "../AddNewComment/add-new-comment";
+import AddNewComment from "../add-new-comment/add-new-comment.jsx";
 
 const AddReview = () => {
   return (

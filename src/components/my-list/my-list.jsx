@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Footer from "../Footer/footer";
-import MoviesList from "../MoviesList/movies-list";
+import Footer from "../footer/footer";
+import MoviesList from "../movies-list/movies-list.jsx";
 import { moviesProps } from "../../validation/propTypes";
 
 const MyList = ({ movies }) => (

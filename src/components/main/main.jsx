@@ -1,8 +1,8 @@
 import React from "react";
 
-import Header from "../Header/header";
-import Footer from "../Footer/footer";
-import MoviesList from "../MoviesList/movies-list";
+import Header from "../header/header";
+import Footer from "../footer/footer";
+import MoviesList from "../movies-list/movies-list";
 import { moviesProps } from "../../validation/propTypes";
 
 const Main = ({ movies }) => {

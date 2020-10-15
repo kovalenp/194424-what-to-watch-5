@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Main from "../Main/main";
-import Film from "../Film/film";
-import SignIn from "../SignIn/sign-in";
-import MyList from "../MyList/my-list";
-import AddReview from "../AddReview/add-review";
-import Player from "../Player/player";
+import Main from "../main/main";
+import Film from "../film/film";
+import SignIn from "../sign-in/sign-in";
+import MyList from "../my-list/my-list";
+import AddReview from "../add-review/add-review";
+import Player from "../player/player";
 import { moviesProps } from "../../validation/propTypes";
 
 const App = (props) => {
@@ -23,8 +23,8 @@ const App = (props) => {
         <Route
           path="/films/:id"
           exact
-          render={(p) => (
-            <Film {...p} movies={props.movies} reviews={props.reviews} />
+          render={({match}) => (
+            <Film movies={props.movies} movie={props.movies.find((movie) => movie.id.toString() === match.params.id)} reviews={props.reviews} />
           )}
         />
         <Route path="/films/:id/review" exact component={AddReview} />

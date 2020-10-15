@@ -1,6 +1,6 @@
 import React from "react";
 
-import Footer from "../Footer/footer";
+import Footer from "../footer/footer.jsx";
 
 const SignIn = () => (
   <div className="user-page">

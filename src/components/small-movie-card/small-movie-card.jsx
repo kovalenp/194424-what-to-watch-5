@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import VideoPlayer from "../VideoPlayer/video-player";
+import VideoPlayer from "../video-player/video-player.jsx";
 import { movieProps } from "../../validation/propTypes";
 
 

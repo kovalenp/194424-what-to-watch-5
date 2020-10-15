@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 
-import SmallMovieCard from "../SmallMovieCard/small-movie-card";
+import SmallMovieCard from "../small-movie-card/small-movie-card";
 import { moviesProps } from "../../validation/propTypes";
 
 class MoviesList extends PureComponent {
