@@ -43,9 +43,9 @@ const App = (props) => {
   );
 };
 
-App.propTypes = PropTypes.shape({
+App.propTypes = {
   movies: PropTypes.arrayOf(movieProps),
   reviews: reviewsProps,
-});
+};
 
 export default App;
