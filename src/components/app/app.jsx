@@ -10,6 +10,12 @@ import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 import { movieProps, reviewsProps } from "../../validation/propTypes";
 
+/**
+ * Represents a book.
+ * @param {Array} reviews - List of all reviews from API.
+ * @param {string} id - Specific MovieId we are looking reveiws for.
+ * @return {Array} - List of reviews for movie (empty array if there are no reviews)
+ */
 const _getReviewsForMovieId = (reviews, id) => {
   const result = reviews.find((review) => review.movie.toString() === id);
   return (result !== undefined) ? result.reviews : [];

@@ -7,8 +7,13 @@ const Reviews = (props) => {
 
   const { reviews } = props;
 
+  /**
+ * Represents a book.
+ * @param {Array} arr - List of reviews.
+ * @return {{first: Array, second: Array}} - object with reviews in first and second column
+ */
   const getColumnsData = (arr) => {
-    const chunk = Math.round(arr.length / 2);
+    const chunk = Math.round(arr.length / 2); // split all reviews in two columns
     return { first: arr.slice(0, chunk), second: arr.slice(chunk) };
   };
 
