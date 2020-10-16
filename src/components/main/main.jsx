@@ -1,9 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import MoviesList from "../movies-list/movies-list";
-import { moviesProps } from "../../validation/propTypes";
+import { movieProps } from "../../validation/propTypes";
 
 const Main = ({ movies }) => {
   return (
@@ -135,6 +136,8 @@ const Main = ({ movies }) => {
   );
 };
 
-Main.propTypes = moviesProps;
+Main.propTypes = {
+  movies: PropTypes.arrayOf(movieProps)
+};
 
 export default Main;
