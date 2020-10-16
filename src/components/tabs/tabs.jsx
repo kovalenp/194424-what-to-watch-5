@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
-class Tabs extends Component {
+class Tabs extends PureComponent {
   constructor(props) {
     super();
 
@@ -9,7 +9,6 @@ class Tabs extends Component {
       activeTab: props.children[0].type.name,
     };
   }
-
 
   handleOnClick(label, e) {
     e.preventDefault();
@@ -30,14 +29,12 @@ class Tabs extends Component {
               <li
                 className="movie-nav__item"
                 key={i}
-
               >
                 <a
                   href="#"
                   onClick={(e) => this.handleOnClick(label, e)}
                   className="movie-nav__link">{label}</a>
               </li>
-
             );
           })}
         </ul>
