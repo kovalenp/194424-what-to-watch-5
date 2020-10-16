@@ -3,7 +3,7 @@ export default [
     id: 1,
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     year: 2004,
-    genre: `Comedy`,
+    genre: `Drama`,
     director: `Wes Anderson`,
     cast: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     img: {
@@ -33,7 +33,7 @@ export default [
     id: 3,
     title: `Snatch`,
     year: 2004,
-    genre: `Comedy`,
+    genre: `Action`,
     director: `Wes Anderson`,
     cast: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     img: {
@@ -48,7 +48,7 @@ export default [
     id: 4,
     title: `Pulp Fiction`,
     year: 2004,
-    genre: `Comedy`,
+    genre: `Action`,
     director: `Wes Anderson`,
     cast: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     img: {
@@ -63,7 +63,7 @@ export default [
     id: 5,
     title: `No Country For Old Men`,
     year: 2004,
-    genre: `Comedy`,
+    genre: `Drama`,
     director: `Wes Anderson`,
     cast: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     img: {
@@ -78,7 +78,7 @@ export default [
     id: 6,
     title: `Bohemian Rhapsody`,
     year: 2004,
-    genre: `Comedy`,
+    genre: `Musical`,
     director: `Wes Anderson`,
     cast: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     img: {
@@ -93,7 +93,7 @@ export default [
     id: 7,
     title: `Revenant`,
     year: 2004,
-    genre: `Comedy`,
+    genre: `Drama`,
     director: `Wes Anderson`,
     cast: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     img: {

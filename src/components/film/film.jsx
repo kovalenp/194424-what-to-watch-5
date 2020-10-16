@@ -13,6 +13,10 @@ import Reviews from "../reviews/reviews";
 
 import { movieProps, reviewsProps } from "../../validation/propTypes";
 
+const getMoreLikeThisMovies = (movies, genre) => {
+  return movies.filter((movie) => movie.genre === genre).slice(0, 4);
+};
+
 const Film = ({ movie, reviews, movies }) => (
   <>
     <section className="movie-card movie-card--full">
@@ -92,7 +96,7 @@ const Film = ({ movie, reviews, movies }) => (
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
 
-        <MoviesList movies={movies} />
+        <MoviesList movies={getMoreLikeThisMovies(movies, movie.genre)} />
       </section>
 
       <Footer />
