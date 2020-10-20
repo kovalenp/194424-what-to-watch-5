@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
@@ -9,6 +10,7 @@ import Tabs from "../tabs/tabs";
 import Overview from "../overview/overview";
 import Details from "../details/details";
 import Reviews from "../reviews/reviews";
+import { getMovies } from "../../store/movies/actions";
 
 
 import { movieProps, reviewsProps } from "../../validation/propTypes";
@@ -17,8 +19,32 @@ const getMoreLikeThisMovies = (movies, genre) => {
   return movies.filter((movie) => movie.genre === genre).slice(0, 4);
 };
 
-const Film = ({ movie, reviews, movies }) => (
-  <>
+class Film extends React.Component {
+  constructor() {
+    super();
+  }
+
+  componentDidMount() {
+    if (this.props.movies.length === 0) {
+      this.props.initMovies();
+    }
+  }
+
+  render() {
+
+    const { movies, reviews, id } = this.props;
+    const movie = movies.find((m) => m.id.toString() === id);
+
+    /*
+    Это попытка починить вот этот баг: https://github.com/htmlacademy-react/194424-what-to-watch-5/pull/9#discussion_r508542036
+    Работает, но с точки зрения оптимизации это неправильно
+    */
+    if (!movie) {
+      return null;
+    }
+
+    return (
+        <>
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
         <div className="movie-card__bg">
@@ -60,7 +86,7 @@ const Film = ({ movie, reviews, movies }) => (
                 <span>My list</span>
               </button>
               <Link
-                to={`/films/${movie.id}/review`}
+                to={`/films/${id}/review`}
                 className="btn movie-card__button"
               >
                 Add review
@@ -95,19 +121,35 @@ const Film = ({ movie, reviews, movies }) => (
     <div className="page-content">
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
-
         <MoviesList movies={getMoreLikeThisMovies(movies, movie.genre)} />
       </section>
 
       <Footer />
     </div>
   </>
-);
+      );
+    }
+}
+
+
+const MapStateToProps = (state) => {
+  return {
+    movies: state.movies,
+  };
+};
+
+const MapDistpatchToProps = (dispatch) => {
+  return {
+    initMovies: () => dispatch(getMovies()),
+  };
+};
+
 
 Film.propTypes = {
   movies: PropTypes.arrayOf(movieProps),
-  movie: movieProps,
+  id: PropTypes.string,
   reviews: reviewsProps,
+  initMovies: PropTypes.func,
 };
 
-export default Film;
+export default connect(MapStateToProps, MapDistpatchToProps)(Film);

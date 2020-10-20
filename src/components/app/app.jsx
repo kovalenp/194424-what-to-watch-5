@@ -53,8 +53,7 @@ class App extends React.Component {
             exact
             render={({ match }) => (
               <Film
-                movies={movies}
-                movie={movies.find((movie) => movie.id.toString() === match.params.id)}
+                id={match.params.id}
                 reviews={_getReviewsForMovieId(this.props.reviews, match.params.id)} />
             )}
           />

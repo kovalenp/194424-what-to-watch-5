@@ -11,7 +11,6 @@ const getUniqueGenres = () => {
   const uniqueGenres = movies
     .map((movie) => movie.genre)
     .filter((value, index, self) => self.indexOf(value) === index);
-
   return [ALL_GENRES].concat(uniqueGenres);
 };
 

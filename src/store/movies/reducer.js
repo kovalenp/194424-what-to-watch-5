@@ -6,7 +6,7 @@ const initState = [];
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case MoviesActionsTypes.GET_MOVIES:
-      return state.concat(movies);
+      return movies;
     default:
       return state;
   }

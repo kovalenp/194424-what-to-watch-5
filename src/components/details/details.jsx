@@ -1,5 +1,4 @@
 import React from "react";
-import { getMovieCastJsx } from "../../utils/utils";
 
 import { movieProps } from "../../validation/propTypes";
 
@@ -15,12 +14,14 @@ const Details = (props) => {
             <strong className="movie-card__details-name">Director</strong>
             <span className="movie-card__details-value">{movie.director}</span>
           </p>
-          <p className="movie-card__details-item">
+          <div className="movie-card__details-item">
             <strong className="movie-card__details-name">Starring</strong>
-            <span className="movie-card__details-value">
-              {getMovieCastJsx(movie.cast)}
-            </span>
-          </p>
+            <ul className="movie-card__details-value" style={{ padding: 0 }}>
+              {movie.cast.map((actor, i) => (
+                <li style={{ listStyleType: `none` }} key={i}>{actor}</li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="movie-card__text-col">
@@ -40,7 +41,6 @@ const Details = (props) => {
       </div>
     </>
   );
-
 };
 
 Details.propTypes = {
