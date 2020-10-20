@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import Main from "../main/main";
 import Film from "../film/film";
@@ -9,6 +10,7 @@ import MyList from "../my-list/my-list";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 import { movieProps, reviewsProps } from "../../validation/propTypes";
+import { getMovies } from "../../store/movies/actions";
 
 /**
  * Represents a book.
@@ -21,37 +23,63 @@ const _getReviewsForMovieId = (reviews, id) => {
   return (result !== undefined) ? result.reviews : [];
 };
 
-const App = (props) => {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact>
-          <Main movies={props.movies} />
-        </Route>
-        <Route path="/login" exact component={SignIn} />
-        <Route path="/mylist" exact>
-          <MyList movies={props.movies} />
-        </Route>
-        <Route
-          path="/films/:id"
-          exact
-          render={({match}) => (
-            <Film
-              movies={props.movies}
-              movie={props.movies.find((movie) => movie.id.toString() === match.params.id)}
-              reviews={_getReviewsForMovieId(props.reviews, match.params.id)} />
-          )}
-        />
-        <Route path="/films/:id/review" exact component={AddReview} />
-        <Route path="/player/:id" exact component={Player} />
-      </Switch>
-    </BrowserRouter>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+  }
+
+  componentDidMount() {
+    this.props.initMovies();
+  }
+
+  render() {
+
+    const { movies } = this.props;
+
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact>
+            <Main movies={movies} />
+          </Route>
+          <Route path="/login" exact component={SignIn} />
+          <Route path="/mylist" exact>
+            <MyList movies={movies} />
+          </Route>
+          <Route
+            path="/films/:id"
+            exact
+            render={({ match }) => (
+              <Film
+                movies={this.props.movies}
+                movie={this.props.movies.find((movie) => movie.id.toString() === match.params.id)}
+                reviews={_getReviewsForMovieId(this.props.reviews, match.params.id)} />
+            )}
+          />
+          <Route path="/films/:id/review" exact component={AddReview} />
+          <Route path="/player/:id" exact component={Player} />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
+
+const MapStateToProps = (state) => {
+  return {
+    movies: state.movies.list,
+  };
+};
+
+const MapDistpatchToProps = (dispatch) => {
+  return {
+    initMovies: () => dispatch(getMovies()),
+  };
 };
 
 App.propTypes = {
   movies: PropTypes.arrayOf(movieProps),
+  initMovies: PropTypes.func,
   reviews: reviewsProps,
 };
 
-export default App;
+export default connect(MapStateToProps, MapDistpatchToProps)(App);

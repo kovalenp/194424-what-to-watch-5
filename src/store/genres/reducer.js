@@ -1,5 +1,5 @@
 const initState = {
-  genre: `All`
+  activeGenre: `All genres`
 };
 
 const reducer = (state = initState, action) => {

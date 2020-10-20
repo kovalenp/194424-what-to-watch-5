@@ -33,10 +33,10 @@ const Main = ({ movies }) => {
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{movies[0].title}</h2>
+              <h2 className="movie-card__title">{movies.length > 0 ? movies[0].title : ``}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{movies[0].genre}</span>
-                <span className="movie-card__year">{movies[0].year}</span>
+                <span className="movie-card__genre">{movies.length > 0 ? movies[0].genre : ``}</span>
+                <span className="movie-card__year">{movies.length > 0 ? movies[0].year : ``}</span>
               </p>
 
               <div className="movie-card__buttons">
