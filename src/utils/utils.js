@@ -1,5 +1,3 @@
-import React from "react";
-
 export const getMovieCastString = (actors) => {
   let result = ``;
 
