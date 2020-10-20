@@ -51,8 +51,8 @@ class App extends React.Component {
             exact
             render={({ match }) => (
               <Film
-                movies={this.props.movies}
-                movie={this.props.movies.find((movie) => movie.id.toString() === match.params.id)}
+                movies={movies}
+                movie={movies.find((movie) => movie.id.toString() === match.params.id)}
                 reviews={_getReviewsForMovieId(this.props.reviews, match.params.id)} />
             )}
           />
@@ -66,7 +66,7 @@ class App extends React.Component {
 
 const MapStateToProps = (state) => {
   return {
-    movies: state.movies.list,
+    movies: state.movies,
   };
 };
 

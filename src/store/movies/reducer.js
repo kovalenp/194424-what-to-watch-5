@@ -1,14 +1,12 @@
 import { MoviesActionsTypes } from "./actions";
 import movies from "../../mocks/movies";
 
-const initState = {
-  list: []
-};
+const initState = [];
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case MoviesActionsTypes.GET_MOVIES:
-      return Object.assign(state, { list: movies });
+      return state.concat(movies);
     default:
       return state;
   }
