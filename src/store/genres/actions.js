@@ -1,10 +1,8 @@
-export const ActionTypes = {
-  SET_GENRE: `SET_GENRE`,
-  GET_MOVIES_BY_GENRE: `GET_MOVIES_BY_GENRE`,
+export const GenresActionsTypes = {
+  SET_ACTIVE_GENRE: `SET_ACTIVE_GENRE`,
+  GET_ALL_GENRES: `GET_ALL_GENRES`,
 };
 
 
-export const ActionCreator = {
-  setGenre: (genre) => ({ type: ActionCreator.SET_GENRE, payload: genre }),
-  getMovies: (genre) => ({ type: ActionCreator.GET_MOVIES_BY_GENRE, payload: genre }),
-};
+export const setGenre = (genre) => ({ type: GenresActionsTypes.SET_ACTIVE_GENRE, payload: genre });
+export const getGenresList = (genre) => ({ type: GenresActionsTypes.GET_ALL_GENRES, payload: genre });

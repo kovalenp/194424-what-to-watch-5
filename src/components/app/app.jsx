@@ -11,6 +11,7 @@ import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 import { movieProps, reviewsProps } from "../../validation/propTypes";
 import { getMovies } from "../../store/movies/actions";
+import { getGenresList } from "../../store/genres/actions";
 
 /**
  * Represents a book.
@@ -30,6 +31,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.props.initMovies();
+    this.props.initGenres();
   }
 
   render() {
@@ -40,7 +42,7 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact>
-            <Main movies={movies} />
+            <Main movies={movies} genres={[`All movies`]}/>
           </Route>
           <Route path="/login" exact component={SignIn} />
           <Route path="/mylist" exact>
@@ -73,12 +75,14 @@ const MapStateToProps = (state) => {
 const MapDistpatchToProps = (dispatch) => {
   return {
     initMovies: () => dispatch(getMovies()),
+    initGenres: () => dispatch(getGenresList())
   };
 };
 
 App.propTypes = {
   movies: PropTypes.arrayOf(movieProps),
   initMovies: PropTypes.func,
+  initGenres: PropTypes.func,
   reviews: reviewsProps,
 };
 
