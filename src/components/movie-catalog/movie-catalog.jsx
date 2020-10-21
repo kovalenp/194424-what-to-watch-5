@@ -36,17 +36,17 @@ class MovieCatalog extends React.Component {
     const { filteredMovies, moviesToDisplay } = this.state;
 
     return (
-       <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GeneresList />
-          <MoviesList movies={filteredMovies.slice(0, moviesToDisplay)} />
+      <section className="catalog">
+        <h2 className="catalog__title visually-hidden">Catalog</h2>
+        <GeneresList />
+        <MoviesList movies={filteredMovies.slice(0, moviesToDisplay)} />
 
         {moviesToDisplay < filteredMovies.length && (<div className="catalog__more">
           <button className="catalog__button" type="button" onClick={this.handleOnClick}>
             Show more
-            </button>
+          </button>
         </div>)}
-        </section>
+      </section>
     );
   }
 }

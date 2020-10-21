@@ -19,20 +19,20 @@ const Reviews = (props) => {
 
   const renderColumn = (data) => (
     <div className="movie-card__reviews-col">
-        {data.map((rev, i) => (
-          <div className="review" key={rev.date + rev.author + i}>
-                  <blockquote className="review__quote">
-              <p className="review__text">{rev.text}</p>
-                    <footer className="review__details">
-                      <cite className="review__author">{rev.author}</cite>
-                      <time className="review__date" dateTime="2016-12-24">{rev.date}</time>
-                    </footer>
-                  </blockquote>
+      {data.map((rev, i) => (
+        <div className="review" key={rev.date + rev.author + i}>
+          <blockquote className="review__quote">
+            <p className="review__text">{rev.text}</p>
+            <footer className="review__details">
+              <cite className="review__author">{rev.author}</cite>
+              <time className="review__date" dateTime="2016-12-24">{rev.date}</time>
+            </footer>
+          </blockquote>
 
-            <div className="review__rating">{rev.rating}</div>
-          </div>
-        ))}
-      </div>
+          <div className="review__rating">{rev.rating}</div>
+        </div>
+      ))}
+    </div>
   );
 
   const { first, second } = getColumnsData(reviews);

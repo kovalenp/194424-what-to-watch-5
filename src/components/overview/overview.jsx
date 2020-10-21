@@ -11,10 +11,10 @@ const Overview = (props) => {
     <>
       <div className="movie-rating">
         <div className="movie-rating__score">{movie.rating}</div>
-          <p className="movie-rating__meta">
-            <span className="movie-rating__level">Very good</span>
-            <span className="movie-rating__count">240 ratings</span>
-          </p>
+        <p className="movie-rating__meta">
+          <span className="movie-rating__level">Very good</span>
+          <span className="movie-rating__count">240 ratings</span>
+        </p>
       </div>
 
       <div className="movie-card__text">
