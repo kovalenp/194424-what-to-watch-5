@@ -1,5 +1,3 @@
-import React from "react";
-
 export const getMovieCastString = (actors) => {
   let result = ``;
 
@@ -13,9 +11,3 @@ export const getMovieCastString = (actors) => {
 
   return result;
 };
-
-export const getMovieCastJsx = (actors, i) => (
-  <>
-    {actors.map((actor) => <>{actor}<br key={i}/></>)}
-  </>
-);
