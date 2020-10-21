@@ -29,6 +29,7 @@ class App extends React.Component {
     super();
   }
 
+
   componentDidMount() {
     this.props.initMovies();
     this.props.initGenres();
@@ -53,7 +54,8 @@ class App extends React.Component {
             exact
             render={({ match }) => (
               <Film
-                id={match.params.id}
+                movie={movies.find((m) => m.id.toString() === match.params.id)}
+                movies={movies}
                 reviews={_getReviewsForMovieId(this.props.reviews, match.params.id)} />
             )}
           />
