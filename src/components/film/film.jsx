@@ -9,8 +9,9 @@ import Tabs from "../tabs/tabs";
 import Overview from "../overview/overview";
 import Details from "../details/details";
 import Reviews from "../reviews/reviews";
-
+import NotFound from "../not-found/not-found";
 import { movieProps, reviewsProps } from "../../validation/propTypes";
+
 
 const getMoreLikeThisMovies = (movies, genre) => {
   return movies.filter((movie) => movie.genre === genre).slice(0, 4); // На это странице показывается только 4 фильма
@@ -18,13 +19,17 @@ const getMoreLikeThisMovies = (movies, genre) => {
 
 const Film = (props) => {
 
-    const { movie, movies, reviews } = props;
+  const { movie, movies, reviews } = props;
 
-    if (!movie) {
-      return null;
-    }
+  if (!movie && movies.length > 0) {
+    return <NotFound />;
+  }
 
-    return (
+  if (!movie && movies.length === 0) {
+    return null;
+  }
+
+  return (
     <>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">

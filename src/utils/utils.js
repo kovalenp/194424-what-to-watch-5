@@ -1,3 +1,5 @@
+import { ALL_GENRES } from "../common/constants";
+
 export const getMovieCastString = (actors) => {
   let result = ``;
 
@@ -10,4 +12,17 @@ export const getMovieCastString = (actors) => {
   }
 
   return result;
+};
+
+
+export const getMoviesByGenre = ({ activeGenre, movies }) => {
+
+  if (!movies || !activeGenre) {
+    return [];
+  }
+
+  if (activeGenre === ALL_GENRES) {
+    return movies;
+  }
+  return movies.filter((movie) => movie.genre === activeGenre);
 };

@@ -9,6 +9,7 @@ import SignIn from "../sign-in/sign-in";
 import MyList from "../my-list/my-list";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
+import NotFound from "../not-found/not-found";
 import { movieProps, reviewsProps } from "../../validation/propTypes";
 import { getMovies } from "../../store/movies/actions";
 import { getGenresList } from "../../store/genres/actions";
@@ -60,6 +61,7 @@ class App extends React.Component {
           />
           <Route path="/films/:id/review" exact component={AddReview} />
           <Route path="/player/:id" exact component={Player} />
+          <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
     );

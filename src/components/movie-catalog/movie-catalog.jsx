@@ -4,36 +4,45 @@ import { connect } from "react-redux";
 
 import MoviesList from "../movies-list/movies-list";
 import GeneresList from "../genres-list/genres-list";
-import { ALL_GENRES } from "../../common/constants";
-import { increaseDisplayMovies } from "../../store/genres/actions";
 import { movieProps } from "../../validation/propTypes";
+import { getMoviesByGenre } from "../../utils/utils";
+import { NUM_MOVIES_TO_DISPALY } from "../../common/constants";
 
 class MovieCatalog extends React.Component {
-  constructor() {
-    super();
-    this.filterMoviesByGenre = this.filterMoviesByGenre.bind(this);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      filteredMovies: getMoviesByGenre(props),
+      moviesToDisplay: NUM_MOVIES_TO_DISPALY,
+    };
+
+    this.handleOnClick = this.handleOnClick.bind(this);
+
   }
 
-  filterMoviesByGenre() {
-    const { activeGenre, movies } = this.props;
-    if (activeGenre === ALL_GENRES) {
-      return movies;
+  componentDidUpdate(prevProps) {
+    if (prevProps.activeGenre !== this.props.activeGenre || prevProps.movies.length !== this.props.movies.length) {
+      this.setState({ filteredMovies: getMoviesByGenre(this.props), moviesToDisplay: NUM_MOVIES_TO_DISPALY });
     }
-    return movies.filter((movie) => movie.genre === activeGenre);
+  }
+
+  handleOnClick() {
+    this.setState((prevState) => ({ moviesToDisplay: prevState.moviesToDisplay + NUM_MOVIES_TO_DISPALY }));
   }
 
   render() {
 
-    const { displayMoviesByGenre, showMore } = this.props;
+    const { filteredMovies, moviesToDisplay } = this.state;
 
     return (
        <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GeneresList />
-          <MoviesList movies={this.filterMoviesByGenre().slice(0, displayMoviesByGenre)} />
+          <MoviesList movies={filteredMovies.slice(0, moviesToDisplay)} />
 
-        {displayMoviesByGenre < this.filterMoviesByGenre().length && (<div className="catalog__more">
-          <button className="catalog__button" type="button" onClick={showMore}>
+        {moviesToDisplay < filteredMovies.length && (<div className="catalog__more">
+          <button className="catalog__button" type="button" onClick={this.handleOnClick}>
             Show more
             </button>
         </div>)}
@@ -46,7 +55,6 @@ MovieCatalog.propTypes = {
   movies: PropTypes.arrayOf(movieProps),
   activeGenre: PropTypes.string,
   displayMoviesByGenre: PropTypes.number,
-  showMore: PropTypes.func,
 };
 
 
@@ -58,10 +66,4 @@ const MapStateToProps = (state) => {
   };
 };
 
-const MapDispatchToProps = (dispatch) => {
-  return {
-    showMore: () => dispatch(increaseDisplayMovies()),
-  };
-};
-
-export default connect(MapStateToProps, MapDispatchToProps)(MovieCatalog);
+export default connect(MapStateToProps, null)(MovieCatalog);

@@ -1,10 +1,9 @@
 import { GenresActionsTypes } from "./actions";
 import movies from "../../mocks/movies";
-import { ALL_GENRES, NUM_MOVIES_TO_DISPALY } from "../../common/constants";
+import { ALL_GENRES } from "../../common/constants";
 
 const initState = {
   activeGenre: ALL_GENRES,
-  displayMoviesByGenre: NUM_MOVIES_TO_DISPALY,
   list: []
 };
 
@@ -18,11 +17,9 @@ const getUniqueGenres = () => {
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case GenresActionsTypes.SET_ACTIVE_GENRE:
-      return Object.assign({}, state, { activeGenre: action.payload, displayMoviesByGenre: NUM_MOVIES_TO_DISPALY });
+      return Object.assign({}, state, { activeGenre: action.payload});
     case GenresActionsTypes.GET_ALL_GENRES:
       return Object.assign({}, state, { list: getUniqueGenres() });
-    case GenresActionsTypes.INCREASE_DISPLAY_MOVIES:
-      return Object.assign({}, state, { displayMoviesByGenre: state.displayMoviesByGenre + NUM_MOVIES_TO_DISPALY });
     default:
       return state;
   }
