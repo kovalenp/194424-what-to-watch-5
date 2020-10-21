@@ -4,23 +4,12 @@ import { connect } from "react-redux";
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
-import MoviesList from "../movies-list/movies-list";
-import GeneresList from "../genres-list/genres-list";
-import { ALL_GENRES } from "../../common/constants";
+import MovieCatalog from "../movie-catalog/movie-catalog";
 import { movieProps } from "../../validation/propTypes";
 
 const Main = (props) => {
 
-  const { movies, activeGenre } = props;
-
-  const filterMoviesByGenre = () => {
-
-    if (activeGenre === ALL_GENRES) {
-      return movies;
-    }
-
-    return movies.filter((movie) => movie.genre === activeGenre);
-  };
+  const { movies } = props;
 
   return (
     <>
@@ -80,19 +69,7 @@ const Main = (props) => {
       </section>
 
       <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <GeneresList />
-          <MoviesList movies={filterMoviesByGenre()} />
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">
-              Show more
-            </button>
-          </div>
-        </section>
-
+        <MovieCatalog />
         <Footer />
       </div>
     </>
