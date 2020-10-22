@@ -17,9 +17,9 @@ const getUniqueGenres = () => {
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case GenresActionsTypes.SET_ACTIVE_GENRE:
-      return Object.assign({}, state, { activeGenre: action.payload });
+      return Object.assign({}, state, { activeGenre: action.payload});
     case GenresActionsTypes.GET_ALL_GENRES:
-      return Object.assign({}, state, {list: getUniqueGenres()});
+      return Object.assign({}, state, { list: getUniqueGenres() });
     default:
       return state;
   }

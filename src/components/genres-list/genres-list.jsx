@@ -14,18 +14,18 @@ const GenresList = (props) => {
   };
 
   return (
-      <ul className="catalog__genres-list">
-        {genres.map((genre, i) => (
-          <li key={i} className={(genre === activeGenre) ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`}>
-            <a href="#"
-              className="catalog__genres-link"
-              onClick={(e) => handleOnClick(e, genre)}>
+    <ul className="catalog__genres-list">
+      {genres.map((genre, i) => (
+        <li key={i} className={(genre === activeGenre) ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`}>
+          <a href="#"
+            className="catalog__genres-link"
+            onClick={(e) => handleOnClick(e, genre)}>
             {genre}
           </a>
         </li>
-        ))}
-      </ul>
-    );
+      ))}
+    </ul>
+  );
 };
 
 
