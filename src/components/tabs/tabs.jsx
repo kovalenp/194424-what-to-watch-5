@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withActive } from "../hoc/withActive";
 
 const Tabs = (props) => {
 
@@ -42,4 +41,4 @@ Tabs.propTypes = {
   onActiveChange: PropTypes.func,
 };
 
-export default withActive(Tabs);
+export default Tabs;
