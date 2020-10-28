@@ -1,24 +1,12 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import { withActive } from "../hoc/withActive";
 
-class Tabs extends PureComponent {
-  constructor(props) {
-    super();
+const Tabs = (props) => {
 
-    this.state = {
-      activeTab: props.children[0].type.name,
-    };
-  }
+  const { children } = props;
 
-  handleOnClick(label, e) {
-    e.preventDefault();
-    this.setState({ activeTab: label });
-  }
-
-  render() {
-    const { children } = this.props;
-
-    return (
+  return (
       <>
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
@@ -32,7 +20,7 @@ class Tabs extends PureComponent {
               >
                 <a
                   href="#"
-                  onClick={(e) => this.handleOnClick(label, e)}
+                  onClick={(e) => props.onActiveChange(e, label)}
                   className="movie-nav__link">{label}</a>
               </li>
             );
@@ -41,16 +29,17 @@ class Tabs extends PureComponent {
       </nav>
       <>
         {children.map((child) => {
-          return (child.props.label !== this.state.activeTab) ? null : child;
+          return (child.props.label !== props.active) ? null : child;
         })}
       </>
     </>
-    );
-  }
-}
+  );
+};
 
 Tabs.propTypes = {
   children: PropTypes.arrayOf(PropTypes.any),
+  active: PropTypes.string,
+  onActiveChange: PropTypes.func,
 };
 
-export default Tabs;
+export default withActive(Tabs);
