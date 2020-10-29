@@ -11,7 +11,9 @@ import Details from "../details/details";
 import Reviews from "../reviews/reviews";
 import NotFound from "../not-found/not-found";
 import { movieProps, reviewsProps } from "../../validation/propTypes";
+import { withActive } from "../hoc/withActive";
 
+const ActiveTabs = withActive(Tabs, `Overview`);
 
 const getMoreLikeThisMovies = (movies, genre) => {
   return movies.filter((movie) => movie.genre === genre).slice(0, 4); // На это странице показывается только 4 фильма
@@ -94,11 +96,11 @@ const Film = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <Tabs>
+              <ActiveTabs>
                 <Overview label="Overview" movie={movie}/>
                 <Details label="Details" movie={movie} />
                 <Reviews label="Reviews" reviews={reviews} />
-              </Tabs>
+              </ActiveTabs>
             </div>
           </div>
         </div>
