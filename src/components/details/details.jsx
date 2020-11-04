@@ -17,7 +17,7 @@ const Details = (props) => {
           <div className="movie-card__details-item">
             <strong className="movie-card__details-name">Starring</strong>
             <ul className="movie-card__details-value" style={{ padding: 0 }}>
-              {movie.cast.map((actor, i) => (
+              {movie.starring.map((actor, i) => (
                 <li style={{ listStyleType: `none` }} key={i}>{actor}</li>
               ))}
             </ul>

@@ -33,12 +33,12 @@ const Film = (props) => {
 
   return (
     <>
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full" style={{backgroundColor: movie.background_color}}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img
-              src="img/bg-the-grand-budapest-hotel.jpg"
-              alt="The Grand Budapest Hotel"
+              src={movie.background_image}
+              alt={movie.name}
             />
           </div>
 
@@ -48,10 +48,10 @@ const Film = (props) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{movie.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{movie.genre}</span>
+                <span className="movie-card__year">{movie.released}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -88,8 +88,8 @@ const Film = (props) => {
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
               <img
-                src="img/the-grand-budapest-hotel-poster.jpg"
-                alt="The Grand Budapest Hotel poster"
+                src={movie.poster_image}
+                alt={movie.name + ` poster`}
                 width="218"
                 height="327"
               />

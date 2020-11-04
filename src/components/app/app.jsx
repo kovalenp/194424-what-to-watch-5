@@ -11,8 +11,8 @@ import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
 import { movieProps, reviewsProps } from "../../validation/propTypes";
-import { getMovies } from "../../store/movies/actions";
-import { getGenresList } from "../../store/genres/actions";
+// import { getMovies } from "../../store/movies/actions";
+// import { getGenresList } from "../../store/genres/actions";
 
 /**
  * Represents a book.
@@ -31,8 +31,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.props.initMovies();
-    this.props.initGenres();
+    // this.props.initGenres(this.props.movies);
   }
 
   render() {
@@ -76,14 +75,12 @@ const MapStateToProps = (state) => {
 
 const MapDistpatchToProps = (dispatch) => {
   return {
-    initMovies: () => dispatch(getMovies()),
-    initGenres: () => dispatch(getGenresList())
+    initGenres: (movies) => dispatch(getGenresList(movies))
   };
 };
 
 App.propTypes = {
   movies: PropTypes.arrayOf(movieProps),
-  initMovies: PropTypes.func,
   initGenres: PropTypes.func,
   reviews: reviewsProps,
 };
