@@ -7,6 +7,10 @@ const HttpCode = {
   UNAUTHORIZED: 401
 };
 
+export const wtwApi = {
+  FILMS: `/films`
+};
+
 export const createApi = () => {
 
   const api = axios.create({

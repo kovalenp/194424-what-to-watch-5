@@ -1,5 +1,4 @@
 import { MoviesActionsTypes } from "./actions";
-// import movies from "../../mocks/movies";
 
 const initState = [];
 
