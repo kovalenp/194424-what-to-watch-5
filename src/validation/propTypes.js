@@ -1,15 +1,20 @@
+/* eslint-disable camelcase */
 import PropTypes from "prop-types";
 
 export const movieProps = PropTypes.shape({
   id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
-  year: PropTypes.number.isRequired,
-  director: PropTypes.string,
-  cast: PropTypes.arrayOf(PropTypes.string),
-  img: PropTypes.objectOf(PropTypes.string).isRequired,
-  video: PropTypes.string.isRequired,
-  plot: PropTypes.string,
+  released: PropTypes.number.isRequired,
+  director: PropTypes.string.isRequired,
+  starring: PropTypes.arrayOf(PropTypes.string),
+  video_link: PropTypes.string.isRequired,
+  preview_video_link: PropTypes.string.isRequired,
+  poster_image: PropTypes.string.isRequired,
+  background_image: PropTypes.string.isRequired,
+  preview_image: PropTypes.string.isRequired,
+  background_color: PropTypes.string.isRequired,
+  description: PropTypes.string,
   rating: PropTypes.number.isRequired,
 });
 

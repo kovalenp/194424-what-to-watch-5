@@ -11,13 +11,16 @@ const Main = (props) => {
 
   const { movies } = props;
 
+  // main movie to diplay pre-selected
+  const movie = movies[0];
+
   return (
     <>
       <section className="movie-card">
         <div className="movie-card__bg">
           <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
+            src={movie.background_image}
+            alt={movie.name}
           />
         </div>
 
@@ -29,18 +32,18 @@ const Main = (props) => {
           <div className="movie-card__info">
             <div className="movie-card__poster">
               <img
-                src="img/the-grand-budapest-hotel-poster.jpg"
-                alt="The Grand Budapest Hotel poster"
+                src={movie.poster_image}
+                alt={movie.name + ` poster`}
                 width="218"
                 height="327"
               />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{movies.length > 0 ? movies[0].title : ``}</h2>
+              <h2 className="movie-card__title">{movies.length > 0 ? movie.name : ``}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{movies.length > 0 ? movies[0].genre : ``}</span>
-                <span className="movie-card__year">{movies.length > 0 ? movies[0].year : ``}</span>
+                <span className="movie-card__genre">{movies.length > 0 ? movie.genre : ``}</span>
+                <span className="movie-card__year">{movies.length > 0 ? movie.released : ``}</span>
               </p>
 
               <div className="movie-card__buttons">

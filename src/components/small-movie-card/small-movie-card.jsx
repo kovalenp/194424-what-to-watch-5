@@ -21,12 +21,12 @@ function SmallMovieCard({
         onMouseLeave={onMouseLeaveHandler}
         id={movie.id}
       >
-        <VideoPlayer isMuted={true} isPlaying={isPlaying} video={movie.video} poster={movie.img.tile}/>
+        <VideoPlayer isMuted={true} isPlaying={isPlaying} video={movie.preview_video_link} poster={movie.preview_image}/>
         {/* <img src={img.tile} alt={title} width="280" height="175" /> */}
       </div>
       <h3 className="small-movie-card__title">
         <Link className="small-movie-card__link" to={`/films/${movie.id}`}>
-          {movie.title}
+          {movie.name}
         </Link>
       </h3>
     </article>

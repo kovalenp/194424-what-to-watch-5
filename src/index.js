@@ -1,23 +1,39 @@
-/* eslint-disable indent */
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore, combineReducers } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+
 
 import App from "./components/app/app";
-import genresReducer from "./store/genres/reducer";
-import moviesReducer from "./store/movies/reducer";
-
+import reducers from "./store/reducers";
+import { createApi } from "./services/api";
 import reviews from "./mocks/reviews";
+import { initMovies } from "./services/movie-service";
+import { initGenres } from "./services/genre-service";
+
+const api = createApi();
 
 const store = createStore(
-  combineReducers({genres: genresReducer, movies: moviesReducer }),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    reducers,
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App reviews={reviews} />
-  </Provider>,
-  document.getElementById(`root`)
-);
+// Can't use promise all here, since it doesn't guarantee order.
+// Need movies first to get all genres
+
+Promise.resolve()
+  .then(() => store.dispatch(initMovies()))
+  .then(() => store.dispatch(initGenres()))
+  .then(() => {
+    ReactDOM.render(
+        <Provider store={store}>
+          <App reviews={reviews} />
+        </Provider>,
+        document.getElementById(`root`)
+    );
+  });
+

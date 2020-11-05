@@ -4,4 +4,4 @@ export const GenresActionsTypes = {
 };
 
 export const setGenre = (genre) => ({ type: GenresActionsTypes.SET_ACTIVE_GENRE, payload: genre });
-export const getGenresList = (genre) => ({ type: GenresActionsTypes.GET_ALL_GENRES, payload: genre });
+export const getGenresList = (movies) => ({ type: GenresActionsTypes.GET_ALL_GENRES, payload: movies });

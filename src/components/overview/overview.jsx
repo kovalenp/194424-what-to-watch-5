@@ -18,9 +18,9 @@ const Overview = (props) => {
       </div>
 
       <div className="movie-card__text">
-        <p>{movie.plot}</p>
+        <p>{movie.description}</p>
         <p className="movie-card__director"><strong>Director: {movie.director}</strong></p>
-        <p className="movie-card__starring"><strong>Starring: {getMovieCastString(movie.cast)}</strong></p>
+        <p className="movie-card__starring"><strong>Starring: {getMovieCastString(movie.starring)}</strong></p>
       </div>
     </>
   );

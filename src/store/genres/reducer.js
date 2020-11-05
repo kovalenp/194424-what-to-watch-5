@@ -1,5 +1,4 @@
 import { GenresActionsTypes } from "./actions";
-import movies from "../../mocks/movies";
 import { ALL_GENRES } from "../../common/constants";
 
 const initState = {
@@ -7,7 +6,8 @@ const initState = {
   list: []
 };
 
-const getUniqueGenres = () => {
+const getUniqueGenres = (movies) => {
+  // TODO add reselect here
   const uniqueGenres = movies
     .map((movie) => movie.genre)
     .filter((value, index, self) => self.indexOf(value) === index);
@@ -19,7 +19,7 @@ const reducer = (state = initState, action) => {
     case GenresActionsTypes.SET_ACTIVE_GENRE:
       return Object.assign({}, state, { activeGenre: action.payload});
     case GenresActionsTypes.GET_ALL_GENRES:
-      return Object.assign({}, state, { list: getUniqueGenres() });
+      return Object.assign({}, state, { list: getUniqueGenres(action.payload) });
     default:
       return state;
   }
