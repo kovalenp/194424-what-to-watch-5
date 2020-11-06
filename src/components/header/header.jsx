@@ -19,7 +19,12 @@ const Header = () => {
   if (isAuth) {
     userBlock = (
       <div className="user-block__avatar">
-        <img src={avatar || `img/avatar.jpg`} alt="User avatar" width="63" height="63" />
+        <Link
+          to={`/mylist`}
+          className="logo__link"
+        >
+          <img src={avatar || `img/avatar.jpg`} alt="User avatar" width="63" height="63" />
+        </Link>;
       </div>
     );
   }

@@ -1,9 +1,10 @@
 import React, { PureComponent, createRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {login} from "../../services/user-service";
 
+import { authStatus } from "../../common/constants";
 import Footer from "../footer/footer.jsx";
 
 
@@ -29,6 +30,12 @@ class SignIn extends PureComponent {
   }
 
   render() {
+
+    if (this.props.isAuth) {
+      return (
+        <Redirect to={ `/`} />
+      );
+    }
 
     return (
       <div className="user-page">
@@ -99,11 +106,17 @@ class SignIn extends PureComponent {
 
 SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool,
 };
 
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.user.authentication === authStatus.AUTH
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit: (authData) => dispatch(login(authData))
 });
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

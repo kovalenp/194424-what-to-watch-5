@@ -5,3 +5,9 @@ export const authStatus = {
   AUTH: `AUTH`,
   NOT_AUTH: `NO_AUTH`
 };
+
+export const appRoute = {
+  LOGIN: `/login`,
+  FILMS: `/films`,
+  HOME: `/`
+};

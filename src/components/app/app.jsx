@@ -1,8 +1,10 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import browserHistory from "../../common/browser-history";
+import PrivateRoute from "../../common/private-route";
 import Main from "../main/main";
 import Film from "../film/film";
 import SignIn from "../sign-in/sign-in";
@@ -33,15 +35,22 @@ class App extends React.Component {
     const { movies } = this.props;
 
     return (
-      <BrowserRouter>
+      <Router history={browserHistory}>
         <Switch>
           <Route path="/" exact>
             <Main movies={movies} genres={[`All movies`]}/>
           </Route>
           <Route path="/login" exact component={SignIn} />
-          <Route path="/mylist" exact>
-            <MyList movies={movies} />
-          </Route>
+          <PrivateRoute
+            exact
+            path="/mylist"
+            render={() => <MyList movies={movies} />}
+          />
+          <PrivateRoute
+            exact
+            path="/films/:id/review"
+            render={() => <AddReview />}
+          />
           <Route
             path="/films/:id"
             exact
@@ -52,11 +61,10 @@ class App extends React.Component {
                 reviews={_getReviewsForMovieId(this.props.reviews, match.params.id)} />
             )}
           />
-          <Route path="/films/:id/review" exact component={AddReview} />
           <Route path="/player/:id" exact component={Player} />
           <Route component={NotFound} />
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
