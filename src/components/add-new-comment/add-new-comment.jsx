@@ -20,7 +20,7 @@ class AddNewComment extends PureComponent {
   handleSubmit(e) {
     e.preventDefault();
     // eslint-disable-next-line
-    console.log(this.state);
+    console.log(this.state); // TODO send review to server
   }
 
   render() {

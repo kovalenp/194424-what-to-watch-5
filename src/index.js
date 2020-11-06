@@ -12,13 +12,15 @@ import reviews from "./mocks/reviews";
 import { initMovies } from "./services/movie-service";
 import { initGenres } from "./services/genre-service";
 import { checkAuth } from "./services/user-service";
+import { redirect } from "./middleware/redirect";
 
 const api = createApi();
 
 const store = createStore(
     reducers,
     composeWithDevTools(
-        applyMiddleware(thunk.withExtraArgument(api))
+        applyMiddleware(thunk.withExtraArgument(api)),
+        applyMiddleware(redirect)
     )
 );
 
