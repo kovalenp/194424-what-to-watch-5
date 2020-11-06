@@ -8,7 +8,8 @@ const HttpCode = {
 };
 
 export const wtwApi = {
-  FILMS: `/films`
+  FILMS: `/films`,
+  LOGIN: `/login`,
 };
 
 export const createApi = () => {

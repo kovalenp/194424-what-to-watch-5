@@ -69,7 +69,6 @@ const MapStateToProps = (state) => {
 
 App.propTypes = {
   movies: PropTypes.arrayOf(movieProps),
-  initGenres: PropTypes.func,
   reviews: reviewsProps,
 };
 

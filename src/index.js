@@ -5,13 +5,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 
-
 import App from "./components/app/app";
 import reducers from "./store/reducers";
 import { createApi } from "./services/api";
 import reviews from "./mocks/reviews";
 import { initMovies } from "./services/movie-service";
 import { initGenres } from "./services/genre-service";
+import { checkAuth } from "./services/user-service";
 
 const api = createApi();
 
@@ -22,11 +22,10 @@ const store = createStore(
     )
 );
 
-// Can't use promise all here, since it doesn't guarantee order.
-// Need movies first to get all genres
-
-Promise.resolve()
-  .then(() => store.dispatch(initMovies()))
+Promise.all([
+  store.dispatch(initMovies()),
+  store.dispatch(checkAuth())
+])
   .then(() => store.dispatch(initGenres()))
   .then(() => {
     ReactDOM.render(
