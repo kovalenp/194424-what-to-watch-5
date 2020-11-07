@@ -13,6 +13,7 @@ import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
 import { movieProps, reviewsProps } from "../../validation/propTypes";
+import { appRoute } from "../../common/constants";
 
 /**
  * Represents a book.
@@ -37,22 +38,22 @@ class App extends React.Component {
     return (
       <Router history={browserHistory}>
         <Switch>
-          <Route path="/" exact>
+          <Route path={appRoute.HOME} exact>
             <Main movies={movies} genres={[`All movies`]}/>
           </Route>
-          <Route path="/login" exact component={SignIn} />
+          <Route path={appRoute.LOGIN} exact component={SignIn} />
           <PrivateRoute
             exact
-            path="/mylist"
+            path={appRoute.MY_LIST}
             render={() => <MyList movies={movies} />}
           />
           <PrivateRoute
             exact
-            path="/films/:id/review"
+            path={appRoute.REVIEW}
             render={() => <AddReview />}
           />
           <Route
-            path="/films/:id"
+            path={appRoute.FILM}
             exact
             render={({ match }) => (
               <Film
@@ -61,7 +62,7 @@ class App extends React.Component {
                 reviews={_getReviewsForMovieId(this.props.reviews, match.params.id)} />
             )}
           />
-          <Route path="/player/:id" exact component={Player} />
+          <Route path={appRoute.Player} exact component={Player} />
           <Route component={NotFound} />
         </Switch>
       </Router>

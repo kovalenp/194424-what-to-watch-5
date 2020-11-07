@@ -8,6 +8,10 @@ export const authStatus = {
 
 export const appRoute = {
   LOGIN: `/login`,
+  MY_LIST: `/mylist`,
   FILMS: `/films`,
+  FILM: `/films/:id`,
+  REVIEW: `/films/:id/review`,
+  PLAYER: `/player/:id`,
   HOME: `/`
 };

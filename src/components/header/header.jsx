@@ -21,10 +21,9 @@ const Header = () => {
       <div className="user-block__avatar">
         <Link
           to={`/mylist`}
-          className="logo__link"
         >
           <img src={avatar || `img/avatar.jpg`} alt="User avatar" width="63" height="63" />
-        </Link>;
+        </Link>
       </div>
     );
   }
