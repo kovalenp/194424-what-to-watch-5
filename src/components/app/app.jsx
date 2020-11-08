@@ -1,8 +1,10 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import browserHistory from "../../common/browser-history";
+import PrivateRoute from "../../common/private-route";
 import Main from "../main/main";
 import Film from "../film/film";
 import SignIn from "../sign-in/sign-in";
@@ -11,6 +13,7 @@ import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
 import { movieProps, reviewsProps } from "../../validation/propTypes";
+import { appRoute } from "../../common/constants";
 
 /**
  * Represents a book.
@@ -33,17 +36,24 @@ class App extends React.Component {
     const { movies } = this.props;
 
     return (
-      <BrowserRouter>
+      <Router history={browserHistory}>
         <Switch>
-          <Route path="/" exact>
+          <Route path={appRoute.HOME} exact>
             <Main movies={movies} genres={[`All movies`]}/>
           </Route>
-          <Route path="/login" exact component={SignIn} />
-          <Route path="/mylist" exact>
-            <MyList movies={movies} />
-          </Route>
+          <Route path={appRoute.LOGIN} exact component={SignIn} />
+          <PrivateRoute
+            exact
+            path={appRoute.MY_LIST}
+            render={() => <MyList movies={movies} />}
+          />
+          <PrivateRoute
+            exact
+            path={appRoute.REVIEW}
+            render={() => <AddReview />}
+          />
           <Route
-            path="/films/:id"
+            path={appRoute.FILM}
             exact
             render={({ match }) => (
               <Film
@@ -52,11 +62,10 @@ class App extends React.Component {
                 reviews={_getReviewsForMovieId(this.props.reviews, match.params.id)} />
             )}
           />
-          <Route path="/films/:id/review" exact component={AddReview} />
-          <Route path="/player/:id" exact component={Player} />
+          <Route path={appRoute.Player} exact component={Player} />
           <Route component={NotFound} />
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
@@ -69,7 +78,6 @@ const MapStateToProps = (state) => {
 
 App.propTypes = {
   movies: PropTypes.arrayOf(movieProps),
-  initGenres: PropTypes.func,
   reviews: reviewsProps,
 };
 

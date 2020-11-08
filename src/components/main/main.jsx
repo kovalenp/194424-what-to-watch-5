@@ -11,7 +11,7 @@ const Main = (props) => {
 
   const { movies } = props;
 
-  // main movie to diplay pre-selected
+  // main movie to diplay pre-selected, has to be taken from PromoMovie request
   const movie = movies[0];
 
   return (

@@ -1,7 +1,7 @@
 import { getMovies } from '../store/movies/actions';
-import { wtwApi } from './api';
+import { appRoute } from '../common/constants';
 
 export const initMovies = () => (dispatch, state, api) => (
-  api.get(wtwApi.FILMS)
+  api.get(appRoute.FILMS)
     .then(({data}) => dispatch(getMovies(data)))
 );
