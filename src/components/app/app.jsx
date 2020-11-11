@@ -50,7 +50,9 @@ class App extends React.Component {
           <PrivateRoute
             exact
             path={appRoute.REVIEW}
-            render={() => <AddReview />}
+            render={({ match }) => (<AddReview
+              movie={movies.find((m) => m.id.toString() === match.params.id)} />
+            )}
           />
           <Route
             path={appRoute.FILM}
