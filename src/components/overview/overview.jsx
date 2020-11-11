@@ -13,7 +13,7 @@ const Overview = (props) => {
         <div className="movie-rating__score">{movie.rating}</div>
         <p className="movie-rating__meta">
           <span className="movie-rating__level">{getRatingLevel(movie.rating)}</span>
-          <span className="movie-rating__count">240 ratings</span>
+          <span className="movie-rating__count">{`${movie.scores_count} ratings`}</span>
         </p>
       </div>
 

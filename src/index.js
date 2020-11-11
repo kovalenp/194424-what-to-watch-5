@@ -8,7 +8,6 @@ import thunk from "redux-thunk";
 import App from "./components/app/app";
 import reducers from "./store/reducers";
 import { createApi } from "./services/api";
-import reviews from "./mocks/reviews";
 import { initMovies, getPromoMovie } from "./services/movie-service";
 import { initGenres } from "./services/genre-service";
 import { checkAuth } from "./services/user-service";
@@ -33,7 +32,7 @@ Promise.all([
   .then(() => {
     ReactDOM.render(
         <Provider store={store}>
-          <App reviews={reviews} />
+          <App />
         </Provider>,
         document.getElementById(`root`)
     );

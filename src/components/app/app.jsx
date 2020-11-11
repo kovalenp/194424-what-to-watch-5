@@ -12,7 +12,7 @@ import MyList from "../my-list/my-list";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
-import { movieProps, reviewsProps } from "../../validation/propTypes";
+import { movieProps } from "../../validation/propTypes";
 import { appRoute } from "../../common/constants";
 
 /**
@@ -21,10 +21,10 @@ import { appRoute } from "../../common/constants";
  * @param {string} id - Specific MovieId we are looking reveiws for.
  * @return {Array} - List of reviews for movie (empty array if there are no reviews)
  */
-const _getReviewsForMovieId = (reviews, id) => {
-  const result = reviews.find((review) => review.movie.toString() === id);
-  return (result !== undefined) ? result.reviews : [];
-};
+// const _getReviewsForMovieId = (reviews, id) => {
+//   const result = reviews.find((review) => review.movie.toString() === id);
+//   return (result !== undefined) ? result.reviews : [];
+// };
 
 class App extends React.Component {
   constructor() {
@@ -57,9 +57,7 @@ class App extends React.Component {
             exact
             render={({ match }) => (
               <Film
-                movie={movies.find((m) => m.id.toString() === match.params.id)}
-                movies={movies}
-                reviews={_getReviewsForMovieId(this.props.reviews, match.params.id)} />
+                movie={movies.find((m) => m.id.toString() === match.params.id)} />
             )}
           />
           <Route path={appRoute.Player} exact component={Player} />
@@ -78,7 +76,6 @@ const MapStateToProps = (state) => {
 
 App.propTypes = {
   movies: PropTypes.arrayOf(movieProps),
-  reviews: reviewsProps,
 };
 
 export default connect(MapStateToProps, {})(App);

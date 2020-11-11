@@ -11,6 +11,7 @@ export const appRoute = {
   MY_LIST: `/mylist`,
   FILMS: `/films`,
   PROMO: `/films/promo`,
+  COMMENTS: `/comments`,
   FILM: `/films/:id`,
   REVIEW: `/films/:id/review`,
   PLAYER: `/player/:id`,

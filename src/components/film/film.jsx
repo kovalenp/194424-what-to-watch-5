@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
@@ -10,7 +11,8 @@ import Overview from "../overview/overview";
 import Details from "../details/details";
 import Reviews from "../reviews/reviews";
 import NotFound from "../not-found/not-found";
-import { movieProps, reviewsProps } from "../../validation/propTypes";
+import { movieProps, reviewProps } from "../../validation/propTypes";
+import { pullComments } from "../../services/movie-service";
 import { withActive } from "../hoc/withActive";
 
 const ActiveTabs = withActive(Tabs, `Overview`);
@@ -21,7 +23,11 @@ const getMoreLikeThisMovies = (movies, genre) => {
 
 const Film = (props) => {
 
-  const { movie, movies, reviews } = props;
+  useEffect(() => {
+    props.getComments(props.movie.id);
+  }, []);
+
+  const { movie, movies } = props;
 
   if (!movie && movies.length > 0) {
     return <NotFound />;
@@ -99,7 +105,7 @@ const Film = (props) => {
               <ActiveTabs>
                 <Overview label="Overview" movie={movie}/>
                 <Details label="Details" movie={movie} />
-                <Reviews label="Reviews" reviews={reviews} />
+                <Reviews label="Reviews" reviews={props.reviews} />
               </ActiveTabs>
             </div>
           </div>
@@ -122,7 +128,23 @@ const Film = (props) => {
 Film.propTypes = {
   movies: PropTypes.arrayOf(movieProps),
   movie: movieProps,
-  reviews: reviewsProps,
+  reviews: PropTypes.arrayOf(reviewProps),
+  getComments: PropTypes.func,
 };
 
-export default Film;
+const MapStateToProps = (state) => {
+  const { list, comments} = state.MOVIES;
+  return {
+    movies: list,
+    reviews: comments,
+  };
+};
+
+const MapDistpatchToProps = (dispatch) => {
+  return {
+    getComments: (movieId) => dispatch(pullComments(movieId)),
+  };
+};
+
+export default connect(MapStateToProps, MapDistpatchToProps)(Film);
+

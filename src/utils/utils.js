@@ -43,3 +43,11 @@ export const getRatingLevel = (rating) => {
   }
   return ratings.AWESOME;
 };
+
+
+export const formatDate = (timestamp) => {
+  const date = Date.parse(timestamp);
+  const options = { month: `long`, day: `numeric`, year: `numeric` };
+  // eslint-disable-next-line
+  return Intl.DateTimeFormat(`en-US`, options).format(date);
+};
