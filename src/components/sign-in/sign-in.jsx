@@ -11,18 +11,14 @@ import Footer from "../footer/footer.jsx";
 class SignIn extends PureComponent {
   constructor(props) {
     super(props);
-
     this.emailRef = createRef();
     this.passwordRef = createRef();
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(evt) {
     const {onSubmit} = this.props;
-
     evt.preventDefault();
-
     onSubmit({
       email: this.emailRef.current.value,
       password: this.passwordRef.current.value,
