@@ -16,3 +16,11 @@ export const appRoute = {
   PLAYER: `/player/:id`,
   HOME: `/`
 };
+
+export const ratings = {
+  BAD: `Bad`,
+  NORMAL: `Normal`,
+  GOOD: `Good`,
+  VERY_GOOD: `Very good`,
+  AWESOME: `Awesome`,
+};
