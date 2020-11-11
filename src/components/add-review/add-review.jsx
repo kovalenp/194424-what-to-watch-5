@@ -28,7 +28,7 @@ const AddReview = ({movie}) => {
         </div>
       </div>
 
-      <AddNewComment />
+      <AddNewComment id={movie.id}/>
     </section>
   );
 };
