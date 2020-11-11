@@ -1,4 +1,6 @@
 import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+
 import { sendReveiw } from "../../services/movie-service";
 
 class AddNewComment extends PureComponent {
@@ -127,5 +129,9 @@ class AddNewComment extends PureComponent {
     );
   }
 }
+
+AddNewComment.propTypes = {
+  id: PropTypes.string.isRequired
+};
 
 export default AddNewComment;
