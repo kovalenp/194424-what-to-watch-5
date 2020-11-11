@@ -5,8 +5,8 @@ import moviesReducer from "./movies/reducer";
 import userReducer from "./user/reducer";
 
 export default combineReducers({
-  genres: genresReducer,
-  movies: moviesReducer,
-  user: userReducer,
+  GENRES: genresReducer,
+  MOVIES: moviesReducer,
+  USER: userReducer,
 });
 

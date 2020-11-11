@@ -39,7 +39,7 @@ class App extends React.Component {
       <Router history={browserHistory}>
         <Switch>
           <Route path={appRoute.HOME} exact>
-            <Main movies={movies} genres={[`All movies`]}/>
+            <Main />
           </Route>
           <Route path={appRoute.LOGIN} exact component={SignIn} />
           <PrivateRoute
@@ -72,7 +72,7 @@ class App extends React.Component {
 
 const MapStateToProps = (state) => {
   return {
-    movies: state.movies,
+    movies: state.MOVIES.list,
   };
 };
 

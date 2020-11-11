@@ -5,8 +5,8 @@ import { authStatus } from '../../common/constants';
 
 const Header = () => {
 
-  const isAuth = useSelector((state) => state.user.authentication === authStatus.AUTH);
-  const avatar = useSelector((state) => state.user.avatar_url);
+  const isAuth = useSelector((state) => state.USER.authentication === authStatus.AUTH);
+  const avatar = useSelector((state) => state.USER.avatar_url);
 
 
   let userBlock = (

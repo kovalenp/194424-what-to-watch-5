@@ -37,7 +37,7 @@ GenresList.propTypes = {
 
 const MapStateToProps = (state) => {
 
-  const { activeGenre, list} = state.genres;
+  const { activeGenre, list} = state.GENRES;
 
   return {
     activeGenre,

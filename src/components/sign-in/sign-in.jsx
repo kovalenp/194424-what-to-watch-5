@@ -111,7 +111,7 @@ SignIn.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    isAuth: state.user.authentication === authStatus.AUTH
+    isAuth: state.USER.authentication === authStatus.AUTH
   };
 };
 
