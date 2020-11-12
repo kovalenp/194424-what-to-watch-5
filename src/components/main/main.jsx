@@ -5,6 +5,8 @@ import Header from "../header/header";
 import Footer from "../footer/footer";
 import MovieCatalog from "../movie-catalog/movie-catalog";
 import { movieProps } from "../../validation/propTypes";
+import browserHistory from "../../common/browser-history";
+import { appRoute } from "../../common/constants";
 
 
 const Main = (props) => {
@@ -47,6 +49,7 @@ const Main = (props) => {
                 <button
                   className="btn btn--play movie-card__button"
                   type="button"
+                  onClick={ () => browserHistory.push(appRoute.PLAYER.replace(`:id`, promoMovie.id))}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -56,6 +59,7 @@ const Main = (props) => {
                 <button
                   className="btn btn--list movie-card__button"
                   type="button"
+                  onClick={ () => browserHistory.push(appRoute.MY_LIST)}
                 >
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
