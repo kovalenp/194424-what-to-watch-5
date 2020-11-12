@@ -13,6 +13,7 @@ import Reviews from "../reviews/reviews";
 import NotFound from "../not-found/not-found";
 import { movieProps, reviewProps } from "../../validation/propTypes";
 import { pullComments, getMovie } from "../../services/movie-service";
+import { authStatus } from "../../common/constants";
 import { withActive } from "../hoc/withActive";
 
 const ActiveTabs = withActive(Tabs, `Overview`);
@@ -33,7 +34,7 @@ const Film = (props) => {
   //   props.getMovieById(props.id);
   // }, []);
 
-  const { movie, movies } = props;
+  const { movie, movies, isAuth } = props;
 
   if (!movie && movies.length > 0) {
     return <NotFound />;
@@ -85,12 +86,12 @@ const Film = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link
+                {isAuth && <Link
                   to={`/films/${movie.id}/review`}
                   className="btn movie-card__button"
                 >
                   Add review
-                </Link>
+                </Link>}
               </div>
             </div>
           </div>
@@ -138,6 +139,7 @@ Film.propTypes = {
   reviews: PropTypes.arrayOf(reviewProps),
   getComments: PropTypes.func,
   getMovieById: PropTypes.func,
+  isAuth: PropTypes.bool,
 };
 
 const MapStateToProps = (state, ownProps) => {
@@ -147,6 +149,7 @@ const MapStateToProps = (state, ownProps) => {
     reviews: comments,
     /* eslint-disable eqeqeq */
     movie: list.find((m) => m.id == ownProps.id),
+    isAuth: state.USER.authentication === authStatus.AUTH
   };
 };
 
