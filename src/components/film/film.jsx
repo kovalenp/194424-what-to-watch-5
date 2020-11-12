@@ -12,7 +12,7 @@ import Details from "../details/details";
 import Reviews from "../reviews/reviews";
 import NotFound from "../not-found/not-found";
 import { movieProps, reviewProps } from "../../validation/propTypes";
-import { pullComments, getMovie } from "../../services/movie-service";
+import { pullComments, getMovie, setFavorite } from "../../services/movie-service";
 import { appRoute, authStatus } from "../../common/constants";
 import { withActive } from "../hoc/withActive";
 import browserHistory from "../../common/browser-history";
@@ -82,7 +82,10 @@ const Film = (props) => {
                 <button
                   className="btn btn--list movie-card__button"
                   type="button"
-                  onClick={ () => browserHistory.push(appRoute.MY_LIST)}
+                  onClick={() => {
+                    // eslint-disable-next-line
+                    (isAuth) ? setFavorite(movie.id) : browserHistory.push(appRoute.LOGIN);
+                  }}
                 >
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>

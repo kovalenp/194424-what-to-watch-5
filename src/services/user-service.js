@@ -1,22 +1,27 @@
 /* eslint-disable no-console */
-import { setAuth, setUserData } from '../store/user/actions';
+import { setAuthAction, setUserDataAction, setFavoritesAction } from '../store/user/actions';
 import { redirectToRoute } from '../store/common/actions';
 import { appRoute } from '../common/constants';
 import { authStatus } from '../common/constants';
 
 export const checkAuth = () => (dispatch, state, api) => (
   api.get(appRoute.LOGIN)
-    .then(() => dispatch(setAuth(authStatus.AUTH)))
+    .then(() => dispatch(setAuthAction(authStatus.AUTH)))
     .catch((err) => {
       console.error(err);
       return;
     })
 );
 
+export const pullMyFavs = () => (dispatch, state, api) => (
+  api.get(appRoute.FAVORITE)
+    .then((res) => dispatch(setFavoritesAction(res.data)))
+);
+
 export const login = ({ email, password }) => (dispatch, state, api) => (
   api.post(appRoute.LOGIN, { email, password })
-    .then((res) => dispatch(setUserData(res.data)))
-    .then(() => dispatch(setAuth(authStatus.AUTH)))
+    .then((res) => dispatch(setUserDataAction(res.data)))
+    .then(() => dispatch(setAuthAction(authStatus.AUTH)))
     .then(() => dispatch(redirectToRoute(`/`)))
     .catch((err) => {
       console.error(err);

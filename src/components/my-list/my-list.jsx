@@ -1,27 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { pullMyFavs } from "../../services/user-service";
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import MoviesList from "../movies-list/movies-list.jsx";
 import { movieProps } from "../../validation/propTypes";
 
-const MyList = ({ movies }) => (
-  <>
-    <div className="user-page">
-      <Header pageTitle="My List"/>
-      <section className="catalog">
-        <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <MoviesList movies={movies} />
-      </section>
+const MyList = (props) => {
 
-      <Footer />
-    </div>
-  </>
-);
+  useEffect(() => {
+    props.getMyFavs();
+  }, []);
 
-MyList.propTypes = {
-  movies: PropTypes.arrayOf(movieProps)
+  return (
+    <>
+      <div className="user-page">
+        <Header pageTitle="My List" />
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
+          <MoviesList movies={props.myFavorites} />
+        </section>
+
+        <Footer />
+      </div>
+    </>);
+
 };
 
-export default MyList;
+MyList.propTypes = {
+  myFavorites: PropTypes.arrayOf(movieProps),
+  getMyFavs: PropTypes.func,
+};
+
+const MapStateToProps = (state) => {
+  return {
+    myFavorites: state.USER.favorites
+  };
+};
+
+const MapDistpatchToProps = (dispatch) => {
+  return {
+    getMyFavs: () => dispatch(pullMyFavs()),
+  };
+};
+
+export default connect(MapStateToProps, MapDistpatchToProps)(MyList);

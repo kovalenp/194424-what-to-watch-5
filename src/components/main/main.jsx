@@ -1,17 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import MovieCatalog from "../movie-catalog/movie-catalog";
 import { movieProps } from "../../validation/propTypes";
 import browserHistory from "../../common/browser-history";
-import { appRoute } from "../../common/constants";
-
+import { appRoute, authStatus } from "../../common/constants";
+import { setFavorite } from "../../services/movie-service";
 
 const Main = (props) => {
 
-  const { promoMovie } = props;
+  const { promoMovie, isAuth } = props;
 
   return (
     <>
@@ -59,7 +60,10 @@ const Main = (props) => {
                 <button
                   className="btn btn--list movie-card__button"
                   type="button"
-                  onClick={ () => browserHistory.push(appRoute.MY_LIST)}
+                  onClick={() => {
+                    // eslint-disable-next-line
+                    (isAuth) ? setFavorite(promoMovie.id) : browserHistory.push(appRoute.LOGIN);
+                  }}
                 >
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
@@ -82,11 +86,13 @@ const Main = (props) => {
 
 Main.propTypes = {
   promoMovie: movieProps,
+  isAuth: PropTypes.bool,
 };
 
 const MapStateToProps = (state) => {
   return {
     promoMovie: state.MOVIES.promo,
+    isAuth: state.USER.authentication === authStatus.AUTH
   };
 };
 

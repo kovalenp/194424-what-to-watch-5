@@ -15,6 +15,7 @@ export const appRoute = {
   FILM: `/films/:id`,
   REVIEW: `/films/:id/review`,
   PLAYER: `/player/:id`,
+  FAVORITE: `/favorite`,
   HOME: `/`
 };
 

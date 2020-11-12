@@ -25,3 +25,5 @@ export const pullComments = (id) => (dispatch, state, api) => (
 );
 
 export const sendReveiw = ({ id, rating, comment }) => serviceApi.post(appRoute.COMMENTS + `/${id}`, {rating, comment});
+
+export const setFavorite = (id) => serviceApi.post(appRoute.FAVORITE + `/${id}/1`);
