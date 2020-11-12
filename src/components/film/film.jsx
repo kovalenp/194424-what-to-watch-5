@@ -12,7 +12,7 @@ import Details from "../details/details";
 import Reviews from "../reviews/reviews";
 import NotFound from "../not-found/not-found";
 import { movieProps, reviewProps } from "../../validation/propTypes";
-import { pullComments, getMovie, setFavorite } from "../../services/movie-service";
+import { pullComments, getMovie, setFavorite, resetCurrentMovie } from "../../services/movie-service";
 import { appRoute, authStatus } from "../../common/constants";
 import { withActive } from "../hoc/withActive";
 import browserHistory from "../../common/browser-history";
@@ -31,17 +31,18 @@ const Film = (props) => {
   }, []);
 
   // TODO: call /film/:id?
-  // useEffect(() => {
-  //   props.getMovieById(props.id);
-  // }, []);
+  useEffect(() => {
+    props.getMovieById(props.id);
+    return () => props.resetCurrent();
+  }, []);
 
-  const { movie, movies, isAuth } = props;
+  const { movie, movies, isAuth, id } = props;
 
-  if (!movie && movies.length > 0) {
+  if (!movies.find((m) => m.id == id)) {
     return <NotFound />;
   }
 
-  if (!movie && movies.length === 0) {
+  if (!movie) {
     return null;
   }
 
@@ -145,15 +146,17 @@ Film.propTypes = {
   getComments: PropTypes.func,
   getMovieById: PropTypes.func,
   isAuth: PropTypes.bool,
+  resetCurrent: PropTypes.func,
 };
 
-const MapStateToProps = (state, ownProps) => {
+const MapStateToProps = (state) => {
   const { list, comments} = state.MOVIES;
   return {
     movies: list,
     reviews: comments,
     /* eslint-disable eqeqeq */
-    movie: list.find((m) => m.id == ownProps.id),
+    // movie: list.find((m) => m.id == ownProps.id),
+    movie: state.MOVIES.current,
     isAuth: state.USER.authentication === authStatus.AUTH
   };
 };
@@ -162,6 +165,7 @@ const MapDistpatchToProps = (dispatch) => {
   return {
     getComments: (movieId) => dispatch(pullComments(movieId)),
     getMovieById: (movieId) => dispatch(getMovie(movieId)),
+    resetCurrent: () => dispatch(resetCurrentMovie())
   };
 };
 

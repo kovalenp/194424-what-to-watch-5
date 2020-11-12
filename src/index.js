@@ -7,13 +7,11 @@ import thunk from "redux-thunk";
 
 import App from "./components/app/app";
 import reducers from "./store/reducers";
-import { createApi } from "./services/api";
+import api from "./services/api";
 import { initMovies, getPromoMovie } from "./services/movie-service";
 import { initGenres } from "./services/genre-service";
 import { checkAuth } from "./services/user-service";
 import { redirect } from "./middleware/redirect";
-
-const api = createApi();
 
 const store = createStore(
     reducers,

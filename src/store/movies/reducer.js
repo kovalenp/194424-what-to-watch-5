@@ -11,7 +11,9 @@ const reducer = (state = initState, action) => {
     case MoviesActionsTypes.GET_PROMO:
       return Object.assign({}, state, { promo: action.payload });
     case MoviesActionsTypes.GET_COMMENTS:
-      return Object.assign({}, state, { comments: action.payload});
+      return Object.assign({}, state, { comments: action.payload });
+    case MoviesActionsTypes.RESET_CURRENT_MOVIE:
+      return Object.assign({}, state, { current: null });
     default:
       return state;
   }
