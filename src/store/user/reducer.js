@@ -3,7 +3,7 @@ import { UserActionsTypes } from "./actions";
 import { authStatus } from "../../common/constants";
 
 const initState = {
-  authentication: authStatus.NOT_AUTH
+  authentication: authStatus.NOT_AUTH, favorites: []
 };
 
 const reducer = (state = initState, action) => {
@@ -12,7 +12,9 @@ const reducer = (state = initState, action) => {
       const { avatar_url, name } = action.payload;
       return Object.assign({}, state, { avatar_url, name});
     case UserActionsTypes.SET_AUTH:
-      return Object.assign({}, state, { authentication: action.payload});
+      return Object.assign({}, state, { authentication: action.payload });
+    case UserActionsTypes.SET_FAVORITES:
+      return Object.assign({}, state, { favorites: action.payload});
     default:
       return state;
   }

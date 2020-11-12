@@ -7,7 +7,7 @@ const HttpCode = {
   UNAUTHORIZED: 401
 };
 
-export const createApi = () => {
+const createApi = () => {
 
   const api = axios.create({
     baseURL: BASE_URL,
@@ -32,3 +32,5 @@ export const createApi = () => {
 
   return api;
 };
+
+export default createApi();

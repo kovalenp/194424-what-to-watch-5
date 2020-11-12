@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
@@ -10,8 +11,11 @@ import Overview from "../overview/overview";
 import Details from "../details/details";
 import Reviews from "../reviews/reviews";
 import NotFound from "../not-found/not-found";
-import { movieProps, reviewsProps } from "../../validation/propTypes";
+import { movieProps, reviewProps } from "../../validation/propTypes";
+import { pullComments, getMovie, setFavorite, resetCurrentMovie } from "../../services/movie-service";
+import { appRoute, authStatus } from "../../common/constants";
 import { withActive } from "../hoc/withActive";
+import browserHistory from "../../common/browser-history";
 
 const ActiveTabs = withActive(Tabs, `Overview`);
 
@@ -21,13 +25,24 @@ const getMoreLikeThisMovies = (movies, genre) => {
 
 const Film = (props) => {
 
-  const { movie, movies, reviews } = props;
 
-  if (!movie && movies.length > 0) {
+  useEffect(() => {
+    props.getComments(props.id);
+  }, []);
+
+  useEffect(() => {
+    props.getMovieById(props.id);
+    return () => props.resetCurrent();
+  }, []);
+
+  const { movie, movies, isAuth, id } = props;
+
+  // eslint-disable-next-line
+  if (!movies.find((m) => m.id == id)) {
     return <NotFound />;
   }
 
-  if (!movie && movies.length === 0) {
+  if (!movie) {
     return null;
   }
 
@@ -58,6 +73,7 @@ const Film = (props) => {
                 <button
                   className="btn btn--play movie-card__button"
                   type="button"
+                  onClick={ () => browserHistory.push(appRoute.PLAYER.replace(`:id`, movie.id))}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -67,18 +83,22 @@ const Film = (props) => {
                 <button
                   className="btn btn--list movie-card__button"
                   type="button"
+                  onClick={() => {
+                    // eslint-disable-next-line
+                    (isAuth) ? setFavorite(movie.id) : browserHistory.push(appRoute.LOGIN);
+                  }}
                 >
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link
+                {isAuth && <Link
                   to={`/films/${movie.id}/review`}
                   className="btn movie-card__button"
                 >
                   Add review
-                </Link>
+                </Link>}
               </div>
             </div>
           </div>
@@ -99,7 +119,7 @@ const Film = (props) => {
               <ActiveTabs>
                 <Overview label="Overview" movie={movie}/>
                 <Details label="Details" movie={movie} />
-                <Reviews label="Reviews" reviews={reviews} />
+                <Reviews label="Reviews" reviews={props.reviews} />
               </ActiveTabs>
             </div>
           </div>
@@ -118,11 +138,36 @@ const Film = (props) => {
   );
 };
 
-
 Film.propTypes = {
   movies: PropTypes.arrayOf(movieProps),
   movie: movieProps,
-  reviews: reviewsProps,
+  id: PropTypes.string.isRequired,
+  reviews: PropTypes.arrayOf(reviewProps),
+  getComments: PropTypes.func,
+  getMovieById: PropTypes.func,
+  isAuth: PropTypes.bool,
+  resetCurrent: PropTypes.func,
 };
 
-export default Film;
+const MapStateToProps = (state) => {
+  const { list, comments} = state.MOVIES;
+  return {
+    movies: list,
+    reviews: comments,
+    /* eslint-disable eqeqeq */
+    // movie: list.find((m) => m.id == ownProps.id),
+    movie: state.MOVIES.current,
+    isAuth: state.USER.authentication === authStatus.AUTH
+  };
+};
+
+const MapDistpatchToProps = (dispatch) => {
+  return {
+    getComments: (movieId) => dispatch(pullComments(movieId)),
+    getMovieById: (movieId) => dispatch(getMovie(movieId)),
+    resetCurrent: () => dispatch(resetCurrentMovie())
+  };
+};
+
+export default connect(MapStateToProps, MapDistpatchToProps)(Film);
+

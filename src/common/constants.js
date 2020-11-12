@@ -10,8 +10,19 @@ export const appRoute = {
   LOGIN: `/login`,
   MY_LIST: `/mylist`,
   FILMS: `/films`,
+  PROMO: `/films/promo`,
+  COMMENTS: `/comments`,
   FILM: `/films/:id`,
   REVIEW: `/films/:id/review`,
   PLAYER: `/player/:id`,
+  FAVORITE: `/favorite`,
   HOME: `/`
+};
+
+export const ratings = {
+  BAD: `Bad`,
+  NORMAL: `Normal`,
+  GOOD: `Good`,
+  VERY_GOOD: `Very good`,
+  AWESOME: `Awesome`,
 };

@@ -60,9 +60,9 @@ MovieCatalog.propTypes = {
 
 const MapStateToProps = (state) => {
   return {
-    movies: state.movies,
-    activeGenre: state.genres.activeGenre,
-    displayMoviesByGenre: state.genres.displayMoviesByGenre
+    movies: state.MOVIES.list,
+    activeGenre: state.GENRES.activeGenre,
+    displayMoviesByGenre: state.GENRES.displayMoviesByGenre
   };
 };
 

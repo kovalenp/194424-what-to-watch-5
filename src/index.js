@@ -7,14 +7,11 @@ import thunk from "redux-thunk";
 
 import App from "./components/app/app";
 import reducers from "./store/reducers";
-import { createApi } from "./services/api";
-import reviews from "./mocks/reviews";
-import { initMovies } from "./services/movie-service";
+import api from "./services/api";
+import { initMovies, getPromoMovie } from "./services/movie-service";
 import { initGenres } from "./services/genre-service";
 import { checkAuth } from "./services/user-service";
 import { redirect } from "./middleware/redirect";
-
-const api = createApi();
 
 const store = createStore(
     reducers,
@@ -26,13 +23,14 @@ const store = createStore(
 
 Promise.all([
   store.dispatch(initMovies()),
+  store.dispatch(getPromoMovie()),
   store.dispatch(checkAuth())
 ])
   .then(() => store.dispatch(initGenres()))
   .then(() => {
     ReactDOM.render(
         <Provider store={store}>
-          <App reviews={reviews} />
+          <App />
         </Provider>,
         document.getElementById(`root`)
     );

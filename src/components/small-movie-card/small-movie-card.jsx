@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import VideoPlayer from "../video-player/video-player.jsx";
 import { movieProps } from "../../validation/propTypes";
+import browserHistory from "../../common/browser-history";
 
 
 function SmallMovieCard({
@@ -19,6 +20,7 @@ function SmallMovieCard({
         className="small-movie-card__image"
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}
+        onClick={ () => browserHistory.push(`/films/${movie.id}`)}
         id={movie.id}
       >
         <VideoPlayer isMuted={true} isPlaying={isPlaying} video={movie.preview_video_link} poster={movie.preview_image}/>

@@ -1,5 +1,5 @@
 import React from "react";
-import { getMovieCastString } from "../../utils/utils";
+import { getMovieCastString, getRatingLevel} from "../../utils/utils";
 
 import { movieProps } from "../../validation/propTypes";
 
@@ -12,8 +12,8 @@ const Overview = (props) => {
       <div className="movie-rating">
         <div className="movie-rating__score">{movie.rating}</div>
         <p className="movie-rating__meta">
-          <span className="movie-rating__level">Very good</span>
-          <span className="movie-rating__count">240 ratings</span>
+          <span className="movie-rating__level">{getRatingLevel(movie.rating)}</span>
+          <span className="movie-rating__count">{`${movie.scores_count} ratings`}</span>
         </p>
       </div>
 

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { reviewProps } from "../../validation/propTypes";
+import { formatDate } from "../../utils/utils";
 
 const Reviews = (props) => {
 
@@ -20,12 +21,12 @@ const Reviews = (props) => {
   const renderColumn = (data) => (
     <div className="movie-card__reviews-col">
       {data.map((rev, i) => (
-        <div className="review" key={rev.date + rev.author + i}>
+        <div className="review" key={rev.date + rev.user.id + i}>
           <blockquote className="review__quote">
-            <p className="review__text">{rev.text}</p>
+            <p className="review__text">{rev.comment}</p>
             <footer className="review__details">
-              <cite className="review__author">{rev.author}</cite>
-              <time className="review__date" dateTime="2016-12-24">{rev.date}</time>
+              <cite className="review__author">{rev.user.name}</cite>
+              <time className="review__date">{formatDate(rev.date)}</time>
             </footer>
           </blockquote>
 

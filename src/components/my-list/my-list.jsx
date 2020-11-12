@@ -1,49 +1,49 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { pullMyFavs } from "../../services/user-service";
 
+import Header from "../header/header";
 import Footer from "../footer/footer";
 import MoviesList from "../movies-list/movies-list.jsx";
 import { movieProps } from "../../validation/propTypes";
 
-const MyList = ({ movies }) => (
-  <>
-    <div className="user-page">
-      <header className="page-header user-page__head">
-        <div className="logo">
-          <Link to="/" className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
+const MyList = (props) => {
 
-        <h1 className="page-title user-page__title">My list</h1>
+  useEffect(() => {
+    props.getMyFavs();
+  }, []);
 
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img
-              src="img/avatar.jpg"
-              alt="User avatar"
-              width="63"
-              height="63"
-            />
-          </div>
-        </div>
-      </header>
+  return (
+    <>
+      <div className="user-page">
+        <Header pageTitle="My List" />
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
+          <MoviesList movies={props.myFavorites} />
+        </section>
 
-      <section className="catalog">
-        <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <MoviesList movies={movies} />
-      </section>
+        <Footer />
+      </div>
+    </>);
 
-      <Footer />
-    </div>
-  </>
-);
-
-MyList.propTypes = {
-  movies: PropTypes.arrayOf(movieProps)
 };
 
-export default MyList;
+MyList.propTypes = {
+  myFavorites: PropTypes.arrayOf(movieProps),
+  getMyFavs: PropTypes.func,
+};
+
+const MapStateToProps = (state) => {
+  return {
+    myFavorites: state.USER.favorites
+  };
+};
+
+const MapDistpatchToProps = (dispatch) => {
+  return {
+    getMyFavs: () => dispatch(pullMyFavs()),
+  };
+};
+
+export default connect(MapStateToProps, MapDistpatchToProps)(MyList);

@@ -1,26 +1,26 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import MovieCatalog from "../movie-catalog/movie-catalog";
 import { movieProps } from "../../validation/propTypes";
+import browserHistory from "../../common/browser-history";
+import { appRoute, authStatus } from "../../common/constants";
+import { setFavorite } from "../../services/movie-service";
 
 const Main = (props) => {
 
-  const { movies } = props;
-
-  // main movie to diplay pre-selected, has to be taken from PromoMovie request
-  const movie = movies[0];
+  const { promoMovie, isAuth } = props;
 
   return (
     <>
       <section className="movie-card">
         <div className="movie-card__bg">
           <img
-            src={movie.background_image}
-            alt={movie.name}
+            src={promoMovie.background_image}
+            alt={promoMovie.name}
           />
         </div>
 
@@ -32,24 +32,25 @@ const Main = (props) => {
           <div className="movie-card__info">
             <div className="movie-card__poster">
               <img
-                src={movie.poster_image}
-                alt={movie.name + ` poster`}
+                src={promoMovie.poster_image}
+                alt={promoMovie.name + ` poster`}
                 width="218"
                 height="327"
               />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{movies.length > 0 ? movie.name : ``}</h2>
+              <h2 className="movie-card__title">{promoMovie.name || ``}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{movies.length > 0 ? movie.genre : ``}</span>
-                <span className="movie-card__year">{movies.length > 0 ? movie.released : ``}</span>
+                <span className="movie-card__genre">{promoMovie.genre || ``}</span>
+                <span className="movie-card__year">{promoMovie.released || ``}</span>
               </p>
 
               <div className="movie-card__buttons">
                 <button
                   className="btn btn--play movie-card__button"
                   type="button"
+                  onClick={ () => browserHistory.push(appRoute.PLAYER.replace(`:id`, promoMovie.id))}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -59,6 +60,10 @@ const Main = (props) => {
                 <button
                   className="btn btn--list movie-card__button"
                   type="button"
+                  onClick={() => {
+                    // eslint-disable-next-line
+                    (isAuth) ? setFavorite(promoMovie.id) : browserHistory.push(appRoute.LOGIN);
+                  }}
                 >
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
@@ -80,14 +85,14 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  movies: PropTypes.arrayOf(movieProps),
-  activeGenre: PropTypes.string,
+  promoMovie: movieProps,
+  isAuth: PropTypes.bool,
 };
 
 const MapStateToProps = (state) => {
   return {
-    movies: state.movies,
-    activeGenre: state.genres.activeGenre,
+    promoMovie: state.MOVIES.promo,
+    isAuth: state.USER.authentication === authStatus.AUTH
   };
 };
 

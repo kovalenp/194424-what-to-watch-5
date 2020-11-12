@@ -1,12 +1,16 @@
 import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+
+import { sendReveiw } from "../../services/movie-service";
 
 class AddNewComment extends PureComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       rating: `3`,
       reviewText: ``,
+      isSending: false,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -19,8 +23,13 @@ class AddNewComment extends PureComponent {
 
   handleSubmit(e) {
     e.preventDefault();
-    // eslint-disable-next-line
-    console.log(this.state); // TODO send review to server
+    this.setState({ isSending: true });
+    sendReveiw({ id: this.props.id, rating: this.state.rating, comment: this.state.reviewText })
+      .then(() => {
+        this.setState({ isSending: false, reviewText: `` });
+      }
+
+      );
   }
 
   render() {
@@ -106,10 +115,11 @@ class AddNewComment extends PureComponent {
               name="reviewText"
               id="reviewText"
               placeholder="Review text"
+              value={this.state.reviewText}
               onChange={this.handleInputChange}
             ></textarea>
             <div className="add-review__submit">
-              <button className="add-review__btn" type="submit">
+              <button className="add-review__btn" type="submit" disabled={!(this.state.reviewText.length > 50) && !(this.state.isSending)}>
                 Post
               </button>
             </div>
@@ -119,5 +129,9 @@ class AddNewComment extends PureComponent {
     );
   }
 }
+
+AddNewComment.propTypes = {
+  id: PropTypes.string.isRequired
+};
 
 export default AddNewComment;
