@@ -30,7 +30,6 @@ const Film = (props) => {
     props.getComments(props.id);
   }, []);
 
-  // TODO: call /film/:id?
   useEffect(() => {
     props.getMovieById(props.id);
     return () => props.resetCurrent();
@@ -38,6 +37,7 @@ const Film = (props) => {
 
   const { movie, movies, isAuth, id } = props;
 
+  // eslint-disable-next-line
   if (!movies.find((m) => m.id == id)) {
     return <NotFound />;
   }
