@@ -1,11 +1,13 @@
 import { MoviesActionsTypes } from "./actions";
 
-const initState = { list: [], promo: null, comments: [] };
+const initState = { list: [], promo: null, comments: [], current: null };
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
-    case MoviesActionsTypes.GET_MOVIES:
+    case MoviesActionsTypes.INIT_MOVIES:
       return Object.assign({}, state, { list: action.payload });
+    case MoviesActionsTypes.GET_MOVIE:
+      return Object.assign({}, state, { current: action.payload });
     case MoviesActionsTypes.GET_PROMO:
       return Object.assign({}, state, { promo: action.payload });
     case MoviesActionsTypes.GET_COMMENTS:

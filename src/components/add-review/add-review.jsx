@@ -1,9 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
 import Header from "../header/header";
 import AddNewComment from "../add-new-comment/add-new-comment.jsx";
 import { movieProps } from "../../validation/propTypes";
 
-const AddReview = ({movie}) => {
+const AddReview = ({ movie }) => {
 
   return (
     <section className="movie-card movie-card--full" style={{backgroundColor: movie.background_color}}>
@@ -35,6 +38,16 @@ const AddReview = ({movie}) => {
 
 AddReview.propTypes = {
   movie: movieProps,
+  id: PropTypes.string.isRequired,
 };
 
-export default AddReview;
+const MapStateToProps = (state, ownProps) => {
+  const { list } = state.MOVIES;
+  return {
+    /* eslint-disable eqeqeq */
+    movie: list.find((m) => m.id == ownProps.id),
+  };
+};
+
+
+export default connect(MapStateToProps, null)(AddReview);

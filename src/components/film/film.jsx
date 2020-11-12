@@ -12,7 +12,7 @@ import Details from "../details/details";
 import Reviews from "../reviews/reviews";
 import NotFound from "../not-found/not-found";
 import { movieProps, reviewProps } from "../../validation/propTypes";
-import { pullComments } from "../../services/movie-service";
+import { pullComments, getMovie } from "../../services/movie-service";
 import { withActive } from "../hoc/withActive";
 
 const ActiveTabs = withActive(Tabs, `Overview`);
@@ -23,9 +23,15 @@ const getMoreLikeThisMovies = (movies, genre) => {
 
 const Film = (props) => {
 
+
   useEffect(() => {
-    props.getComments(props.movie.id);
+    props.getComments(props.id);
   }, []);
+
+  // TODO: call /film/:id?
+  // useEffect(() => {
+  //   props.getMovieById(props.id);
+  // }, []);
 
   const { movie, movies } = props;
 
@@ -128,21 +134,26 @@ const Film = (props) => {
 Film.propTypes = {
   movies: PropTypes.arrayOf(movieProps),
   movie: movieProps,
+  id: PropTypes.string.isRequired,
   reviews: PropTypes.arrayOf(reviewProps),
   getComments: PropTypes.func,
+  getMovieById: PropTypes.func,
 };
 
-const MapStateToProps = (state) => {
+const MapStateToProps = (state, ownProps) => {
   const { list, comments} = state.MOVIES;
   return {
     movies: list,
     reviews: comments,
+    /* eslint-disable eqeqeq */
+    movie: list.find((m) => m.id == ownProps.id),
   };
 };
 
 const MapDistpatchToProps = (dispatch) => {
   return {
     getComments: (movieId) => dispatch(pullComments(movieId)),
+    getMovieById: (movieId) => dispatch(getMovie(movieId)),
   };
 };
 

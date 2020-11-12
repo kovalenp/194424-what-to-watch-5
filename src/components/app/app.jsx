@@ -51,7 +51,7 @@ class App extends React.Component {
             exact
             path={appRoute.REVIEW}
             render={({ match }) => (<AddReview
-              movie={movies.find((m) => m.id.toString() === match.params.id)} />
+              id={match.params.id} />
             )}
           />
           <Route
@@ -59,7 +59,7 @@ class App extends React.Component {
             exact
             render={({ match }) => (
               <Film
-                movie={movies.find((m) => m.id.toString() === match.params.id)} />
+                id={match.params.id} />
             )}
           />
           <Route path={appRoute.Player} exact component={Player} />

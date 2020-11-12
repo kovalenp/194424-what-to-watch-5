@@ -1,18 +1,24 @@
 export const MoviesActionsTypes = {
-  GET_MOVIES: `GET_MOVIES`,
+  INIT_MOVIES: `INIT_MOVIES`,
+  GET_MOVIE: `GET_MOVIE`,
   GET_PROMO: `GET_PROMO`,
   GET_COMMENTS: `GET_COMMENTS`
 };
 
-export const getMovies = (data) => {
-  return { type: MoviesActionsTypes.GET_MOVIES, payload: data };
+export const initMoviesAction = (data) => {
+  return { type: MoviesActionsTypes.INIT_MOVIES, payload: data };
 };
 
-export const getPromo = (data) => {
+export const getMovieAction = (data) => {
+  return { type: MoviesActionsTypes.GET_MOVIE, payload: data };
+};
+
+
+export const getPromoAction = (data) => {
   return { type: MoviesActionsTypes.GET_PROMO, payload: data };
 };
 
-export const getComments = (data) => {
+export const getCommentsAction = (data) => {
   return { type: MoviesActionsTypes.GET_COMMENTS, payload: data };
 };
 
