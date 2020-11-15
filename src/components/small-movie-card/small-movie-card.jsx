@@ -27,6 +27,7 @@ function SmallMovieCard({
           width="280"
           height="175"
           isPlaying={isPlaying}
+          isMuted={true}
           video={movie.preview_video_link}
           poster={movie.preview_image}
         />
