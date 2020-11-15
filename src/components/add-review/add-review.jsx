@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 
 import Header from "../header/header";
 import AddNewComment from "../add-new-comment/add-new-comment.jsx";
+import withMovie from "../hoc/withMovie";
 import { movieProps } from "../../validation/propTypes";
 
 const AddReview = ({ movie }) => {
@@ -41,13 +41,4 @@ AddReview.propTypes = {
   id: PropTypes.string.isRequired,
 };
 
-const MapStateToProps = (state, ownProps) => {
-  const { list } = state.MOVIES;
-  return {
-    /* eslint-disable eqeqeq */
-    movie: list.find((m) => m.id == ownProps.id),
-  };
-};
-
-
-export default connect(MapStateToProps, null)(AddReview);
+export default withMovie(AddReview);

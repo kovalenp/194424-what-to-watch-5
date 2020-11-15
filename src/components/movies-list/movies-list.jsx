@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import SmallMovieCard from "../small-movie-card/small-movie-card";
 import { movieProps } from "../../validation/propTypes";
-import { withActive } from "../hoc/withActive";
+import withActive from "../hoc/withActive";
 
 let timeout;
 

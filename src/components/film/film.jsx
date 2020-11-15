@@ -12,9 +12,10 @@ import Details from "../details/details";
 import Reviews from "../reviews/reviews";
 import NotFound from "../not-found/not-found";
 import { movieProps, reviewProps } from "../../validation/propTypes";
-import { pullComments, getMovie, setFavorite, resetCurrentMovie } from "../../services/movie-service";
+import { pullComments, setFavorite } from "../../services/movie-service";
 import { appRoute, authStatus } from "../../common/constants";
-import { withActive } from "../hoc/withActive";
+import withActive from "../hoc/withActive";
+import withMovie from "../hoc/withMovie";
 import browserHistory from "../../common/browser-history";
 
 const ActiveTabs = withActive(Tabs, `Overview`);
@@ -30,20 +31,11 @@ const Film = (props) => {
     props.getComments(props.id);
   }, []);
 
-  useEffect(() => {
-    props.getMovieById(props.id);
-    return () => props.resetCurrent();
-  }, []);
-
   const { movie, movies, isAuth, id } = props;
 
   // eslint-disable-next-line
   if (!movies.find((m) => m.id == id)) {
     return <NotFound />;
-  }
-
-  if (!movie) {
-    return null;
   }
 
   return (
@@ -144,9 +136,7 @@ Film.propTypes = {
   id: PropTypes.string.isRequired,
   reviews: PropTypes.arrayOf(reviewProps),
   getComments: PropTypes.func,
-  getMovieById: PropTypes.func,
   isAuth: PropTypes.bool,
-  resetCurrent: PropTypes.func,
 };
 
 const MapStateToProps = (state) => {
@@ -154,7 +144,6 @@ const MapStateToProps = (state) => {
   return {
     movies: list,
     reviews: comments,
-    movie: state.MOVIES.current,
     isAuth: state.USER.authentication === authStatus.AUTH
   };
 };
@@ -162,10 +151,8 @@ const MapStateToProps = (state) => {
 const MapDistpatchToProps = (dispatch) => {
   return {
     getComments: (movieId) => dispatch(pullComments(movieId)),
-    getMovieById: (movieId) => dispatch(getMovie(movieId)),
-    resetCurrent: () => dispatch(resetCurrentMovie())
   };
 };
 
-export default connect(MapStateToProps, MapDistpatchToProps)(Film);
+export default connect(MapStateToProps, MapDistpatchToProps)(withMovie(Film));
 

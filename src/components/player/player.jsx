@@ -1,25 +1,14 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React from "react";
 
 import { movieProps } from "../../validation/propTypes";
-import { getMovie, resetCurrentMovie } from "../../services/movie-service";
 import { appRoute } from "../../common/constants";
 import VideoPlayer from "../video-player/video-player.jsx";
 import browserHistory from "../../common/browser-history";
+import withMovie from "../hoc/withMovie";
 
 const Player = (props) => {
 
-  useEffect(() => {
-    props.getMovieById(props.id);
-    return () => props.resetCurrent();
-  }, []);
-
   const { movie } = props;
-
-  if (!movie) {
-    return null;
-  }
 
   return (
     <div className="player" style= {{backgroundColor: `#000000`}}>
@@ -46,22 +35,6 @@ const Player = (props) => {
 
 Player.propTypes = {
   movie: movieProps,
-  id: PropTypes.string.isRequired,
-  getMovieById: PropTypes.func,
-  resetCurrent: PropTypes.func,
 };
 
-const MapStateToProps = (state) => {
-  return {
-    movie: state.MOVIES.current,
-  };
-};
-
-const MapDistpatchToProps = (dispatch) => {
-  return {
-    getMovieById: (movieId) => dispatch(getMovie(movieId)),
-    resetCurrent: () => dispatch(resetCurrentMovie())
-  };
-};
-
-export default connect(MapStateToProps, MapDistpatchToProps)(Player);
+export default withMovie(Player);

@@ -1,4 +1,4 @@
-import { initMoviesAction, getMovieAction, getPromoAction, getCommentsAction, resetCurrentMovieAction } from '../store/movies/actions';
+import { initMoviesAction, getPromoAction, getCommentsAction } from '../store/movies/actions';
 import { appRoute } from '../common/constants';
 import serviceApi from './api';
 
@@ -7,14 +7,6 @@ export const initMovies = () => (dispatch, state, api) => (
     .then(({data}) => dispatch(initMoviesAction(data)))
 );
 
-export const getMovie = (id) => (dispatch, state, api) => (
-  api.get(appRoute.FILMS + `/${id}`)
-    .then(({data}) => dispatch(getMovieAction(data)))
-);
-
-export const resetCurrentMovie = () => (dispatch) => (
-  dispatch(resetCurrentMovieAction())
-);
 
 export const getPromoMovie = () => (dispatch, state, api) => (
   api.get(appRoute.PROMO)
@@ -27,5 +19,7 @@ export const pullComments = (id) => (dispatch, state, api) => (
 );
 
 export const sendReveiw = ({ id, rating, comment }) => serviceApi.post(appRoute.COMMENTS + `/${id}`, {rating, comment});
-
 export const setFavorite = (id) => serviceApi.post(appRoute.FAVORITE + `/${id}/1`);
+
+export const getMovie = (id) => serviceApi.get(appRoute.FILMS + `/${id}`);
+
