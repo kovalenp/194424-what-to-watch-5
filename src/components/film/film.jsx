@@ -154,8 +154,6 @@ const MapStateToProps = (state) => {
   return {
     movies: list,
     reviews: comments,
-    /* eslint-disable eqeqeq */
-    // movie: list.find((m) => m.id == ownProps.id),
     movie: state.MOVIES.current,
     isAuth: state.USER.authentication === authStatus.AUTH
   };
