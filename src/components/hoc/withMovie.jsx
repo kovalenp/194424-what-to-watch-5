@@ -1,10 +1,10 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { getMovie } from "../../services/movie-service";
 
-const withMovie = (Component) => {
-  class WithMovie extends PureComponent {
+const withMovie = (RenderComponent) => {
+  class WithMovie extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -17,6 +17,10 @@ const withMovie = (Component) => {
       getMovie(id).then(({ data }) => this.setState({movie: data}));
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+      return this.props.id !== nextProps.id || !this.state.movie || this.state.movie !== nextState.movie;
+    }
+
     render() {
 
       if (!this.state.movie) {
@@ -24,7 +28,7 @@ const withMovie = (Component) => {
       }
 
       return (
-        <Component
+        <RenderComponent
           {...this.props}
           movie={this.state.movie}
         />
