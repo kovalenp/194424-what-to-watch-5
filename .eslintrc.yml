@@ -20,3 +20,4 @@ settings:
 
 rules:
   object-curly-spacing: 0
+  camelcase: 0

@@ -151,5 +151,6 @@ const MapDistpatchToProps = (dispatch) => {
   };
 };
 
+export {Film};
 export default connect(MapStateToProps, MapDistpatchToProps)(withMovie(Film));
 
