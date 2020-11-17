@@ -51,4 +51,5 @@ const MapDistpatchToProps = (dispatch) => {
   };
 };
 
+export {GenresList};
 export default connect(MapStateToProps, MapDistpatchToProps)(GenresList);
