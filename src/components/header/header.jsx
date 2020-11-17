@@ -55,4 +55,5 @@ Header.propTypes = {
   pageTitle: PropTypes.string,
 };
 
+export {Header};
 export default Header;

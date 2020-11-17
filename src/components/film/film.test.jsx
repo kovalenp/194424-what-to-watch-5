@@ -4,10 +4,13 @@ import renderer from "react-test-renderer";
 import { Film } from "./film";
 import movie from "../../../test/mock/movie";
 
-describe(`Should render Filme component correctly`, () => {
+describe(`Should render Film component correctly`, () => {
 
   beforeAll(() => {
-    jest.mock(`../header/header`, () => () => `MockComponent`);
+    jest.mock(`../header/header`, () => ({
+      __esModule: true,
+      default: () => () => <p>MockHeader</p>,
+    }));
   });
 
   it(`for authenticated user`, () => {
