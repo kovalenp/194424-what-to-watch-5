@@ -23,11 +23,17 @@ const createApi = () => {
     const { response } = err;
 
     if (response.status === HttpCode.UNAUTHORIZED) {
-      console.warn(`UNAUTHORIZED response`, response);
+      // eslint-disable-next-line
+      console.warn(`Unauthorized response`, response);
+      throw err;
+
     }
 
     if (response.status === HttpCode.NOT_FOUND) {
-      console.warn(`Asset not found`, response);
+      // eslint-disable-next-line
+      console.warn(`Asset was not found`, response);
+      throw err;
+
     }
     throw err;
   };
