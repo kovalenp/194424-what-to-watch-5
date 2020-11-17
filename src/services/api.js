@@ -43,4 +43,5 @@ const createApi = () => {
   return api;
 };
 
+export { createApi };
 export default createApi();

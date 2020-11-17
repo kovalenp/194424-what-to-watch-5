@@ -13,8 +13,8 @@ import Reviews from "../reviews/reviews";
 import { movieProps } from "../../validation/propTypes";
 import { pullComments, setFavorite } from "../../services/movie-service";
 import { appRoute, authStatus } from "../../common/constants";
-import withActive from "../hoc/withActive";
-import withMovie from "../hoc/withMovie";
+import withActive from "../../hoc/withActive";
+import withMovie from "../../hoc/withMovie";
 import browserHistory from "../../common/browser-history";
 
 const ActiveTabs = withActive(Tabs, `Overview`);

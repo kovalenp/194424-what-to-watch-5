@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import Header from "../header/header";
 import AddNewComment from "../add-new-comment/add-new-comment.jsx";
-import withMovie from "../hoc/withMovie";
+import withMovie from "../../hoc/withMovie";
 import { movieProps } from "../../validation/propTypes";
 
 const AddReview = ({ movie }) => {
