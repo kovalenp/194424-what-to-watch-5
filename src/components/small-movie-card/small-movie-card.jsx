@@ -23,8 +23,14 @@ function SmallMovieCard({
         onClick={ () => browserHistory.push(`/films/${movie.id}`)}
         id={movie.id}
       >
-        <VideoPlayer isMuted={true} isPlaying={isPlaying} video={movie.preview_video_link} poster={movie.preview_image}/>
-        {/* <img src={img.tile} alt={title} width="280" height="175" /> */}
+        <VideoPlayer
+          width="280"
+          height="175"
+          isPlaying={isPlaying}
+          isMuted={true}
+          video={movie.preview_video_link}
+          poster={movie.preview_image}
+        />
       </div>
       <h3 className="small-movie-card__title">
         <Link className="small-movie-card__link" to={`/films/${movie.id}`}>

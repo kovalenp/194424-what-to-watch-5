@@ -62,7 +62,10 @@ class App extends React.Component {
                 id={match.params.id} />
             )}
           />
-          <Route path={appRoute.PLAYER} exact component={Player} />
+          <Route path={appRoute.PLAYER} exact render={({ match }) => (
+            <Player
+              id={match.params.id} />
+          )} />
           <Route component={NotFound} />
         </Switch>
       </Router>

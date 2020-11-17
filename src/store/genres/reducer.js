@@ -7,7 +7,6 @@ const initState = {
 };
 
 const getUniqueGenres = (movies) => {
-  // TODO add reselect here
   const uniqueGenres = movies
     .map((movie) => movie.genre)
     .filter((value, index, self) => self.indexOf(value) === index);

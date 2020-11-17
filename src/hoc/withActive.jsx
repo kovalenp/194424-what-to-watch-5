@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 
-export const withActive = (Component, defaultActive = ``) => {
+const withActive = (Component, defaultActive = ``) => {
   return class Tabs extends PureComponent {
     constructor(props) {
       super(props);
@@ -27,3 +27,5 @@ export const withActive = (Component, defaultActive = ``) => {
     }
   };
 };
+
+export default withActive;

@@ -109,7 +109,8 @@ class AddNewComment extends PureComponent {
             </div>
           </div>
 
-          <div className="add-review__text">
+          <div className="add-review__text"
+            style={{ backgroundColor: `white`}}>
             <textarea
               className="add-review__textarea"
               name="reviewText"
@@ -131,7 +132,7 @@ class AddNewComment extends PureComponent {
 }
 
 AddNewComment.propTypes = {
-  id: PropTypes.string.isRequired
+  id: PropTypes.number.isRequired
 };
 
 export default AddNewComment;

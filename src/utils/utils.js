@@ -8,7 +8,7 @@ export const getMovieCastString = (actors) => {
   } else {
     result += actors
       .toString()
-      .replaceAll(`,`, `, `) + ` and others`;
+      .replace(/,/g, `, `) + ` and others`;
   }
 
   return result;
