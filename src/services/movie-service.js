@@ -1,4 +1,4 @@
-import { initMoviesAction, getPromoAction, getCommentsAction } from '../store/movies/actions';
+import { initMoviesAction, getPromoAction, getCommentsAction, getMovieByIdAction } from '../store/movies/actions';
 import { appRoute } from '../common/constants';
 import serviceApi from './api';
 
@@ -15,7 +15,12 @@ export const getPromoMovie = () => (dispatch, state, api) => (
 
 export const pullComments = (id) => (dispatch, state, api) => (
   api.get(appRoute.COMMENTS + `/${id}`)
-    .then(({data}) => dispatch(getCommentsAction(data)))
+    .then(({ data }) => dispatch(getCommentsAction({ id, data })))
+);
+
+export const getCurrentMovie = (id) => (dispatch, state, api) => (
+  api.get(appRoute.FILMS + `/${id}`)
+    .then(({data}) => dispatch(getMovieByIdAction(data)))
 );
 
 export const sendReveiw = ({ id, rating, comment }) => serviceApi.post(appRoute.COMMENTS + `/${id}`, {rating, comment});

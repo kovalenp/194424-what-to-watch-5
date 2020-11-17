@@ -1,33 +1,42 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-import { getMovie } from "../../services/movie-service";
+import { getCurrentMovie } from "../../services/movie-service";
+import NotFound from "../not-found/not-found";
+
 
 const withMovie = (RenderComponent) => {
   class WithMovie extends PureComponent {
     constructor(props) {
       super(props);
-      this.state = {
-        movie: null,
-      };
     }
 
     componentDidMount() {
-      const { id } = this.props;
-      getMovie(id).then(({ data }) => this.setState({movie: data}));
+      const { getMovie } = this.props;
+      // eslint-disable-next-line
+      if (!this.props.movie || this.props.movie.id != this.props.id) {
+        getMovie(); // we don't pull movie again if movie with this id already present in the store
+      }
 
     }
 
     render() {
 
-      if (!this.state.movie) {
+      // eslint-disable-next-line
+      if (!this.props.movies.find((m) => m.id == this.props.id)) {
+        return <NotFound />; // render not found page for assets not present in the service (e.g. films/abc123abc)
+      }
+
+      // eslint-disable-next-line
+      if (!this.props.movie || this.props.movie.id != this.props.id) {
         return null;
       }
 
       return (
         <RenderComponent
           {...this.props}
-          movie={this.state.movie}
+          movie={this.props.movie}
         />
       );
     }
@@ -35,9 +44,25 @@ const withMovie = (RenderComponent) => {
 
   WithMovie.propTypes = {
     id: PropTypes.string.isRequired,
+    getMovie: PropTypes.func,
+    movie: PropTypes.object,
   };
 
-  return WithMovie;
+  const MapStateToProps = (state) => {
+    return {
+      movie: state.MOVIES.current,
+      movies: state.MOVIES.list,
+
+    };
+  };
+
+  const MapDispatchToProps = (dispatch, ownProps) => {
+    return {
+      getMovie: () => dispatch(getCurrentMovie(ownProps.id))
+    };
+  };
+
+  return connect(MapStateToProps, MapDispatchToProps)(WithMovie);
 };
 
 export default withMovie;

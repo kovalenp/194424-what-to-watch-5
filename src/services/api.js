@@ -4,7 +4,8 @@ const BASE_URL = `https://5.react.pages.academy/wtw`;
 const REQUEST_TIMEOUT = 5000;
 
 const HttpCode = {
-  UNAUTHORIZED: 401
+  UNAUTHORIZED: 401,
+  NOT_FOUND: 404
 };
 
 const createApi = () => {
@@ -22,8 +23,11 @@ const createApi = () => {
     const { response } = err;
 
     if (response.status === HttpCode.UNAUTHORIZED) {
-      // handle unauthorized response
-      throw err;
+      console.warn(`UNAUTHORIZED response`, response);
+    }
+
+    if (response.status === HttpCode.NOT_FOUND) {
+      console.warn(`Asset not found`, response);
     }
     throw err;
   };

@@ -10,8 +10,7 @@ import Tabs from "../tabs/tabs";
 import Overview from "../overview/overview";
 import Details from "../details/details";
 import Reviews from "../reviews/reviews";
-import NotFound from "../not-found/not-found";
-import { movieProps, reviewProps } from "../../validation/propTypes";
+import { movieProps } from "../../validation/propTypes";
 import { pullComments, setFavorite } from "../../services/movie-service";
 import { appRoute, authStatus } from "../../common/constants";
 import withActive from "../hoc/withActive";
@@ -21,22 +20,20 @@ import browserHistory from "../../common/browser-history";
 const ActiveTabs = withActive(Tabs, `Overview`);
 
 const getMoreLikeThisMovies = (movies, genre) => {
-  return movies.filter((movie) => movie.genre === genre).slice(0, 4); // На это странице показывается только 4 фильма
+  return movies.filter((movie) => movie.genre === genre).slice(0, 4); // This page only needs for movies
 };
 
 const Film = (props) => {
 
 
   useEffect(() => {
-    props.getComments(props.id);
+    // eslint-disable-next-line
+    if (props.reviews.list.length < 1 || props.reviews.movie != props.id) {
+      props.getComments(props.id); // we don't pull comments again if comments with this movieId already present in the store
+    }
   }, []);
 
-  const { movie, movies, isAuth, id } = props;
-
-  // eslint-disable-next-line
-  if (!movies.find((m) => m.id == id)) {
-    return <NotFound />;
-  }
+  const { movie, movies, isAuth } = props;
 
   return (
     <>
@@ -111,7 +108,7 @@ const Film = (props) => {
               <ActiveTabs>
                 <Overview label="Overview" movie={movie}/>
                 <Details label="Details" movie={movie} />
-                <Reviews label="Reviews" reviews={props.reviews} />
+                <Reviews label="Reviews" reviews={props.reviews.list} />
               </ActiveTabs>
             </div>
           </div>
@@ -134,7 +131,7 @@ Film.propTypes = {
   movies: PropTypes.arrayOf(movieProps),
   movie: movieProps,
   id: PropTypes.string.isRequired,
-  reviews: PropTypes.arrayOf(reviewProps),
+  reviews: PropTypes.object,
   getComments: PropTypes.func,
   isAuth: PropTypes.bool,
 };
