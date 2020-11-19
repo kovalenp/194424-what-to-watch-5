@@ -13,12 +13,12 @@ import Reviews from "../reviews/reviews";
 import {movieProps} from "../../validation/propTypes";
 import {pullComments} from "../../services/movie-service";
 import MyListButton from "../my-list-button/my-list-button";
-import {appRoute, authStatus} from "../../common/constants";
+import {AppRoute, AuthStatus, TabNames} from "../../common/constants";
 import withActive from "../../hoc/withActive";
 import withMovie from "../../hoc/withMovie";
 import browserHistory from "../../common/browser-history";
 
-const ActiveTabs = withActive(Tabs, `Overview`);
+const ActiveTabs = withActive(Tabs, TabNames.OVERVIEW);
 
 const getMoreLikeThisMovies = (movies, genre) => {
   return movies.filter((movie) => movie.genre === genre).slice(0, 4); // This page only needs for movies
@@ -62,7 +62,7 @@ const Film = (props) => {
                 <button
                   className="btn btn--play movie-card__button"
                   type="button"
-                  onClick={ () => browserHistory.push(appRoute.PLAYER.replace(`:id`, movie.id))}
+                  onClick={ () => browserHistory.push(AppRoute.PLAYER.replace(`:id`, movie.id))}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -94,9 +94,9 @@ const Film = (props) => {
 
             <div className="movie-card__desc">
               <ActiveTabs>
-                <Overview label="Overview" movie={movie}/>
-                <Details label="Details" movie={movie} />
-                <Reviews label="Reviews" reviews={props.reviews.list} />
+                <Overview label={TabNames.OVERVIEW} movie={movie}/>
+                <Details label={TabNames.DETAILS} movie={movie} />
+                <Reviews label={TabNames.REVIEW} reviews={props.reviews.list} />
               </ActiveTabs>
             </div>
           </div>
@@ -128,7 +128,7 @@ const mapStateToProps = (state) => {
   const {comments} = state.MOVIES;
   return {
     reviews: comments,
-    isAuth: state.USER.authentication === authStatus.AUTH
+    isAuth: state.USER.authentication === AuthStatus.AUTH
   };
 };
 

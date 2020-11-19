@@ -1,5 +1,5 @@
 /* eslint-disable new-cap */
-import {ALL_GENRES, ratings} from "../common/constants";
+import {ALL_GENRES, Ratings} from "../common/constants";
 
 export const getMovieCastString = (actors) => {
   let result = ``;
@@ -31,18 +31,18 @@ export const getMoviesByGenre = ({activeGenre, movies}) => {
 
 export const getRatingLevel = (rating) => {
   if (rating >= 0 && rating < 3) {
-    return ratings.BAD;
+    return Ratings.BAD;
   }
   if (rating >= 3 && rating < 5) {
-    return ratings.NORMAL;
+    return Ratings.NORMAL;
   }
   if (rating >= 5 && rating < 8) {
-    return ratings.GOOD;
+    return Ratings.GOOD;
   }
   if (rating >= 8 && rating < 10) {
-    return ratings.VERY_GOOD;
+    return Ratings.VERY_GOOD;
   }
-  return ratings.AWESOME;
+  return Ratings.AWESOME;
 };
 
 

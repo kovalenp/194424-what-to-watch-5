@@ -1,12 +1,12 @@
 export const ALL_GENRES = `All genres`;
 export const NUM_MOVIES_TO_DISPALY = 8;
 
-export const authStatus = {
+export const AuthStatus = {
   AUTH: `AUTH`,
   NOT_AUTH: `NO_AUTH`
 };
 
-export const appRoute = {
+export const AppRoute = {
   LOGIN: `/login`,
   MY_LIST: `/mylist`,
   FILMS: `/films`,
@@ -19,10 +19,16 @@ export const appRoute = {
   HOME: `/`
 };
 
-export const ratings = {
+export const Ratings = {
   BAD: `Bad`,
   NORMAL: `Normal`,
   GOOD: `Good`,
   VERY_GOOD: `Very good`,
   AWESOME: `Awesome`,
+};
+
+export const TabNames = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEW: `Reviews`
 };

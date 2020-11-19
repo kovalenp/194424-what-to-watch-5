@@ -13,63 +13,57 @@ import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
 import {movieProps} from "../../validation/propTypes";
-import {appRoute} from "../../common/constants";
+import {AppRoute} from "../../common/constants";
 
-class App extends React.Component {
-  constructor() {
-    super();
-  }
+const App = (props) => {
 
-  render() {
+  const {movies} = props;
 
-    const {movies} = this.props;
-
-    return (
-      <Router history={browserHistory}>
-        <Switch>
-          <Route path={appRoute.HOME} exact>
-            <Main />
-          </Route>
-          <Route path={appRoute.LOGIN} exact component={SignIn} />
-          <PrivateRoute
-            exact
-            path={appRoute.MY_LIST}
-            render={() => <MyList movies={movies} />}
-          />
-          <PrivateRoute
-            exact
-            path={appRoute.REVIEW}
-            render={({match}) => (<AddReview
+  return (
+    <Router history={browserHistory}>
+      <Switch>
+        <Route path={AppRoute.HOME} exact>
+          <Main />
+        </Route>
+        <Route path={AppRoute.LOGIN} exact component={SignIn} />
+        <PrivateRoute
+          exact
+          path={AppRoute.MY_LIST}
+          render={() => <MyList movies={movies} />}
+        />
+        <PrivateRoute
+          exact
+          path={AppRoute.REVIEW}
+          render={({match}) => (<AddReview
+            id={match.params.id} />
+          )}
+        />
+        <Route
+          path={AppRoute.FILM}
+          exact
+          render={({match}) => (
+            <Film
               id={match.params.id} />
-            )}
-          />
-          <Route
-            path={appRoute.FILM}
-            exact
-            render={({match}) => (
-              <Film
-                id={match.params.id} />
-            )}
-          />
-          <Route path={appRoute.PLAYER} exact render={({match}) => (
-            <Player
-              id={match.params.id} />
-          )} />
-          <Route component={NotFound} />
-        </Switch>
-      </Router>
-    );
-  }
-}
+          )}
+        />
+        <Route path={AppRoute.PLAYER} exact render={({match}) => (
+          <Player
+            id={match.params.id} />
+        )} />
+        <Route component={NotFound} />
+      </Switch>
+    </Router>
+  );
+};
+
+App.propTypes = {
+  movies: PropTypes.arrayOf(movieProps),
+};
 
 const mapStateToProps = (state) => {
   return {
     movies: state.MOVIES.list,
   };
-};
-
-App.propTypes = {
-  movies: PropTypes.arrayOf(movieProps),
 };
 
 export default connect(mapStateToProps, {})(App);

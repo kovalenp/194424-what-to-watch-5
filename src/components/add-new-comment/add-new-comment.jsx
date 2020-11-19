@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import {pullComments} from "../../services/movie-service";
-import {appRoute} from "../../common/constants";
+import {AppRoute} from "../../common/constants";
 import browserHistory from "../../common/browser-history";
 import {sendReveiw} from "../../services/movie-service";
 
@@ -27,7 +27,7 @@ const AddNewComment = (props) => {
     sendReveiw({id: props.id, rating: state.rating, comment: state.reviewText})
       .then(() => setState((prevState) => Object.assign({}, prevState, {isSending: false, reviewText: ``})))
       .then(() => props.getComments(props.id))
-      .then(() => browserHistory.push(appRoute.FILM.replace(`:id`, props.id)));
+      .then(() => browserHistory.push(AppRoute.FILM.replace(`:id`, props.id)));
   };
 
   return (
@@ -131,7 +131,6 @@ AddNewComment.propTypes = {
   id: PropTypes.number.isRequired,
   getComments: PropTypes.func,
 };
-
 
 const mapDispatchToProps = (dispatch) => {
   return {

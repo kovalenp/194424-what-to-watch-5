@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {useSelector} from 'react-redux';
-import {authStatus} from '../../common/constants';
+import {AuthStatus} from '../../common/constants';
 
 const Header = ({pageTitle}) => {
 
-  const isAuth = useSelector((state) => state.USER.authentication === authStatus.AUTH);
+  const isAuth = useSelector((state) => state.USER.authentication === AuthStatus.AUTH);
   const avatar = useSelector((state) => state.USER.avatarUrl);
 
 

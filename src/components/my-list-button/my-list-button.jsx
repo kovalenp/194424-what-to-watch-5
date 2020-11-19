@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {movieProps} from "../../validation/propTypes";
 import {setFavorite, removeFavorite, pullComments, getCurrentMovie} from "../../services/movie-service";
-import {appRoute} from "../../common/constants";
+import {AppRoute} from "../../common/constants";
 import browserHistory from "../../common/browser-history";
 
 const MyListButton = (props) => {
@@ -44,7 +44,7 @@ const MyListButton = (props) => {
       type="button"
       onClick={() => {
         if (!isAuth) {
-          return browserHistory.push(appRoute.LOGIN);
+          return browserHistory.push(AppRoute.LOGIN);
         }
         return performFavoriteAction(movie.id);
       }}

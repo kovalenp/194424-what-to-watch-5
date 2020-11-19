@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {login} from "../../services/user-service";
 
-import {authStatus} from "../../common/constants";
+import {AuthStatus} from "../../common/constants";
 import Footer from "../footer/footer.jsx";
 
 
@@ -107,7 +107,7 @@ SignIn.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    isAuth: state.USER.authentication === authStatus.AUTH
+    isAuth: state.USER.authentication === AuthStatus.AUTH
   };
 };
 

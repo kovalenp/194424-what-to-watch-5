@@ -2,7 +2,7 @@ import MockAdapter from "axios-mock-adapter";
 import api from "../../services/api";
 import {initMovies} from "../../services/movie-service";
 import {MoviesActionsTypes} from "./actions";
-import {appRoute} from "../../common/constants";
+import {AppRoute} from "../../common/constants";
 import movie from "../../../test/mock/movie";
 
 describe(`Async operation in movie reducers works`, () => {
@@ -12,7 +12,7 @@ describe(`Async operation in movie reducers works`, () => {
     const movieLoader = initMovies();
 
     apiMock
-      .onGet(appRoute.FILMS)
+      .onGet(AppRoute.FILMS)
       .reply(200, [{data: [movie]}]);
 
     return movieLoader(dispatch, () => {}, api)

@@ -1,26 +1,26 @@
 import {setAuthAction, setUserDataAction, setFavoritesAction} from '../store/user/actions';
 import {redirectToRoute} from '../store/common/actions';
-import {appRoute} from '../common/constants';
-import {authStatus} from '../common/constants';
+import {AppRoute} from '../common/constants';
+import {AuthStatus} from '../common/constants';
 
 export const checkAuth = () => (dispatch, state, api) => (
-  api.get(appRoute.LOGIN)
+  api.get(AppRoute.LOGIN)
     .then((res) => dispatch(setUserDataAction(res.data)))
-    .then(() => dispatch(setAuthAction({status: authStatus.AUTH})))
+    .then(() => dispatch(setAuthAction({status: AuthStatus.AUTH})))
     .catch(() => {
       return;
     })
 );
 
 export const pullMyFavs = () => (dispatch, state, api) => (
-  api.get(appRoute.FAVORITE)
+  api.get(AppRoute.FAVORITE)
     .then((res) => dispatch(setFavoritesAction(res.data)))
 );
 
 export const login = ({email, password}) => (dispatch, state, api) => (
-  api.post(appRoute.LOGIN, {email, password})
+  api.post(AppRoute.LOGIN, {email, password})
     .then((res) => dispatch(setUserDataAction(res.data)))
-    .then(() => dispatch(setAuthAction({status: authStatus.AUTH})))
+    .then(() => dispatch(setAuthAction({status: AuthStatus.AUTH})))
     .then(() => dispatch(redirectToRoute(`/`)))
     .catch(() => {
       return;

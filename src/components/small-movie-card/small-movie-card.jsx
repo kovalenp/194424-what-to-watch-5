@@ -9,6 +9,8 @@ import withActive from "../../hoc/withActive";
 
 let timeout;
 
+const PLAYBACK_ON_HOVER_TIMEOUT = 1000;
+
 function SmallMovieCard(props) {
 
   const {active, onActiveChange, movie} = props;
@@ -21,7 +23,7 @@ function SmallMovieCard(props) {
   const handlerOnEnter = (e) => {
     e.preventDefault();
     e.persist();
-    timeout = setTimeout(() => onActiveChange(e, e.target.id), 1000);
+    timeout = setTimeout(() => onActiveChange(e, e.target.id), PLAYBACK_ON_HOVER_TIMEOUT);
   };
 
   const handlerOnLeave = (e) => {

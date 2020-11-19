@@ -7,7 +7,7 @@ import Footer from "../footer/footer";
 import MovieCatalog from "../movie-catalog/movie-catalog";
 import {movieProps} from "../../validation/propTypes";
 import browserHistory from "../../common/browser-history";
-import {appRoute, authStatus} from "../../common/constants";
+import {AppRoute, AuthStatus} from "../../common/constants";
 import MyListButton from "../my-list-button/my-list-button";
 
 const Main = (props) => {
@@ -50,7 +50,7 @@ const Main = (props) => {
                 <button
                   className="btn btn--play movie-card__button"
                   type="button"
-                  onClick={ () => browserHistory.push(appRoute.PLAYER.replace(`:id`, promoMovie.id))}
+                  onClick={ () => browserHistory.push(AppRoute.PLAYER.replace(`:id`, promoMovie.id))}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -80,7 +80,7 @@ Main.propTypes = {
 const mapStateToProps = (state) => {
   return {
     promoMovie: state.MOVIES.current,
-    isAuth: state.USER.authentication === authStatus.AUTH
+    isAuth: state.USER.authentication === AuthStatus.AUTH
   };
 };
 

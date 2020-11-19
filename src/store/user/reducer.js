@@ -1,8 +1,8 @@
 import {UserActionsTypes} from "./actions";
-import {authStatus} from "../../common/constants";
+import {AuthStatus} from "../../common/constants";
 
 const initState = {
-  authentication: authStatus.NOT_AUTH, favorites: []
+  authentication: AuthStatus.NOT_AUTH, favorites: []
 };
 
 const reducer = (state = initState, action) => {
