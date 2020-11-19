@@ -57,7 +57,7 @@ const Main = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <MyListButton movie={promoMovie} isAuth={isAuth}/>
+                <MyListButton movie={promoMovie} isAuth={isAuth} />
               </div>
             </div>
           </div>
@@ -79,7 +79,7 @@ Main.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    promoMovie: state.MOVIES.current,
+    promoMovie: state.MOVIES.promo,
     isAuth: state.USER.authentication === AuthStatus.AUTH
   };
 };

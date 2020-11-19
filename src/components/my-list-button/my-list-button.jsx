@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {movieProps} from "../../validation/propTypes";
-import {setFavorite, removeFavorite, pullComments, getCurrentMovie} from "../../services/movie-service";
+import {setFavorite, removeFavorite, pullComments, getCurrentMovie, getPromoMovie} from "../../services/movie-service";
 import {AppRoute} from "../../common/constants";
 import browserHistory from "../../common/browser-history";
 
 const MyListButton = (props) => {
 
-  const {movie, isAuth} = props;
+  const {movie, isAuth, promo} = props;
 
   const isFavorite = () => movie.is_favorite;
 
@@ -28,15 +28,21 @@ const MyListButton = (props) => {
     }
   };
 
-
-  const performFavoriteAction = (id) => {
-    if (!isFavorite()) {
-      return setFavorite(id).then(() => props.getMovie(id));
+  const updateMovieState = (id) => {
+    if (promo && promo.id === movie.id) {
+      return props.getMovie(id).then(() => props.getPromo());
     } else {
-      return removeFavorite(id).then(() => props.getMovie(id));
+      return props.getMovie(id);
     }
   };
 
+  const performFavoriteAction = (id) => {
+    if (!isFavorite()) {
+      return setFavorite(id).then(() => updateMovieState(id));
+    } else {
+      return removeFavorite(id).then(() => updateMovieState(id));
+    }
+  };
 
   return (
     <button
@@ -57,15 +63,24 @@ const MyListButton = (props) => {
 
 MyListButton.propTypes = {
   movie: movieProps,
+  promo: movieProps,
   isAuth: PropTypes.bool,
   getMovie: PropTypes.func,
+  getPromo: PropTypes.func,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    promo: state.MOVIES.promo
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getComments: (movieId) => dispatch(pullComments(movieId)),
-    getMovie: (id) => dispatch(getCurrentMovie(id))
+    getMovie: (id) => dispatch(getCurrentMovie(id)),
+    getPromo: () => dispatch(getPromoMovie())
   };
 };
 
-export default connect(null, mapDispatchToProps)(MyListButton);
+export default connect(mapStateToProps, mapDispatchToProps)(MyListButton);
