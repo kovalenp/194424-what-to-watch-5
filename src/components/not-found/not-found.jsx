@@ -1,7 +1,11 @@
 import React from "react";
+import browserHistory from "../../common/browser-history";
 
 const NotFound = () => (
-  <h1>404 Page Not Found</h1>
+  <div>
+    <h1>404 Page Not Found</h1>
+    <button onClick={() => browserHistory.go(-2)}>Back</button>
+  </div>
 );
 
 export default NotFound;

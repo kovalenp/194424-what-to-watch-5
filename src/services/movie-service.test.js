@@ -1,9 +1,9 @@
 import MockAdapter from "axios-mock-adapter";
-import api from "../../services/api";
-import {initMovies} from "../../services/movie-service";
-import {MoviesActionsTypes} from "./actions";
-import {AppRoute} from "../../common/constants";
-import movie from "../../../test/mock/movie";
+import api from "./api";
+import {initMovies} from "./movie-service";
+import {MoviesActionsTypes} from "../store/movies/actions";
+import {AppRoute} from "../common/constants";
+import movie from "../../test/mock/movie";
 
 describe(`Async operation in movie reducers works`, () => {
   it(`when initMovie call is made`, () => {
