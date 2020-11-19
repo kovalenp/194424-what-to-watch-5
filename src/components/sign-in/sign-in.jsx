@@ -1,10 +1,10 @@
-import React, { PureComponent, createRef } from "react";
-import { Link, Redirect} from "react-router-dom";
+import React, {PureComponent, createRef} from "react";
+import {Link, Redirect} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {login} from "../../services/user-service";
 
-import { authStatus } from "../../common/constants";
+import {authStatus} from "../../common/constants";
 import Footer from "../footer/footer.jsx";
 
 
@@ -115,5 +115,5 @@ const mapDispatchToProps = (dispatch) => ({
   onSubmit: (authData) => dispatch(login(authData))
 });
 
-export { SignIn };
+export {SignIn};
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

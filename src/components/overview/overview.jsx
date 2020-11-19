@@ -1,11 +1,11 @@
 import React from "react";
-import { getMovieCastString, getRatingLevel} from "../../utils/utils";
+import {getMovieCastString, getRatingLevel} from "../../utils/utils";
 
-import { movieProps } from "../../validation/propTypes";
+import {movieProps} from "../../validation/propTypes";
 
 const Overview = (props) => {
 
-  const { movie } = props;
+  const {movie} = props;
 
   return (
     <>

@@ -1,8 +1,8 @@
-import React, { PureComponent } from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
-import { getCurrentMovie } from "../services/movie-service";
+import {getCurrentMovie} from "../services/movie-service";
 import NotFound from "../components/not-found/not-found";
 
 
@@ -13,7 +13,7 @@ const withMovie = (RenderComponent) => {
     }
 
     componentDidMount() {
-      const { getMovie } = this.props;
+      const {getMovie} = this.props;
       // eslint-disable-next-line
       if (!this.props.movie || this.props.movie.id != this.props.id) {
         getMovie(); // we don't pull movie again if movie with this id already present in the store

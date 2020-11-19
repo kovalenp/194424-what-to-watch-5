@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
@@ -10,9 +10,9 @@ import Tabs from "../tabs/tabs";
 import Overview from "../overview/overview";
 import Details from "../details/details";
 import Reviews from "../reviews/reviews";
-import { movieProps } from "../../validation/propTypes";
-import { pullComments, setFavorite } from "../../services/movie-service";
-import { appRoute, authStatus } from "../../common/constants";
+import {movieProps} from "../../validation/propTypes";
+import {pullComments, setFavorite} from "../../services/movie-service";
+import {appRoute, authStatus} from "../../common/constants";
 import withActive from "../../hoc/withActive";
 import withMovie from "../../hoc/withMovie";
 import browserHistory from "../../common/browser-history";
@@ -33,7 +33,7 @@ const Film = (props) => {
     }
   }, []);
 
-  const { movie, movies, isAuth } = props;
+  const {movie, movies, isAuth} = props;
 
   return (
     <>
@@ -73,11 +73,13 @@ const Film = (props) => {
                   className="btn btn--list movie-card__button"
                   type="button"
                   onClick={() => {
-                    // eslint-disable-next-line
-                    (isAuth) ? setFavorite(movie.id) : browserHistory.push(appRoute.LOGIN);
+                    if (isAuth) {
+                      return setFavorite(movie.id);
+                    } else {
+                      return browserHistory.push(appRoute.LOGIN);
+                    }
                   }}
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
+                ><svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
@@ -137,7 +139,7 @@ Film.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { list, comments} = state.MOVIES;
+  const {list, comments} = state.MOVIES;
   return {
     movies: list,
     reviews: comments,

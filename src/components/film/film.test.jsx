@@ -1,9 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { MemoryRouter } from 'react-router-dom';
+import {MemoryRouter} from 'react-router-dom';
 import configureMockStore from 'redux-mock-store';
-import { Provider } from "react-redux";
-import { Film } from "./film";
+import {Provider} from "react-redux";
+import {Film} from "./film";
 import movie from "../../../test/mock/movie";
 
 const mockStore = configureMockStore();
@@ -13,7 +13,7 @@ describe(`Should render Film component correctly`, () => {
   let store;
 
   beforeEach(() => {
-    store = mockStore({ USER: { authentication: `AUTH` } });
+    store = mockStore({USER: {authentication: `AUTH`}});
   });
 
   it(`for authenticated user`, () => {
@@ -26,7 +26,7 @@ describe(`Should render Film component correctly`, () => {
                 movie={movie}
                 movies={[movie]}
                 isAuth={true}
-                reviews={{ list: [] }}
+                reviews={{list: []}}
                 getComments={() => { } }
               />
             </MemoryRouter>
@@ -46,7 +46,7 @@ describe(`Should render Film component correctly`, () => {
                 movie={movie}
                 movies={[movie]}
                 isAuth={false}
-                reviews={{ list: [] }}
+                reviews={{list: []}}
                 getComments={() => { } }
               />
             </MemoryRouter>

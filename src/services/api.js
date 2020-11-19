@@ -20,7 +20,7 @@ const createApi = () => {
 
   const onFail = (err) => {
 
-    const { response } = err;
+    const {response} = err;
 
     if (response.status === HttpCode.UNAUTHORIZED) {
       // eslint-disable-next-line
@@ -43,5 +43,5 @@ const createApi = () => {
   return api;
 };
 
-export { createApi };
+export {createApi};
 export default createApi();

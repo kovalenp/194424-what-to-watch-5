@@ -1,7 +1,7 @@
 import React from "react";
-import { Router, Route, Switch } from "react-router-dom";
+import {Router, Route, Switch} from "react-router-dom";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
 import browserHistory from "../../common/browser-history";
 import PrivateRoute from "../../common/private-route";
@@ -12,8 +12,8 @@ import MyList from "../my-list/my-list";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
-import { movieProps } from "../../validation/propTypes";
-import { appRoute } from "../../common/constants";
+import {movieProps} from "../../validation/propTypes";
+import {appRoute} from "../../common/constants";
 
 class App extends React.Component {
   constructor() {
@@ -22,7 +22,7 @@ class App extends React.Component {
 
   render() {
 
-    const { movies } = this.props;
+    const {movies} = this.props;
 
     return (
       <Router history={browserHistory}>
@@ -39,19 +39,19 @@ class App extends React.Component {
           <PrivateRoute
             exact
             path={appRoute.REVIEW}
-            render={({ match }) => (<AddReview
+            render={({match}) => (<AddReview
               id={match.params.id} />
             )}
           />
           <Route
             path={appRoute.FILM}
             exact
-            render={({ match }) => (
+            render={({match}) => (
               <Film
                 id={match.params.id} />
             )}
           />
-          <Route path={appRoute.PLAYER} exact render={({ match }) => (
+          <Route path={appRoute.PLAYER} exact render={({match}) => (
             <Player
               id={match.params.id} />
           )} />

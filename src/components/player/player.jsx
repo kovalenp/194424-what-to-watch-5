@@ -1,14 +1,14 @@
 import React from "react";
 
-import { movieProps } from "../../validation/propTypes";
-import { appRoute } from "../../common/constants";
+import {movieProps} from "../../validation/propTypes";
+import {appRoute} from "../../common/constants";
 import VideoPlayer from "../video-player/video-player.jsx";
 import browserHistory from "../../common/browser-history";
 import withMovie from "../../hoc/withMovie";
 
 const Player = (props) => {
 
-  const { movie } = props;
+  const {movie} = props;
 
   return (
     <div className="player" style= {{backgroundColor: `#000000`}}>
@@ -25,7 +25,7 @@ const Player = (props) => {
       <button
         type="button"
         className="player__exit"
-        style={{ top: `12px` }}
+        style={{top: `12px`}}
         onClick={ () => browserHistory.push(appRoute.FILM.replace(`:id`, movie.id))}>
       Exit
       </button>

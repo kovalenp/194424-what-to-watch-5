@@ -1,10 +1,10 @@
 import React from "react";
 
-import { movieProps } from "../../validation/propTypes";
+import {movieProps} from "../../validation/propTypes";
 
 const Details = (props) => {
 
-  const { movie } = props;
+  const {movie} = props;
 
   return (
     <>
@@ -16,9 +16,9 @@ const Details = (props) => {
           </p>
           <div className="movie-card__details-item">
             <strong className="movie-card__details-name">Starring</strong>
-            <ul className="movie-card__details-value" style={{ padding: 0 }}>
+            <ul className="movie-card__details-value" style={{padding: 0}}>
               {movie.starring.map((actor, i) => (
-                <li style={{ listStyleType: `none` }} key={i}>{actor}</li>
+                <li style={{listStyleType: `none`}} key={i}>{actor}</li>
               ))}
             </ul>
           </div>

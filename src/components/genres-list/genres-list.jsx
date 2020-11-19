@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
-import { setGenre } from "../../store/genres/actions";
+import {setGenre} from "../../store/genres/actions";
 
 const GenresList = (props) => {
 
-  const { activeGenre, genres, selectGenre } = props;
+  const {activeGenre, genres, selectGenre} = props;
 
   const handleOnClick = (e, genre) => {
     e.preventDefault();
@@ -37,7 +37,7 @@ GenresList.propTypes = {
 
 const mapStateToProps = (state) => {
 
-  const { activeGenre, list} = state.GENRES;
+  const {activeGenre, list} = state.GENRES;
 
   return {
     activeGenre,

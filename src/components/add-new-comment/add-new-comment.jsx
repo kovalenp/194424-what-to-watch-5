@@ -1,7 +1,7 @@
-import React, { PureComponent } from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
-import { sendReveiw } from "../../services/movie-service";
+import {sendReveiw} from "../../services/movie-service";
 
 class AddNewComment extends PureComponent {
   constructor(props) {
@@ -18,15 +18,15 @@ class AddNewComment extends PureComponent {
   }
 
   handleInputChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({[e.target.name]: e.target.value});
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({ isSending: true });
-    sendReveiw({ id: this.props.id, rating: this.state.rating, comment: this.state.reviewText })
+    this.setState({isSending: true});
+    sendReveiw({id: this.props.id, rating: this.state.rating, comment: this.state.reviewText})
       .then(() => {
-        this.setState({ isSending: false, reviewText: `` });
+        this.setState({isSending: false, reviewText: ``});
       }
 
       );
@@ -110,7 +110,7 @@ class AddNewComment extends PureComponent {
           </div>
 
           <div className="add-review__text"
-            style={{ backgroundColor: `white`}}>
+            style={{backgroundColor: `white`}}>
             <textarea
               className="add-review__textarea"
               name="reviewText"

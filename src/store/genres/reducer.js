@@ -1,5 +1,5 @@
-import { GenresActionsTypes } from "./actions";
-import { ALL_GENRES } from "../../common/constants";
+import {GenresActionsTypes} from "./actions";
+import {ALL_GENRES} from "../../common/constants";
 
 const initState = {
   activeGenre: ALL_GENRES,
@@ -16,9 +16,9 @@ const getUniqueGenres = (movies) => {
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case GenresActionsTypes.SET_ACTIVE_GENRE:
-      return Object.assign({}, state, { activeGenre: action.payload});
+      return Object.assign({}, state, {activeGenre: action.payload});
     case GenresActionsTypes.GET_ALL_GENRES:
-      return Object.assign({}, state, { list: getUniqueGenres(action.payload) });
+      return Object.assign({}, state, {list: getUniqueGenres(action.payload)});
     default:
       return state;
   }

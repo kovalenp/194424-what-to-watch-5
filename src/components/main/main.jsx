@@ -1,18 +1,18 @@
 import React from "react";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import MovieCatalog from "../movie-catalog/movie-catalog";
-import { movieProps } from "../../validation/propTypes";
+import {movieProps} from "../../validation/propTypes";
 import browserHistory from "../../common/browser-history";
-import { appRoute, authStatus } from "../../common/constants";
-import { setFavorite } from "../../services/movie-service";
+import {appRoute, authStatus} from "../../common/constants";
+import {setFavorite} from "../../services/movie-service";
 
 const Main = (props) => {
 
-  const { promoMovie, isAuth } = props;
+  const {promoMovie, isAuth} = props;
 
   return (
     <>

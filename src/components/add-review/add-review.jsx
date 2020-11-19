@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import Header from "../header/header";
 import AddNewComment from "../add-new-comment/add-new-comment.jsx";
 import withMovie from "../../hoc/withMovie";
-import { movieProps } from "../../validation/propTypes";
+import {movieProps} from "../../validation/propTypes";
 
-const AddReview = ({ movie }) => {
+const AddReview = ({movie}) => {
 
   return (
     <section className="movie-card movie-card--full" style={{backgroundColor: movie.background_color}}>

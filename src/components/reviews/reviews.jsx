@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { reviewProps } from "../../validation/propTypes";
-import { formatDate } from "../../utils/utils";
+import {reviewProps} from "../../validation/propTypes";
+import {formatDate} from "../../utils/utils";
 
 const Reviews = (props) => {
 
-  const { reviews } = props;
+  const {reviews} = props;
 
   /**
  * Represents a book.
@@ -15,7 +15,7 @@ const Reviews = (props) => {
  */
   const getColumnsData = (arr) => {
     const chunk = Math.round(arr.length / 2); // split all reviews in two columns
-    return { first: arr.slice(0, chunk), second: arr.slice(chunk) };
+    return {first: arr.slice(0, chunk), second: arr.slice(chunk)};
   };
 
   const renderColumn = (data) => (
@@ -36,7 +36,7 @@ const Reviews = (props) => {
     </div>
   );
 
-  const { first, second } = getColumnsData(reviews);
+  const {first, second} = getColumnsData(reviews);
 
   return (
     <div className="movie-card__reviews movie-card__row">

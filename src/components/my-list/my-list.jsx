@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { pullMyFavs } from "../../services/user-service";
+import {connect} from "react-redux";
+import {pullMyFavs} from "../../services/user-service";
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import MoviesList from "../movies-list/movies-list.jsx";
-import { movieProps } from "../../validation/propTypes";
+import {movieProps} from "../../validation/propTypes";
 
 const MyList = (props) => {
 

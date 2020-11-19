@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 
 import SmallMovieCard from "../small-movie-card/small-movie-card";
-import { movieProps } from "../../validation/propTypes";
+import {movieProps} from "../../validation/propTypes";
 import withActive from "../../hoc/withActive";
 
 let timeout;
 
 const MoviesList = (props) => {
 
-  const { active, onActiveChange } = props;
+  const {active, onActiveChange} = props;
 
   useEffect(() => {
     return () => clearTimeout(timeout);

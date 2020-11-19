@@ -1,4 +1,4 @@
-import { ALL_GENRES, ratings } from "../common/constants";
+import {ALL_GENRES, ratings} from "../common/constants";
 
 export const getMovieCastString = (actors) => {
   let result = ``;
@@ -15,7 +15,7 @@ export const getMovieCastString = (actors) => {
 };
 
 
-export const getMoviesByGenre = ({ activeGenre, movies }) => {
+export const getMoviesByGenre = ({activeGenre, movies}) => {
 
   if (!movies || !activeGenre) {
     return [];
@@ -47,7 +47,7 @@ export const getRatingLevel = (rating) => {
 
 export const formatDate = (timestamp) => {
   const date = Date.parse(timestamp);
-  const options = { month: `long`, day: `numeric`, year: `numeric` };
+  const options = {month: `long`, day: `numeric`, year: `numeric`};
   // eslint-disable-next-line
   return Intl.DateTimeFormat(`en-US`, options).format(date);
 };

@@ -1,4 +1,4 @@
-import React, { Component, createRef } from "react";
+import React, {Component, createRef} from "react";
 import PropTypes from "prop-types";
 
 
@@ -19,7 +19,7 @@ class VideoPlayer extends Component {
 
   render() {
 
-    const { video, poster, isMuted, withControls, width, height } = this.props;
+    const {video, poster, isMuted, withControls, width, height} = this.props;
 
     return (
       <video

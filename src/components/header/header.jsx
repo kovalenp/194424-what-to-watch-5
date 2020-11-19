@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
-import { authStatus } from '../../common/constants';
+import {Link} from "react-router-dom";
+import {useSelector} from 'react-redux';
+import {authStatus} from '../../common/constants';
 
-const Header = ({ pageTitle }) => {
+const Header = ({pageTitle}) => {
 
   const isAuth = useSelector((state) => state.USER.authentication === authStatus.AUTH);
-  const avatar = useSelector((state) => state.USER.avatar_url);
+  const avatar = useSelector((state) => state.USER.avatarUrl);
 
 
   let userBlock = (

@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, {PureComponent} from "react";
 
 const withActive = (Component, defaultActive = ``) => {
   return class Tabs extends PureComponent {
@@ -13,7 +13,7 @@ const withActive = (Component, defaultActive = ``) => {
 
     handleActiveChange(e, active) {
       e.preventDefault();
-      this.setState({ active });
+      this.setState({active});
     }
 
     render() {

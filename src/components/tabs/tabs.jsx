@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 
 const Tabs = (props) => {
 
-  const { children } = props;
+  const {children} = props;
 
   return (
       <>
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
           {children.map((child, i) => {
-            const { label } = child.props;
+            const {label} = child.props;
 
             return (
               <li

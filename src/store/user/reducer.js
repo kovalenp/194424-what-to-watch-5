@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import {UserActionsTypes} from "./actions";
 import {authStatus} from "../../common/constants";
 
@@ -9,10 +8,10 @@ const initState = {
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case UserActionsTypes.SET_USER_DATA:
-      const {avatar_url, name} = action.payload;
-      return Object.assign({}, state, {avatar_url, name});
+      const {avatarUrl, name} = action.payload;
+      return Object.assign({}, state, {avatarUrl, name});
     case UserActionsTypes.SET_AUTH:
-      return Object.assign({}, state, {authentication: action.payload.status, avatar_url: action.payload.data.avatar_url});
+      return Object.assign({}, state, {authentication: action.payload.status});
     case UserActionsTypes.SET_FAVORITES:
       return Object.assign({}, state, {favorites: action.payload});
     default:

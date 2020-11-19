@@ -2,8 +2,8 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import { GenresList } from "./genres-list";
-import { genres, activeGenre } from "../../../test/mock/genres";
+import {GenresList} from "./genres-list";
+import {genres, activeGenre} from "../../../test/mock/genres";
 
 Enzyme.configure({
   adapter: new Adapter(),
