@@ -58,7 +58,7 @@ MovieCatalog.propTypes = {
 };
 
 
-const MapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     movies: state.MOVIES.list,
     activeGenre: state.GENRES.activeGenre,
@@ -66,4 +66,4 @@ const MapStateToProps = (state) => {
   };
 };
 
-export default connect(MapStateToProps, null)(MovieCatalog);
+export default connect(mapStateToProps, null)(MovieCatalog);

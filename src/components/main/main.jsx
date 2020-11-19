@@ -89,11 +89,11 @@ Main.propTypes = {
   isAuth: PropTypes.bool,
 };
 
-const MapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     promoMovie: state.MOVIES.promo,
     isAuth: state.USER.authentication === authStatus.AUTH
   };
 };
 
-export default connect(MapStateToProps, null)(Main);
+export default connect(mapStateToProps, null)(Main);

@@ -35,7 +35,7 @@ GenresList.propTypes = {
   selectGenre: PropTypes.func,
 };
 
-const MapStateToProps = (state) => {
+const mapStateToProps = (state) => {
 
   const { activeGenre, list} = state.GENRES;
 
@@ -45,11 +45,11 @@ const MapStateToProps = (state) => {
   };
 };
 
-const MapDistpatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     selectGenre: (genre) => dispatch(setGenre(genre)),
   };
 };
 
 export {GenresList};
-export default connect(MapStateToProps, MapDistpatchToProps)(GenresList);
+export default connect(mapStateToProps, mapDispatchToProps)(GenresList);

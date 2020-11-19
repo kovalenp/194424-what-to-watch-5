@@ -48,7 +48,7 @@ const withMovie = (RenderComponent) => {
     movie: PropTypes.object,
   };
 
-  const MapStateToProps = (state) => {
+  const mapStateToProps = (state) => {
     return {
       movie: state.MOVIES.current,
       movies: state.MOVIES.list,
@@ -56,13 +56,13 @@ const withMovie = (RenderComponent) => {
     };
   };
 
-  const MapDispatchToProps = (dispatch, ownProps) => {
+  const mapDispatchToProps = (dispatch, ownProps) => {
     return {
       getMovie: () => dispatch(getCurrentMovie(ownProps.id))
     };
   };
 
-  return connect(MapStateToProps, MapDispatchToProps)(WithMovie);
+  return connect(mapStateToProps, mapDispatchToProps)(WithMovie);
 };
 
 export default withMovie;

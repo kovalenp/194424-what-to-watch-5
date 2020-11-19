@@ -136,7 +136,7 @@ Film.propTypes = {
   isAuth: PropTypes.bool,
 };
 
-const MapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   const { list, comments} = state.MOVIES;
   return {
     movies: list,
@@ -145,12 +145,12 @@ const MapStateToProps = (state) => {
   };
 };
 
-const MapDistpatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getComments: (movieId) => dispatch(pullComments(movieId)),
   };
 };
 
 export {Film};
-export default connect(MapStateToProps, MapDistpatchToProps)(withMovie(Film));
+export default connect(mapStateToProps, mapDispatchToProps)(withMovie(Film));
 

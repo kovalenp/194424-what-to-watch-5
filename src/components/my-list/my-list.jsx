@@ -34,16 +34,16 @@ MyList.propTypes = {
   getMyFavs: PropTypes.func,
 };
 
-const MapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     myFavorites: state.USER.favorites
   };
 };
 
-const MapDistpatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getMyFavs: () => dispatch(pullMyFavs()),
   };
 };
 
-export default connect(MapStateToProps, MapDistpatchToProps)(MyList);
+export default connect(mapStateToProps, mapDispatchToProps)(MyList);

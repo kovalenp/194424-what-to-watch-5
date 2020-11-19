@@ -15,17 +15,6 @@ import NotFound from "../not-found/not-found";
 import { movieProps } from "../../validation/propTypes";
 import { appRoute } from "../../common/constants";
 
-/**
- * Represents a book.
- * @param {Array} reviews - List of all reviews from API.
- * @param {string} id - Specific MovieId we are looking reveiws for.
- * @return {Array} - List of reviews for movie (empty array if there are no reviews)
- */
-// const _getReviewsForMovieId = (reviews, id) => {
-//   const result = reviews.find((review) => review.movie.toString() === id);
-//   return (result !== undefined) ? result.reviews : [];
-// };
-
 class App extends React.Component {
   constructor() {
     super();
@@ -73,7 +62,7 @@ class App extends React.Component {
   }
 }
 
-const MapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     movies: state.MOVIES.list,
   };
@@ -83,4 +72,4 @@ App.propTypes = {
   movies: PropTypes.arrayOf(movieProps),
 };
 
-export default connect(MapStateToProps, {})(App);
+export default connect(mapStateToProps, {})(App);
