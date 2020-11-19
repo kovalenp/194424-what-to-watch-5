@@ -15,7 +15,11 @@ const AddNewComment = (props) => {
     isSending: false,
   });
 
-  const handleInputChange = (e) => setState((prevState) => Object.assign({}, prevState, {[e.target.name]: e.target.value}));
+  const handleInputChange = (e) => {
+    const key = e.target.name;
+    const value = e.target.value;
+    setState((prevState) => Object.assign({}, prevState, {[key]: value}));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -110,7 +114,7 @@ const AddNewComment = (props) => {
             id="reviewText"
             placeholder="Review text"
             value={state.reviewText}
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange(e)}
           ></textarea>
           <div className="add-review__submit">
             <button className="add-review__btn" type="submit" disabled={!(state.reviewText.length > 50) && !(state.isSending)}>
