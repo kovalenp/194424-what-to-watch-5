@@ -12,14 +12,6 @@ const withMovie = (RenderComponent) => {
       super(props);
     }
 
-    componentDidMount() {
-      const {getMovie} = this.props;
-      if (!this.props.movie || this.props.movie.id !== parseInt(this.props.id, 10)) {
-        getMovie(); // we don't pull movie again if movie with this id already present in the store
-      }
-
-    }
-
     render() {
 
 
@@ -28,6 +20,8 @@ const withMovie = (RenderComponent) => {
       }
 
       if (!this.props.movie || this.props.movie.id !== parseInt(this.props.id, 10)) {
+        const {getMovie} = this.props;
+        getMovie();
         return null;
       }
 
@@ -51,7 +45,6 @@ const withMovie = (RenderComponent) => {
     return {
       movie: state.MOVIES.current,
       movies: state.MOVIES.list,
-
     };
   };
 

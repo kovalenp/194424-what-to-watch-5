@@ -26,6 +26,7 @@ class VideoPlayer extends Component {
         ref={this.videoRef}
         muted={isMuted || false}
         controls={withControls || false}
+        preload={`none`}
         src={video}
         poster={poster || ``}
         width={width}

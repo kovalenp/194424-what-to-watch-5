@@ -1,32 +1,47 @@
-import React from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
 import VideoPlayer from "../video-player/video-player.jsx";
 import {movieProps} from "../../validation/propTypes";
 import browserHistory from "../../common/browser-history";
+import withActive from "../../hoc/withActive";
+
+let timeout;
+
+function SmallMovieCard(props) {
+
+  const {active, onActiveChange, movie} = props;
 
 
-function SmallMovieCard({
-  movie,
-  isPlaying,
-  onMouseEnterHandler,
-  onMouseLeaveHandler,
-}) {
+  useEffect(() => {
+    return () => clearTimeout(timeout);
+  }, []);
+
+  const handlerOnEnter = (e) => {
+    e.preventDefault();
+    e.persist();
+    timeout = setTimeout(() => onActiveChange(e, e.target.id), 1000);
+  };
+
+  const handlerOnLeave = (e) => {
+    clearTimeout(timeout);
+    onActiveChange(e, null);
+  };
 
   return (
     <article className="small-movie-card catalog__movies-card">
       <div
         className="small-movie-card__image"
-        onMouseEnter={onMouseEnterHandler}
-        onMouseLeave={onMouseLeaveHandler}
+        onMouseEnter={(e) => handlerOnEnter(e)}
+        onMouseLeave={(e) => handlerOnLeave(e)}
         onClick={ () => browserHistory.push(`/films/${movie.id}`)}
         id={movie.id}
       >
         <VideoPlayer
           width="280"
           height="175"
-          isPlaying={isPlaying}
+          isPlaying={parseInt(active, 10) === parseInt(movie.id, 10)}
           isMuted={true}
           video={movie.preview_video_link}
           poster={movie.preview_image}
@@ -43,9 +58,8 @@ function SmallMovieCard({
 
 SmallMovieCard.propTypes = {
   movie: movieProps,
-  isPlaying: PropTypes.bool.isRequired,
-  onMouseEnterHandler: PropTypes.func.isRequired,
-  onMouseLeaveHandler: PropTypes.func.isRequired,
+  active: PropTypes.string,
+  onActiveChange: PropTypes.func.isRequired,
 };
 
-export default SmallMovieCard;
+export default withActive(SmallMovieCard);
