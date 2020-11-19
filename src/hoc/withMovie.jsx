@@ -14,8 +14,7 @@ const withMovie = (RenderComponent) => {
 
     componentDidMount() {
       const {getMovie} = this.props;
-      // eslint-disable-next-line
-      if (!this.props.movie || this.props.movie.id != this.props.id) {
+      if (!this.props.movie || this.props.movie.id !== parseInt(this.props.id, 10)) {
         getMovie(); // we don't pull movie again if movie with this id already present in the store
       }
 
@@ -23,13 +22,12 @@ const withMovie = (RenderComponent) => {
 
     render() {
 
-      // eslint-disable-next-line
-      if (!this.props.movies.find((m) => m.id == this.props.id)) {
+
+      if (!this.props.movies.find((m) => m.id !== parseInt(this.props.id, 10))) {
         return <NotFound />; // render not found page for assets not present in the service (e.g. films/abc123abc)
       }
 
-      // eslint-disable-next-line
-      if (!this.props.movie || this.props.movie.id != this.props.id) {
+      if (!this.props.movie || this.props.movie.id !== parseInt(this.props.id, 10)) {
         return null;
       }
 
@@ -46,6 +44,7 @@ const withMovie = (RenderComponent) => {
     id: PropTypes.string.isRequired,
     getMovie: PropTypes.func,
     movie: PropTypes.object,
+    movies: PropTypes.array,
   };
 
   const mapStateToProps = (state) => {

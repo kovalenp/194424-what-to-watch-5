@@ -27,8 +27,7 @@ const Film = (props) => {
 
 
   useEffect(() => {
-    // eslint-disable-next-line
-    if (props.reviews.list.length < 1 || props.reviews.movie != props.id) {
+    if (props.reviews.list.length < 1 || parseInt(props.reviews.movie, 10) !== parseInt(props.id, 10)) {
       props.getComments(props.id); // we don't pull comments again if comments with this movieId already present in the store
     }
   }, []);

@@ -1,6 +1,10 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
+import {pullComments} from "../../services/movie-service";
+import {appRoute} from "../../common/constants";
+import browserHistory from "../../common/browser-history";
 import {sendReveiw} from "../../services/movie-service";
 
 class AddNewComment extends PureComponent {
@@ -25,11 +29,9 @@ class AddNewComment extends PureComponent {
     e.preventDefault();
     this.setState({isSending: true});
     sendReveiw({id: this.props.id, rating: this.state.rating, comment: this.state.reviewText})
-      .then(() => {
-        this.setState({isSending: false, reviewText: ``});
-      }
-
-      );
+      .then(() => this.setState({isSending: false, reviewText: ``}))
+      .then(() => this.props.getComments(this.props.id))
+      .then(() => browserHistory.push(appRoute.FILM.replace(`:id`, this.props.id)));
   }
 
   render() {
@@ -132,7 +134,16 @@ class AddNewComment extends PureComponent {
 }
 
 AddNewComment.propTypes = {
-  id: PropTypes.number.isRequired
+  id: PropTypes.number.isRequired,
+  getComments: PropTypes.func,
 };
 
-export default AddNewComment;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getComments: (movieId) => dispatch(pullComments(movieId)),
+  };
+};
+
+export {AddNewComment};
+export default connect(null, mapDispatchToProps)(AddNewComment);
