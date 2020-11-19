@@ -6,7 +6,7 @@ import { authStatus } from '../common/constants';
 
 export const checkAuth = () => (dispatch, state, api) => (
   api.get(appRoute.LOGIN)
-    .then(() => dispatch(setAuthAction(authStatus.AUTH)))
+    .then(({ data }) => dispatch(setAuthAction({ status: authStatus.AUTH, data})))
     .catch((err) => {
       console.error(err);
       return;
