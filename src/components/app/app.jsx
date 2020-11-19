@@ -14,6 +14,9 @@ import Player from "../player/player";
 import NotFound from "../not-found/not-found";
 import {movieProps} from "../../validation/propTypes";
 import {AppRoute} from "../../common/constants";
+import withMovie from "../../hoc/withMovie";
+
+const AddReviewWithMovie = withMovie(AddReview);
 
 const App = (props) => {
 
@@ -34,7 +37,7 @@ const App = (props) => {
         <PrivateRoute
           exact
           path={AppRoute.REVIEW}
-          render={({match}) => (<AddReview
+          render={({match}) => (<AddReviewWithMovie
             id={match.params.id} />
           )}
         />

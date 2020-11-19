@@ -1,4 +1,6 @@
 import axios from "axios";
+import browserHistory from "../common/browser-history";
+import {AppRoute} from "../common/constants";
 
 const BASE_URL = `https://5.react.pages.academy/wtw`;
 const REQUEST_TIMEOUT = 5000;
@@ -22,20 +24,10 @@ const createApi = () => {
 
     const {response} = err;
 
-    if (response.status === HttpCode.UNAUTHORIZED) {
-      // eslint-disable-next-line
-      console.warn(`Unauthorized response`, response);
-      throw err;
-
-    }
-
     if (response.status === HttpCode.NOT_FOUND) {
-      // eslint-disable-next-line
-      console.warn(`Asset was not found`, response);
+      browserHistory.push(AppRoute.PAGE_NOT_FOUND);
       throw err;
-
     }
-    throw err;
   };
 
   api.interceptors.response.use(onSuccess, onFail);

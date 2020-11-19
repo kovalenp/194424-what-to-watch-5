@@ -16,7 +16,8 @@ export const AppRoute = {
   REVIEW: `/films/:id/review`,
   PLAYER: `/player/:id`,
   FAVORITE: `/favorite`,
-  HOME: `/`
+  HOME: `/`,
+  PAGE_NOT_FOUND: `/page404`,
 };
 
 export const Ratings = {

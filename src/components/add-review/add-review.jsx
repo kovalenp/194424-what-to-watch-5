@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 import Header from "../header/header";
 import AddNewComment from "../add-new-comment/add-new-comment.jsx";
-import withMovie from "../../hoc/withMovie";
 import {movieProps} from "../../validation/propTypes";
 
 const AddReview = ({movie}) => {
@@ -41,4 +40,5 @@ AddReview.propTypes = {
   id: PropTypes.string.isRequired,
 };
 
-export default withMovie(AddReview);
+export {AddReview};
+export default AddReview;

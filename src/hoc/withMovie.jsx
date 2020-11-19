@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import {getCurrentMovie} from "../services/movie-service";
-import NotFound from "../components/not-found/not-found";
-
 
 const withMovie = (RenderComponent) => {
   class WithMovie extends PureComponent {
@@ -13,11 +11,6 @@ const withMovie = (RenderComponent) => {
     }
 
     render() {
-
-
-      if (!this.props.movies.find((m) => m.id !== parseInt(this.props.id, 10))) {
-        return <NotFound />; // render not found page for assets not present in the service (e.g. films/abc123abc)
-      }
 
       if (!this.props.movie || this.props.movie.id !== parseInt(this.props.id, 10)) {
         const {getMovie} = this.props;

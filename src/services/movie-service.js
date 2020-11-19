@@ -7,7 +7,6 @@ export const initMovies = () => (dispatch, state, api) => (
     .then(({data}) => dispatch(initMoviesAction(data)))
 );
 
-
 export const getPromoMovie = () => (dispatch, state, api) => (
   api.get(AppRoute.PROMO)
     .then(({data}) => dispatch(getPromoAction(data)))
@@ -21,11 +20,10 @@ export const pullComments = (id) => (dispatch, state, api) => (
 export const getCurrentMovie = (id) => (dispatch, state, api) => (
   api.get(AppRoute.FILMS + `/${id}`)
     .then(({data}) => dispatch(getMovieByIdAction(data)))
+    .catch(() => { }) // add logger if needed
 );
 
 export const sendReveiw = ({id, rating, comment}) => serviceApi.post(AppRoute.COMMENTS + `/${id}`, {rating, comment});
 export const setFavorite = (id) => serviceApi.post(AppRoute.FAVORITE + `/${id}/1`);
 export const removeFavorite = (id) => serviceApi.post(AppRoute.FAVORITE + `/${id}/0`);
-
 export const getMovie = (id) => serviceApi.get(AppRoute.FILMS + `/${id}`);
-

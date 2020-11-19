@@ -13,7 +13,7 @@ describe(`Should render Film component correctly`, () => {
   let store;
 
   beforeEach(() => {
-    store = mockStore({USER: {authentication: `AUTH`}});
+    store = mockStore({USER: {authentication: `AUTH`}, MOVIES: {promo: movie}});
   });
 
   it(`for authenticated user`, () => {
