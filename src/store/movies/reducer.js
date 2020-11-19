@@ -7,7 +7,7 @@ const reducer = (state = initState, action) => {
     case MoviesActionsTypes.INIT_MOVIES:
       return Object.assign({}, state, {list: action.payload});
     case MoviesActionsTypes.GET_PROMO:
-      return Object.assign({}, state, {promo: action.payload});
+      return Object.assign({}, state, {promo: action.payload.id, current: action.payload});
     case MoviesActionsTypes.GET_COMMENTS:
       return Object.assign({}, state, {comments: {movie: action.payload.id, list: action.payload.data}});
     case MoviesActionsTypes.GET_MOVIE:

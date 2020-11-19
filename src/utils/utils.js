@@ -1,3 +1,4 @@
+/* eslint-disable new-cap */
 import {ALL_GENRES, ratings} from "../common/constants";
 
 export const getMovieCastString = (actors) => {

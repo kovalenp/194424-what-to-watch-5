@@ -11,7 +11,8 @@ import Overview from "../overview/overview";
 import Details from "../details/details";
 import Reviews from "../reviews/reviews";
 import {movieProps} from "../../validation/propTypes";
-import {pullComments, setFavorite} from "../../services/movie-service";
+import {pullComments} from "../../services/movie-service";
+import MyListButton from "../my-list-button/my-list-button";
 import {appRoute, authStatus} from "../../common/constants";
 import withActive from "../../hoc/withActive";
 import withMovie from "../../hoc/withMovie";
@@ -68,21 +69,7 @@ const Film = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button
-                  className="btn btn--list movie-card__button"
-                  type="button"
-                  onClick={() => {
-                    if (isAuth) {
-                      return setFavorite(movie.id);
-                    } else {
-                      return browserHistory.push(appRoute.LOGIN);
-                    }
-                  }}
-                ><svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <MyListButton movie={movie} isAuth={isAuth}/>
                 {isAuth && <Link
                   to={`/films/${movie.id}/review`}
                   className="btn movie-card__button"

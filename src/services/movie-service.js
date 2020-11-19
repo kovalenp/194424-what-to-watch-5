@@ -25,6 +25,7 @@ export const getCurrentMovie = (id) => (dispatch, state, api) => (
 
 export const sendReveiw = ({id, rating, comment}) => serviceApi.post(appRoute.COMMENTS + `/${id}`, {rating, comment});
 export const setFavorite = (id) => serviceApi.post(appRoute.FAVORITE + `/${id}/1`);
+export const removeFavorite = (id) => serviceApi.post(appRoute.FAVORITE + `/${id}/0`);
 
 export const getMovie = (id) => serviceApi.get(appRoute.FILMS + `/${id}`);
 

@@ -8,7 +8,8 @@ import MovieCatalog from "../movie-catalog/movie-catalog";
 import {movieProps} from "../../validation/propTypes";
 import browserHistory from "../../common/browser-history";
 import {appRoute, authStatus} from "../../common/constants";
-import {setFavorite} from "../../services/movie-service";
+import MyListButton from "../my-list-button/my-list-button";
+// import {setFavorite} from "../../services/movie-service";
 
 const Main = (props) => {
 
@@ -57,19 +58,7 @@ const Main = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button
-                  className="btn btn--list movie-card__button"
-                  type="button"
-                  onClick={() => {
-                    // eslint-disable-next-line
-                    (isAuth) ? setFavorite(promoMovie.id) : browserHistory.push(appRoute.LOGIN);
-                  }}
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <MyListButton movie={promoMovie} isAuth={isAuth}/>
               </div>
             </div>
           </div>
@@ -91,7 +80,7 @@ Main.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    promoMovie: state.MOVIES.promo,
+    promoMovie: state.MOVIES.current,
     isAuth: state.USER.authentication === authStatus.AUTH
   };
 };
