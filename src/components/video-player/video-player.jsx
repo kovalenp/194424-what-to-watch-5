@@ -1,8 +1,7 @@
-import React, {Component, createRef} from "react";
+import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 
-
-class VideoPlayer extends Component {
+class VideoPlayer extends PureComponent {
   constructor() {
     super();
     this.videoRef = createRef();

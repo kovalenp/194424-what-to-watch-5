@@ -9,7 +9,6 @@ import {movieProps} from "../../validation/propTypes";
 import browserHistory from "../../common/browser-history";
 import {appRoute, authStatus} from "../../common/constants";
 import MyListButton from "../my-list-button/my-list-button";
-// import {setFavorite} from "../../services/movie-service";
 
 const Main = (props) => {
 

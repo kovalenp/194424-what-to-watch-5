@@ -116,7 +116,7 @@ const Film = (props) => {
 };
 
 Film.propTypes = {
-  // movies: PropTypes.arrayOf(movieProps),
+  movies: PropTypes.arrayOf(movieProps),
   movie: movieProps,
   id: PropTypes.string.isRequired,
   reviews: PropTypes.object,
@@ -125,9 +125,8 @@ Film.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const {list, comments} = state.MOVIES;
+  const {comments} = state.MOVIES;
   return {
-    // movies: list,
     reviews: comments,
     isAuth: state.USER.authentication === authStatus.AUTH
   };
