@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {getCurrentMovie} from "../services/movie-service";
+import {getCurrentMovie} from "../../services/movie-service";
 
 const withMovie = (RenderComponent) => {
   class WithMovie extends PureComponent {
@@ -50,4 +50,5 @@ const withMovie = (RenderComponent) => {
   return connect(mapStateToProps, mapDispatchToProps)(WithMovie);
 };
 
+export {withMovie};
 export default withMovie;

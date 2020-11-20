@@ -14,9 +14,11 @@ import Player from "../player/player";
 import NotFound from "../not-found/not-found";
 import {movieProps} from "../../validation/propTypes";
 import {AppRoute} from "../../common/constants";
-import withMovie from "../../hoc/withMovie";
+import withMovie from "../../hocs/with-movie/with-movie";
 
 const AddReviewWithMovie = withMovie(AddReview);
+const PlayerWithMovie = withMovie(Player);
+const FilmWithMovie = withMovie(Film);
 
 const App = (props) => {
 
@@ -45,12 +47,12 @@ const App = (props) => {
           path={AppRoute.FILM}
           exact
           render={({match}) => (
-            <Film
+            <FilmWithMovie
               id={match.params.id} />
           )}
         />
         <Route path={AppRoute.PLAYER} exact render={({match}) => (
-          <Player
+          <PlayerWithMovie
             id={match.params.id} />
         )} />
         <Route component={NotFound} />

@@ -4,7 +4,7 @@ import {MemoryRouter} from 'react-router-dom';
 import configureMockStore from 'redux-mock-store';
 import {Provider} from "react-redux";
 import {Film} from "./film";
-import movie from "../../../test/mock/movie";
+import movie from "../../mocks/movie";
 
 const mockStore = configureMockStore();
 

@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 import VideoPlayer from "../video-player/video-player.jsx";
 import {movieProps} from "../../validation/propTypes";
 import browserHistory from "../../common/browser-history";
-import withActive from "../../hoc/withActive";
 
 let timeout;
 
@@ -64,4 +63,5 @@ SmallMovieCard.propTypes = {
   onActiveChange: PropTypes.func.isRequired,
 };
 
-export default withActive(SmallMovieCard);
+export {SmallMovieCard};
+export default SmallMovieCard;

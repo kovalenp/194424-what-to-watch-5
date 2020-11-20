@@ -39,7 +39,6 @@ MovieCatalog.propTypes = {
   displayMoviesByGenre: PropTypes.number,
 };
 
-
 const mapStateToProps = (state) => {
   return {
     movies: state.MOVIES.list,

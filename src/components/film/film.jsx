@@ -14,8 +14,7 @@ import {movieProps} from "../../validation/propTypes";
 import {pullComments} from "../../services/movie-service";
 import MyListButton from "../my-list-button/my-list-button";
 import {AppRoute, AuthStatus, TabNames} from "../../common/constants";
-import withActive from "../../hoc/withActive";
-import withMovie from "../../hoc/withMovie";
+import withActive from "../../hocs/with-active/with-active";
 import browserHistory from "../../common/browser-history";
 
 const ActiveTabs = withActive(Tabs, TabNames.OVERVIEW);
@@ -138,5 +137,5 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export {Film};
-export default connect(mapStateToProps, mapDispatchToProps)(withMovie(Film));
+export default connect(mapStateToProps, mapDispatchToProps)(Film);
 

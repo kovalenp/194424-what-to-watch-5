@@ -3,7 +3,7 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import {GenresList} from "./genres-list";
-import {genres, activeGenre} from "../../../test/mock/genres";
+import {genres, activeGenre} from "../../mocks/genres";
 
 Enzyme.configure({
   adapter: new Adapter(),

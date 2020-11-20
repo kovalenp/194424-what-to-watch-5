@@ -4,7 +4,6 @@ import {movieProps} from "../../validation/propTypes";
 import {AppRoute} from "../../common/constants";
 import VideoPlayer from "../video-player/video-player.jsx";
 import browserHistory from "../../common/browser-history";
-import withMovie from "../../hoc/withMovie";
 
 const Player = (props) => {
 
@@ -37,4 +36,5 @@ Player.propTypes = {
   movie: movieProps,
 };
 
-export default withMovie(Player);
+export {Player};
+export default Player;

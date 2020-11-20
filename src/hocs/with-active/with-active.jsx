@@ -28,4 +28,5 @@ const withActive = (Component, defaultActive = ``) => {
   };
 };
 
+export {withActive};
 export default withActive;

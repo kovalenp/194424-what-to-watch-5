@@ -3,7 +3,7 @@ import api from "./api";
 import {initMovies} from "./movie-service";
 import {MoviesActionsTypes} from "../store/movies/actions";
 import {AppRoute} from "../common/constants";
-import movie from "../../test/mock/movie";
+import movie from "../mocks/movie";
 
 describe(`Async operation in movie reducers works`, () => {
   it(`when initMovie call is made`, () => {
