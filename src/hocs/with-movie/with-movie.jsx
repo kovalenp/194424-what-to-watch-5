@@ -1,30 +1,25 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import {getCurrentMovie} from "../../services/movie-service";
 
 const withMovie = (RenderComponent) => {
-  class WithMovie extends PureComponent {
-    constructor(props) {
-      super(props);
+  function WithMovie(props) {
+
+    if (!props.movie || props.movie.id !== parseInt(props.id, 10)) {
+      const {getMovie} = props;
+      getMovie();
+      return null;
     }
 
-    render() {
+    return (
+      <RenderComponent
+        {...props}
+        movie={props.movie}
+      />
+    );
 
-      if (!this.props.movie || this.props.movie.id !== parseInt(this.props.id, 10)) {
-        const {getMovie} = this.props;
-        getMovie();
-        return null;
-      }
-
-      return (
-        <RenderComponent
-          {...this.props}
-          movie={this.props.movie}
-        />
-      );
-    }
   }
 
   WithMovie.propTypes = {
