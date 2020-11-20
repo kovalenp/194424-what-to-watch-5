@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import browserHistory from "../../common/browser-history";
-import PrivateRoute from "../../common/private-route";
+import PrivateRoute from "../private-route/private-route";
 import Main from "../main/main";
 import Film from "../film/film";
 import SignIn from "../sign-in/sign-in";
