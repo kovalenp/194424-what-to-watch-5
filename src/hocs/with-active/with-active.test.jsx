@@ -1,8 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import PropTypes from "prop-types";
-import withActive from "./with-active";
-
+import {withActive} from "./with-active";
 
 const MockComponent = (props) => {
   const {children} = props;
