@@ -1,4 +1,5 @@
-/* eslint-disable new-cap */
+import dayjs from "dayjs";
+
 import {ALL_GENRES, Ratings} from "../common/constants";
 
 export const getMovieCastString = (actors) => {
@@ -15,7 +16,6 @@ export const getMovieCastString = (actors) => {
   return result;
 };
 
-
 export const getMoviesByGenre = ({activeGenre, movies}) => {
 
   if (!movies || !activeGenre) {
@@ -27,7 +27,6 @@ export const getMoviesByGenre = ({activeGenre, movies}) => {
   }
   return movies.filter((movie) => movie.genre === activeGenre);
 };
-
 
 export const getRatingLevel = (rating) => {
   if (rating >= 0 && rating < 3) {
@@ -45,9 +44,6 @@ export const getRatingLevel = (rating) => {
   return Ratings.AWESOME;
 };
 
-
 export const formatDate = (timestamp) => {
-  const date = Date.parse(timestamp);
-  const options = {month: `long`, day: `numeric`, year: `numeric`};
-  return Intl.DateTimeFormat(`en-US`, options).format(date);
+  return dayjs(timestamp).format(`MMMM D, YYYY`);
 };
