@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Details test to meet B21 criteria 1`] = `
+<div
+  className="movie-card__text movie-card__row"
+>
+  <div
+    className="movie-card__text-col"
+  >
+    <p
+      className="movie-card__details-item"
+    >
+      <strong
+        className="movie-card__details-name"
+      >
+        Director
+      </strong>
+      <span
+        className="movie-card__details-value"
+      >
+        Nicolas Winding Refn
+      </span>
+    </p>
+    <div
+      className="movie-card__details-item"
+    >
+      <strong
+        className="movie-card__details-name"
+      >
+        Starring
+      </strong>
+      <ul
+        className="movie-card__details-value"
+        style={
+          Object {
+            "padding": 0,
+          }
+        }
+      >
+        <li
+          style={
+            Object {
+              "listStyleType": "none",
+            }
+          }
+        >
+          Tom Hardy
+        </li>
+        <li
+          style={
+            Object {
+              "listStyleType": "none",
+            }
+          }
+        >
+          Kelly Adams
+        </li>
+        <li
+          style={
+            Object {
+              "listStyleType": "none",
+            }
+          }
+        >
+          Luing Andrews
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    className="movie-card__text-col"
+  >
+    <p
+      className="movie-card__details-item"
+    >
+      <strong
+        className="movie-card__details-name"
+      >
+        Run Time
+      </strong>
+      <span
+        className="movie-card__details-value"
+      >
+        1h 39m
+      </span>
+    </p>
+    <p
+      className="movie-card__details-item"
+    >
+      <strong
+        className="movie-card__details-name"
+      >
+        Genre
+      </strong>
+      <span
+        className="movie-card__details-value"
+      >
+        Action
+      </span>
+    </p>
+    <p
+      className="movie-card__details-item"
+    >
+      <strong
+        className="movie-card__details-name"
+      >
+        Released
+      </strong>
+      <span
+        className="movie-card__details-value"
+      />
+    </p>
+  </div>
+</div>
+`;
