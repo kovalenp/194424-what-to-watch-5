@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Player meets B21 and rendered correctly for auth'ed 1`] = `
+<div
+  className="player"
+  style={
+    Object {
+      "backgroundColor": "#000000",
+    }
+  }
+>
+  <video
+    controls={true}
+    height="100%"
+    muted={false}
+    poster="https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg"
+    preload="none"
+    src="http://media.xiph.org/mango/tears_of_steel_1080p.webm"
+    width="100%"
+  />
+  <button
+    className="player__exit"
+    onClick={[Function]}
+    style={
+      Object {
+        "top": "12px",
+      }
+    }
+    type="button"
+  >
+    Exit
+  </button>
+</div>
+`;

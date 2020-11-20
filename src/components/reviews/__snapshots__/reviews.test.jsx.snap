@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reviews meets B21 and rendered correctly for auth'ed 1`] = `
+<div
+  className="movie-card__reviews movie-card__row"
+>
+  <div
+    className="movie-card__reviews-col"
+  >
+    <div
+      className="review"
+    >
+      <blockquote
+        className="review__quote"
+      >
+        <p
+          className="review__text"
+        >
+          HTMLAcademy B21 criteria is my favorite
+        </p>
+        <footer
+          className="review__details"
+        >
+          <cite
+            className="review__author"
+          >
+            pavel
+          </cite>
+          <time
+            className="review__date"
+          >
+            November 15, 2020
+          </time>
+        </footer>
+      </blockquote>
+      <div
+        className="review__rating"
+      >
+        5
+      </div>
+    </div>
+  </div>
+</div>
+`;

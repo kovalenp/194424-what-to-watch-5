@@ -36,5 +36,4 @@ Player.propTypes = {
   movie: movieProps,
 };
 
-export {Player};
 export default Player;

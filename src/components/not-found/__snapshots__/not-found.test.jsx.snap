@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound meets B21 and rendered correctly for auth'ed 1`] = `
+<div>
+  <h1>
+    404 Page Not Found
+  </h1>
+  <button
+    onClick={[Function]}
+  >
+    Back
+  </button>
+</div>
+`;

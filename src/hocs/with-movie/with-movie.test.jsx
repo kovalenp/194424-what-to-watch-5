@@ -11,6 +11,12 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const store = mockStore({MOVIES: {current: movie, list: [movie]}});
 
+jest.mock(`../../services/movie-service`, () => ({
+  __esModule: true,
+  default: () => () => <p>MockHeader</p>,
+  getCurrentMovie: () => ({type: `MOCK`})
+}));
+
 const MockComponent = (props) => {
   const {children} = props;
 
@@ -32,12 +38,8 @@ const MockComponentWrapped = withMovie(MockComponent);
 
 describe(`withMovie meets B21`, () => {
 
-  beforeAll(() => {
-    jest.mock(`../../services/movie-service`);
-  });
-
   afterAll(() => {
-    jest.mockClear();
+    jest.clearAllMocks();
   });
 
   it(`and rendered correctly (nah, just kidding)`, () => {

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoPlayer meets B21 and rendered correctly for auth'ed 1`] = `
+<video
+  controls={false}
+  height="1px"
+  muted={false}
+  poster=""
+  preload="none"
+  src=""
+  width="1px"
+/>
+`;

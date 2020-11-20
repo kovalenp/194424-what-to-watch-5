@@ -63,5 +63,4 @@ SmallMovieCard.propTypes = {
   onActiveChange: PropTypes.func.isRequired,
 };
 
-export {SmallMovieCard};
 export default SmallMovieCard;

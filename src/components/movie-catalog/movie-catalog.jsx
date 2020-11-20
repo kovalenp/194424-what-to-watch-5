@@ -47,4 +47,5 @@ const mapStateToProps = (state) => {
   };
 };
 
+export {MovieCatalog};
 export default connect(mapStateToProps, null)(MovieCatalog);

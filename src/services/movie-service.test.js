@@ -5,7 +5,7 @@ import {MoviesActionsTypes} from "../store/movies/actions";
 import {AppRoute} from "../common/constants";
 import movie from "../mocks/movie";
 
-describe(`Async operation in movie reducers works`, () => {
+describe(`Async operation in user service works`, () => {
   it(`when initMovie call is made`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();

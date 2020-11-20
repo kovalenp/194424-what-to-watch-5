@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddReview test to meet B21 criteria 1`] = `
+<section
+  className="movie-card movie-card--full"
+  style={
+    Object {
+      "backgroundColor": "#73B39A",
+    }
+  }
+>
+  <div
+    className="movie-card__header"
+  >
+    <div
+      className="movie-card__bg"
+    >
+      <img
+        alt="Bronson"
+        src="https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg"
+      />
+    </div>
+    <h1
+      className="visually-hidden"
+    >
+      WTW
+    </h1>
+    <div
+      className="movie-card__poster movie-card__poster--small"
+    >
+      <img
+        alt="Bronson poster"
+        height="327"
+        src="https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/bronson.jpg"
+        width="218"
+      />
+    </div>
+  </div>
+</section>
+`;

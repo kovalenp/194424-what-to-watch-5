@@ -83,4 +83,5 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+export {MyListButton};
 export default connect(mapStateToProps, mapDispatchToProps)(MyListButton);
