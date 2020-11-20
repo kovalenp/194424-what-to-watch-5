@@ -47,4 +47,5 @@ Details.propTypes = {
   movie: movieProps
 };
 
+export {Details};
 export default Details;

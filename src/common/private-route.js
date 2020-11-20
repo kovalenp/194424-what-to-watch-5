@@ -4,7 +4,6 @@ import {Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {AuthStatus, AppRoute} from "./constants";
 
-
 const PrivateRoute = (props) => {
   const {render, path, exact, isAuth} = props;
 
