@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Reviews meets B21 and rendered correctly for auth'ed 1`] = `
+exports[`Reviews meets B21 and rendered correctly 1`] = `
 <div
   className="movie-card__reviews movie-card__row"
 >
@@ -29,7 +29,7 @@ exports[`Reviews meets B21 and rendered correctly for auth'ed 1`] = `
           <time
             className="review__date"
           >
-            November 15, 2020
+            September 3, 2020
           </time>
         </footer>
       </blockquote>
